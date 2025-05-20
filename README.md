@@ -15,6 +15,15 @@ Primary features of AIM include
 
 **Developed by:** [Muhammad Hassan](https://github.com/hassan-azizi)
 
+Installation
+========
+- **Windows users**:
+   <br>Please use the 'AIM_Installer.exe' file located in the [bin](./bin/) directory.
+
+- **Linux and macOS users**:
+   <br>Users of Linux and macOS need to compile the app for redistirbution.
+   <br>Please follow the instruction given in the [READme](./build/READme.md) file located in the build directory for compilation.
+
 AIM Modules
 ======
 - **IsoFit**: Single temperature isotherm fitting using various isotherm models
@@ -44,15 +53,6 @@ AIM Modules
    * Axial dispersion
    * Linear Driving Force (LDF)
    * Ergun equation for pressure drop
-
-Installation
-========
-- **Windows users**:
-   <br>Please use the 'AIM_Installer.exe' file located in the [bin](./bin/) directory.
-
-- **Linux and macOS users**:
-   <br>Users of Linux and macOS need to compile the app for redistirbution.
-   <br>Please follow the instruction given in the [READme](./build/READme.md) file located in the build directory for compilation.
 
 Cite Us
 ============
