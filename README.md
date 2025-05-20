@@ -68,5 +68,3 @@ See the [LICENSE](./LICENSE) file for details.
 
 # Maintainers
 * Muhammad Hassan (hassanaz.14@outlook.com)
-* Sunghyun Yoon
-* Yongchul G. Chung (drygchung@gmail.com)
