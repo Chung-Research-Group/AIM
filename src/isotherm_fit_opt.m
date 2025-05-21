@@ -159,8 +159,9 @@ function opt = isotherm_fit_opt(isotherm_model, loading_data, Pressure)
             opt.ub = UL_COMMON .* ones(1, opt.num_params);
             % opt.ub([2, 3]) = UL_langmuir_constant .* BET_tol;
             % opt.guess = [sat_loading_guess, K_guess, C_guess, n_guess];
-            opt.guess = [SAT_LOADING_GUESS, LANG_CONST_GUESS,...
-                         SAT_LOADING_GUESS, LANG_CONST_GUESS,...
+            % The guess for q_LP should be higher than q_NP
+            opt.guess = [SAT_LOADING_GUESS.*0.25, LANG_CONST_GUESS,...
+                         SAT_LOADING_GUESS.*0.75, LANG_CONST_GUESS,...
                          EXPONENT_GUESS, P_tr_guess];
             opt.T_flag = 0;
             opt.p_sat = 0;
@@ -384,7 +385,8 @@ function opt = isotherm_fit_opt(isotherm_model, loading_data, Pressure)
         den_NP = (1+b_NP.*P);
         den_LP = (1+b_LP.*P);
 
-        y = ((1+b_NP*P_tr)./(den_NP)).^q_NP .* ((1+b_LP*P_tr)./(den_LP)).^q_LP;
+        % y = ((1+b_NP*P_tr)./(den_NP)).^q_NP .* ((1+b_LP*P_tr)./(den_LP)).^q_LP;
+        y = ((1+b_NP*P_tr)./(den_NP)).^q_NP .* ((1+b_LP*P)./(1+b_LP.*P_tr)).^q_LP;
 
         sigma = y.^s ./ (1+y.^s);
         
