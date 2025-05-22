@@ -158,9 +158,14 @@ function opt = isotherm_fit_opt(isotherm_model, loading_data, Pressure)
             opt.lb = zeros(1, opt.num_params);
             opt.ub = UL_COMMON .* ones(1, opt.num_params);
             if (nargin==3)
-                % P_tr is constrained within max and min pressure data
-                opt.lb(end) = min(Pressure, [], "all");        
-                opt.ub(end) = max(Pressure, [], "all");
+                try
+                    % P_tr is constrained within max and min pressure data
+                    opt.lb(end) = min(Pressure, [], "all");        
+                    opt.ub(end) = max(Pressure, [], "all");
+                catch
+                    opt.lb(end) = 1;        
+                    opt.ub(end) = UL_COMMON;
+                end
             end
             % opt.ub([2, 3]) = UL_langmuir_constant .* BET_tol;
             % opt.guess = [sat_loading_guess, K_guess, C_guess, n_guess];
