@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration file="D:\Hassan\MATLAB_Drive\AIM-original-repo\AIM\AIM_Build.prj" location="D:\Hassan\MATLAB_Drive\AIM-original-repo\AIM" name="AIM_Build" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration file="D:\MATLAB Drive\AIM-repo-work\AIM\AIM_Build.prj" location="D:\MATLAB Drive\AIM-repo-work\AIM" name="AIM_Build" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>AIM</param.appname>
     <param.icon>${PROJECT_ROOT}\AIM_Build_resources\icon.ico</param.icon>
     <param.icons>
@@ -8,7 +8,7 @@
       <file>${PROJECT_ROOT}\AIM_Build_resources\icon_24.png</file>
       <file>${PROJECT_ROOT}\AIM_Build_resources\icon_16.png</file>
     </param.icons>
-    <param.version>0.1</param.version>
+    <param.version>1.0</param.version>
     <param.authnamewatermark>Muhammad Hassan</param.authnamewatermark>
     <param.email>hassanaz.14@outlook.com</param.email>
     <param.company>MTAP Lab Pusan National University</param.company>
@@ -48,6 +48,7 @@
 	 -?  print help on how to use the application 
 	 input arguments</param.help.text>
     <unset>
+      <param.version />
       <param.guid />
       <param.installpath.string />
       <param.installpath.combo />
@@ -122,15 +123,16 @@
     <fileset.package />
     <fileset.depfun />
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\AIM_Build\for_testing" name="splash.png" optional="false">D:\Hassan\MATLAB_Drive\AIM-original-repo\AIM\AIM_Build\for_testing\splash.png</file>
-      <file location="${PROJECT_ROOT}\AIM_Build\for_testing" name="readme.txt" optional="true">D:\Hassan\MATLAB_Drive\AIM-original-repo\AIM\AIM_Build\for_testing\readme.txt</file>
-      <file location="${PROJECT_ROOT}\AIM_Build\for_testing" name="AIM.exe" optional="false">D:\Hassan\MATLAB_Drive\AIM-original-repo\AIM\AIM_Build\for_testing\AIM.exe</file>
+      <file location="${PROJECT_ROOT}\AIM_Build\for_testing" name="readme.txt" optional="true">D:\MATLAB Drive\AIM-repo-work\AIM\AIM_Build\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\AIM_Build\for_testing" name="AIM.exe" optional="false">D:\MATLAB Drive\AIM-repo-work\AIM\AIM_Build\for_testing\AIM.exe</file>
+      <file location="${PROJECT_ROOT}\AIM_Build\for_testing" name="splash.png" optional="false">D:\MATLAB Drive\AIM-repo-work\AIM\AIM_Build\for_testing\splash.png</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>D:\Softwares\MATLAB</root>
+      <root>D:\MATLAB_software</root>
       <toolboxes>
         <toolbox name="matlabcoder" />
+        <toolbox name="embeddedcoder" />
         <toolbox name="gpucoder" />
         <toolbox name="fixedpoint" />
         <toolbox name="matlabhdlcoder" />
@@ -140,6 +142,11 @@
         <matlabcoder>
           <enabled>true</enabled>
         </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <embeddedcoder>
+          <enabled>true</enabled>
+        </embeddedcoder>
       </toolbox>
       <toolbox>
         <gpucoder>
