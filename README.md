@@ -22,7 +22,7 @@ Installation
 
 - **Linux and macOS users**:
    <br>Users of Linux and macOS need to compile the app for redistirbution.
-   <br>Please follow the instruction given in the [READme](./build/READme.md) file located in the build directory for compilation.
+   <br>Please follow the instruction given in the [README](./build/README.md) file located in the build directory for compilation.
 
 AIM Modules
 ======
