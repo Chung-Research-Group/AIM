@@ -1,0 +1,190 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; AIM Documentation 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="canonical" href="https://hassan-azizi.github.io/AIM/Installation.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorials" href="Tutorials.html" />
+    <link rel="prev" title="Input-Ouput Data Files" href="Input-Output%20Data%20Files.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/AIM_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="AIM%20Modules.html">AIM Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="IsoFit.html">IsoFit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HeatFit.html">HeatFit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MixPred.html">MixPred</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BreakLab.html">BreakLab</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Input-Output%20Data%20Files.html">Input-Ouput Data Files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIM Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<section id="windows">
+<h2>Windows<a class="headerlink" href="#windows" title="Link to this heading"></a></h2>
+<p>AIM GUI software can be freely downloaded from <a class="reference download internal" download="" href="_downloads/96b45061afdad2719c71abcac18fe9a2/AIM-Installer.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a></p>
+<ol class="arabic simple">
+<li><p>Unzip the <code class="docutils literal notranslate"><span class="pre">AIM-Installer.tar.gz</span></code> file.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">AIM_Installer.exe</span></code> file for installing AIM.</p></li>
+</ol>
+<p>AIM application requires MATLAB Runtime environment. The AIM Installer will automatically install both AIM application and MATLAB Runtime.</p>
+<p>Users can also specify the desired installation location for both AIM and MATLAB Runtime.</p>
+<p>Please note that <code class="docutils literal notranslate"><span class="pre">AIM_Installer.exe</span></code> file will work only on Windows platform.</p>
+</section>
+<section id="linux-and-macos">
+<h2>Linux and macOS<a class="headerlink" href="#linux-and-macos" title="Link to this heading"></a></h2>
+<p>Users of Linux and macOS need to first compile AIM, if they want to use or re-distribute it as a standalone application.
+Please follow the instructions below to compile the provided source code using the MATLAB for re-distribution.
+The successful compilation will generate AIM installer that can be distributed. Note that the MATLAB compilation is platform dependent.
+The generated executable will function properly only if the operating system of the end user is same as the operating system of the machine, the code is compiled on.</p>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
+<p><strong>MATLAB Version</strong>: Ensure you have MATLAB R2024a or a newer version installed.</p>
+<p><strong>MATLAB Compiler</strong>: This MATLAB toolbox is required to compile MATLAB code into standalone applications. Version must be R2024a or newer.</p>
+<p><strong>MATLAB Runtime</strong>: The compiled application requires the MATLAB Runtime environment to run on machines without MATLAB installed. The version of MATLAB Runtime must match the version of MATLAB Compiler used for compilation.
+While compiling the source code, one has two options:</p>
+<ol class="arabic simple">
+<li><p>Create an application installer with MATLAB Runtime.</p></li>
+<li><p>Create an application installer without MATLAB Runtime. In this case, users of the application will need to download the MATLAB Runtime.</p></li>
+</ol>
+<p>In case 1, you must download the MATLAB Runtime installer that matches both the version and update level of MATLAB used to create the installer.
+Details about instaling MATLAB Runtime on different platforms can be found on <a class="reference external" href="https://www.mathworks.com/help/compiler/install-the-matlab-runtime.html">MATLAB Website</a></p>
+</section>
+<section id="compilation">
+<h3>Compilation<a class="headerlink" href="#compilation" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>Download the AIM sourcecode</strong></p>
+<ul>
+<li><p>The source code of AIM is opensource and is freely avaibale at our GitHub repository <a class="reference external" href="https://github.com/mtap-research/AIM">AIM Repository</a>.
+You can clone the repository using Git:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mtap-research/AIM.git
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>Start MATLAB</strong></p>
+<p>Start the MATLAB application.</p>
+</li>
+<li><p><strong>Open AIM Project</strong></p>
+<ul class="simple">
+<li><p>Navigate to the downloaded AIM repository directory within MATLAB.</p></li>
+<li><p>Double click the <code class="docutils literal notranslate"><span class="pre">AIM_Build.prj</span></code> file to open it in MATLAB.</p></li>
+</ul>
+</li>
+<li><p><strong>Check Necessary Files</strong></p>
+<ul class="simple">
+<li><p>The project template file <code class="docutils literal notranslate"><span class="pre">AIM_Build.prj</span></code> is already configured and contain all the neccessary files.</p></li>
+<li><p>Do not change the location of the <code class="docutils literal notranslate"><span class="pre">AIM_Build.prj</span></code> file. It must be present in the AIM repository root directory.</p></li>
+</ul>
+</li>
+<li><p><strong>Compile the Application</strong></p>
+<ul class="simple">
+<li><p>Click the “Package” button to start the compilation process.</p></li>
+<li><p>Upon completion, MATLAB will generate the standalone application and a <code class="docutils literal notranslate"><span class="pre">readme.txt</span></code> file containing deployment prerequisites and a list of packaged files.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Input-Output%20Data%20Files.html" class="btn btn-neutral float-left" title="Input-Ouput Data Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Tutorials.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Muhammad Hassan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

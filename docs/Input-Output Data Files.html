@@ -1,0 +1,246 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Input-Ouput Data Files &mdash; AIM Documentation 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="canonical" href="https://hassan-azizi.github.io/AIM/Input-Output%20Data%20Files.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="Installation.html" />
+    <link rel="prev" title="BreakLab" href="BreakLab.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/AIM_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="AIM%20Modules.html">AIM Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="IsoFit.html">IsoFit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HeatFit.html">HeatFit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MixPred.html">MixPred</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BreakLab.html">BreakLab</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Input-Ouput Data Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIM Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Input-Ouput Data Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Input-Output Data Files.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="input-ouput-data-files">
+<h1>Input-Ouput Data Files<a class="headerlink" href="#input-ouput-data-files" title="Link to this heading"></a></h1>
+<p>AIM modules <strong>IsoFit</strong> and <strong>HeatFit</strong> read isotherm data from input files and generate ouput files containing
+isotherm fitting results. The AIM integrated workflow allows to directly load output files from <strong>IsoFit</strong> and <strong>HeatFit</strong> into
+<strong>MixPred</strong> and <strong>BreakLab</strong> modules. Schematic below highlights the input/output files and workflow within AIM modules. Both input and output files have a well-defined, human-readable format to ensure accewssibility
+to users with diverse backgrounds. In this section, we outline the supported input file formats and guidelines to faciliatet isotherm data files.</p>
+<a class="reference internal image-reference" href="_images/scheme.png"><img alt="AIM_Scheme" class="align-center" src="_images/scheme.png" style="width: 700px; height: 700px;" />
+</a>
+<hr class="docutils" />
+<section id="input-file">
+<h2>Input File<a class="headerlink" href="#input-file" title="Link to this heading"></a></h2>
+<p>IsoFit and HeatFit can import isotherm data from</p>
+<ul class="simple">
+<li><p>General input data files in the following formats: *.csv, *.txt, *.xlsx, *.dat.</p></li>
+<li><p>Adsorption Information Format (AIF).</p></li>
+</ul>
+<p>The general input data file contains tabular data with columns corresponding to pressure and adsorption uptake values.
+Additionally, the user can specify the meta information in the input file such as temperature value and units of pressure, adsorption uptake, and temperature.
+A typical input file for IsoFit and HeatFit modules is shown below.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#units_pressure Pa
+#units_loading mol/kg
+#units_temperature K
+#temperature 298
+1.0     0.0017917972
+2.0     0.0035043503
+3.0     0.005368788
+4.0     0.0074401408
+5.0     0.008703644
+6.0     0.0103347517
+</pre></div>
+</div>
+<p>The meta information tags are specified at the beginning of the input file followed by the isotherm data. The firdst column
+specifies the pressure values, while the second column specifies the gas uptake values.</p>
+<p>We recommend following the guidelines below while preparing the generic input data file</p>
+<ul>
+<li><p>The first column of the isotherm data should contain pressure values, and the second column should contain gas adsorption uptake (adsorption loading) values.</p></li>
+<li><p>The columns should be separated either by a single tab, whitespace, or comma.</p></li>
+<li><p>The meta information should be specified at the beginning of the file followed by isotherm data.</p></li>
+<li><p>The meta information requires specific tags which are listed in Table 1. The module will only search for and parse the tags listed in Table 1. Any additional tags will be ignored.</p></li>
+<li><p>The tag names and values should be specified in the following manner:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Tag_1_Name <span class="math notranslate nohighlight">\(\qquad\)</span> Tag_1_Value</div>
+<div class="line">Tag_2_Name <span class="math notranslate nohighlight">\(\qquad\)</span> Tag_2_Value</div>
+<div class="line">…</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>In the case of importing data from a spreadsheet (*.xlsx), please specify the data in the first sheet.</p></li>
+<li><p>If the AIF file contains both adsorption and desorption data, only the adsorption data will be read. In case isotherm fitting using desorption data is required, please use a separate input file.</p></li>
+<li><p>The temperature value is read only in HeatFit module. IsoFit ignores the temperature value.</p></li>
+</ul>
+<p>In addition to isotherm data, IsoFit also requires saturation/total pressure (<span class="math notranslate nohighlight">\(P_{0}\)</span>) to calculate the relative pressure in the case when user choose either <strong>Auto</strong> or <strong>Dubinin-Astakhov</strong>, <strong>Klotz</strong>, and <strong>Do-Do</strong> models.
+The <span class="math notranslate nohighlight">\(P_{0}\)</span> can be specified via one of the following methods:</p>
+<ul class="simple">
+<li><p>In the meta information of the isotherm data file using the tag listed in the Table below.</p></li>
+<li><p>In the app itself using the <span class="math notranslate nohighlight">\(P_{0}\)</span> entry field.</p></li>
+<li><p>By directly specifying the relative pressure values instead of pressure values in the isotherm data file.
+In this case, specify <span class="math notranslate nohighlight">\(P_{0}=1\)</span> in the <span class="math notranslate nohighlight">\(P_{0}\)</span> entry field.</p></li>
+</ul>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Tags for meta information in input files</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Description</p></th>
+<th class="head"><p>General Input Data File</p></th>
+<th class="head"><p>AIF</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Pressure unit</p></td>
+<td><p>#units_pressure</p></td>
+<td><p>_units_pressure</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gas adsorption uptake unit</p></td>
+<td><p>#units_loading</p></td>
+<td><p>_units_loading</p></td>
+</tr>
+<tr class="row-even"><td><p>Saturation/total pressure</p></td>
+<td><p>#sat_pressure</p></td>
+<td><p>_adsorp_p0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Temperature value</p></td>
+<td><p>#temperature</p></td>
+<td><p>_expltl_temperature</p></td>
+</tr>
+<tr class="row-even"><td><p>Temperature unit</p></td>
+<td><p>#units_temperature</p></td>
+<td><p>_units_temperature</p></td>
+</tr>
+</tbody>
+</table>
+<p>Several sample input files can be found in our repository <a class="reference external" href="https://github.com/mtap-research/AIM/tree/main/input-files">sample-input-files</a>. Users can use those files
+and copy, paste their data for quickstart experience of <strong>IsoFit</strong> and <strong>HeatFit</strong> .</p>
+</section>
+<section id="ouput-files">
+<h2>Ouput Files<a class="headerlink" href="#ouput-files" title="Link to this heading"></a></h2>
+<p><strong>IsoFit</strong> and <strong>HeatFit</strong> generate an output containing the isotherm model name, fitted parameters, and fitting statistics.
+A typical ouput file from <strong>HeatFit</strong> is shown below.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>*************************************************************************
+********************HeatFit ISOTHERM FITTING RESULTS********************
+*************************************************************************
+
+Isotherm Model: DS-Langmuir
+
+Reference Temperature: 273.00
+
+Isotherm fit RMSE:        0.007864
+Isotherm fit r^2: 1.000000
+dH fit RMSE:      0.000908
+
+Parameters
+q_b_sat           2.251065
+b         4.755850e-05
+q_d_sat           1.981077
+d         1.284321e-06
+dH                2.571959e+01
+*************************************************************************
+</pre></div>
+</div>
+<p>Fitting statistics include Root Mean Square Error (RMSE) and <span class="math notranslate nohighlight">\(r^2\)</span> value.
+The output file from HeatFit also contains reference temperature used for fitting and fitted isosteric heat of adsorption values.
+The output file uses custom extension <strong>*.bliso</strong> to facilitate integrated workflow within AIM modules. However, the file itself is human-readable and can be opened with any text editor such as Notepad, WordPad etc.
+The fitted isotherm parameters in the output file can be directly loaded in MixPred and BreakLab modules for mixture adsorption prediction and breakthrough simulation, respectively.
+The user is advised not to modify the extension and keywords in the output file, as this can cause issues in isotherm parameter loading</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="BreakLab.html" class="btn btn-neutral float-left" title="BreakLab" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Muhammad Hassan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

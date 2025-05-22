@@ -1,0 +1,219 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IsoFit &mdash; AIM Documentation 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="canonical" href="https://hassan-azizi.github.io/AIM/IsoFit.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="HeatFit" href="HeatFit.html" />
+    <link rel="prev" title="AIM Modules" href="AIM%20Modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/AIM_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="AIM%20Modules.html">AIM Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">IsoFit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HeatFit.html">HeatFit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MixPred.html">MixPred</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BreakLab.html">BreakLab</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Input-Output%20Data%20Files.html">Input-Ouput Data Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIM Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="AIM%20Modules.html">AIM Modules</a></li>
+      <li class="breadcrumb-item active">IsoFit</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/IsoFit.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="isofit">
+<h1>IsoFit<a class="headerlink" href="#isofit" title="Link to this heading"></a></h1>
+<p><strong>IsoFit</strong> is the module for isotherm model fitting to single temperature isotherm data. <strong>IsoFit</strong> GUI is shown below:</p>
+<a class="reference internal image-reference" href="_images/IsoFit.png"><img alt="IsoFit" class="align-center" src="_images/IsoFit.png" style="width: 1000px;" />
+</a>
+<hr class="docutils" />
+<p>Watch how to use <strong>IsoFit</strong> <a class="reference internal" href="Tutorials.html#isofit-label"><span class="std std-ref">here</span></a></p>
+<section id="isotherm-models">
+<h2>Isotherm Models<a class="headerlink" href="#isotherm-models" title="Link to this heading"></a></h2>
+<p><strong>IsoFit</strong> supports the following isotherm models:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">IsoFit Isotherm Models</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Isotherm Models</p></th>
+<th class="head"><p>Isotherm Expression</p></th>
+<th class="head"><p>Parameters</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Langmuir</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} b P}{1 + b P}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Dual-site Langmuir</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat,1} b_{1} P}{1 + b_{1} P} + \frac{q_{sat,2} b_{2} P}{1 + b_{2} P}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat,1},\ b_{1},\ q_{sat,2},\ b_{2}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Langmuir-Freundlich</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} b P^{n}}{1 + b P^{n}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ n\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Dual-site Langmuir-Freundlich</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat, 1} b P^{n_{1}}}{1 + b_{1} P^{n_{1}}} + \frac{q_{sat,2} b_{2} P^{n_{2}}}{1 + b_{2} P^{n_{2}}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat,1},\ b_{1},\ n_{1},\ q_{sat,2},\ b_{2},\ n_{2}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Quadratic</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = q_{sat}\left(\frac{b P + c P^{2}}{1 + b P + c P^{2}}\right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ c\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Temkin</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = q_{sat}\left(\frac{b P}{1 + b P}\right) + q_{sat}\theta\left(\frac{b P}{1 + b P}\right)\left(\frac{b P}{1 + b P}-1\right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ \theta\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>BET</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} b P}{(1 - c P)(1 - c P + b P)}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ c\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Sips</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} (b P)^{1/n}}{1 + (b P)^{1/n}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ n\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Toth</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} b P}{\left(1 + (b P)^n\right)^{1/n}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ n\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Structural-Transition-Adsorption</p></td>
+<td><p><span class="math notranslate nohighlight">\(y(P)=\left(\frac{1+b_{NP}P_{tr}}{1+b_{NP}P}\right)^{q_{NP,sat}} \left(\frac{1+b_{LP}P}{1+b_{LP}P_{tr}}\right)^{q_{LP,sat}}, \\ \sigma(P)=\frac{y^{s}}{1+y^{s}}, \\ q^{*}=(1-\sigma)\left(\frac{q_{NP,sat}b_{NP}P}{1+b_{NP}P}\right)+(\sigma)\left(\frac{q_{LP,sat}b_{LP}P}{1+b_{LP}P}\right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{NP,sat},\ b_{NP},\ q_{LP,sat},\ b_{LP},\ P_{tr},\ s\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Dubinin-Astakhov</p></td>
+<td><p><span class="math notranslate nohighlight">\(x = \frac{P}{P_{0}},\ q = q_{sat} \exp\left(-\frac{1}{K}\times\ln(\frac{1}{x})\right)^{n}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ K,\ n\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Klotz</p></td>
+<td><p><span class="math notranslate nohighlight">\(x = \frac{P}{P_{0}},\ s = Kx,\\ q = q_{sat} \frac{Cs\{1-(1+n)s^{n}+ns^{n+1}\}}{(1-s)\{1+(C-1)s-Cs^{n+1}\}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ K,\ C,\ n\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Do-Do</p></td>
+<td><p><span class="math notranslate nohighlight">\(x = \frac{P}{P_{0}},\\ q = q_{sat}\left(f \frac{K_{1}x\{1-(1+\beta)x^{\beta}+\beta x^{\beta + 1}\}}{(1-x)\{1+(K_{1}-1)x - K_{1}x^{\beta + 1}\}} \\ + (1-f) \frac{K_{2}x^{\alpha}}{1 + K_{2}x^{\alpha}}\right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ f,\ K_{1},\ K_{2},\ \alpha,\ \beta\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="isotherm-fitting">
+<h2>Isotherm Fitting<a class="headerlink" href="#isotherm-fitting" title="Link to this heading"></a></h2>
+<p>In <strong>IsoFit</strong>, isotherm fitting is done using non-linear
+regression by minimizing the sum of squared error <span class="math notranslate nohighlight">\((SSE)\)</span> function:</p>
+<div class="math notranslate nohighlight">
+\[SSE = \min_{a_{k}} \sum_{i}^N \left(q_{i, exp}^{*} - f(P_{i}; \{a_{k}\}_{1}^{M})\right)^{2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(q_{i,exp}^{*}\)</span> represents the total number of data points and the experimental gas uptake for the given data point <span class="math notranslate nohighlight">\(i\)</span>, respectively.
+<span class="math notranslate nohighlight">\(f(P_{i}; \{a_{k}\}_{1}^{M})\)</span> is the isotherm model
+where, <span class="math notranslate nohighlight">\(P_{i}\)</span> is the pressure value for the given data point <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(a_{k}\)</span> is the set of parameters
+and <span class="math notranslate nohighlight">\(M\)</span> is the total number of parameters for the given isotherm model.</p>
+<p>In IsoFit, regression is performed using the MATLAB’s built-in non-linear least square solver <strong>lsqnonlin</strong>. The user can control the regression process by specifying custom initial guesses, as well as lower and upper bounds.
+Additionally, IsoFit offers a multistart option, which generates 1000 random initial guess within the specified bounds. The fitting process is then performed sequentially for each initial guess and the best fitting result is selected. The multistart approach is useful for fitting problems with multiple parameter solutions. In such cases, fitting using multistart option can identify the global minimum corresponding to the best parameter estimates. The multistart option is available for all isotherm models except <strong>Auto</strong> mode. In <strong>Auto</strong> mode, IsoFit performs isotherm fitting using all the available isotherm models and then selects the best model. Using multistart option for <strong>Auto</strong> mode can be computationally expensive leading to excessive running times.</p>
+<p>Root mean square error <span class="math notranslate nohighlight">\((RMSE)\)</span> is used in the program to evaluate the goodness of fit.</p>
+<div class="math notranslate nohighlight">
+\[RMSE = \sqrt{\frac{SSE}{N-M}}\]</div>
+<p>If the user chooses the <strong>Auto</strong> mode, <strong>IsoFit</strong> reports the best isotherm model with the lowest RMSE values.
+If two or more models have same value of SSE, then IsoFit will choose the model with a smaller number of parameters because of lower value of RMSE.</p>
+<p>IsoFit also reports coefficient of determination, <span class="math notranslate nohighlight">\(r^{2}\)</span>, value defined as:</p>
+<div class="math notranslate nohighlight">
+\[r^{2} = 1 - \frac{SSE}{\sum (q_{i,exp} - \overline{q_{i,exp}})}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\overline{q_{i,exp}}\)</span> is the mean value of experimental gas uptakes.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="AIM%20Modules.html" class="btn btn-neutral float-left" title="AIM Modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="HeatFit.html" class="btn btn-neutral float-right" title="HeatFit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Muhammad Hassan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

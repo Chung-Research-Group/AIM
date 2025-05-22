@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HeatFit &mdash; AIM Documentation 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="canonical" href="https://hassan-azizi.github.io/AIM/HeatFit.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MixPred" href="MixPred.html" />
+    <link rel="prev" title="IsoFit" href="IsoFit.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/AIM_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="AIM%20Modules.html">AIM Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="IsoFit.html">IsoFit</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HeatFit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MixPred.html">MixPred</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BreakLab.html">BreakLab</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Input-Output%20Data%20Files.html">Input-Ouput Data Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIM Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="AIM%20Modules.html">AIM Modules</a></li>
+      <li class="breadcrumb-item active">HeatFit</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/HeatFit.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="heatfit">
+<h1>HeatFit<a class="headerlink" href="#heatfit" title="Link to this heading"></a></h1>
+<p><strong>HeatFit</strong> is the module for isotherm model fitting to multi-temperature isotherm data and
+isosteric heat of adsoprtion <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> prediction using Clausius-Clapeyron or Virial equations. <strong>HeatFit</strong> GUI is shown below:</p>
+<a class="reference internal image-reference" href="_images/HeatFit.png"><img alt="HeatFit" class="align-center" src="_images/HeatFit.png" style="width: 1000px;" />
+</a>
+<hr class="docutils" />
+<p>Watch how to use <strong>HeatFit</strong> <a class="reference internal" href="Tutorials.html#heatfit-label"><span class="std std-ref">here</span></a></p>
+<p>In <strong>HeatFit</strong>, isotherm fitting and prediction of the isosteric heat of adsorption can be carried out using either the Clausius-Clapeyron or Virial equations.
+Fitting method varies based on the chosen model.</p>
+<section id="clausius-clapeyron-equation">
+<h2>Clausius-Clapeyron Equation<a class="headerlink" href="#clausius-clapeyron-equation" title="Link to this heading"></a></h2>
+<p>The Clausius-Clapeyron is a thermodynamic relationship which expresses the relationship between pressure and temperature for phase change processes.
+For adsorption processes, the Clausius-Clapeyron equation is given as,</p>
+<div class="math notranslate nohighlight">
+\[\left. \frac{\partial(\ln P)}{\partial T} \right|_q = \frac{-\Delta H_{ads}}{RT^{2}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(R\)</span> is the general gas constant. For Clausius-Clapeyron implementation in <strong>HeatFit</strong> we assume that the <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> is independent of temperature and
+pressure. The assumption yields the following form:</p>
+<div class="math notranslate nohighlight">
+\[\ln\left(\frac{P_{ref}}{P}\right) = \frac{-\Delta H_{ads}}{R}\left(\frac{1}{T}-\frac{1}{T_{ref}}\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(P_{ref}\)</span>, <span class="math notranslate nohighlight">\(T_{ref}\)</span>, <span class="math notranslate nohighlight">\(P\)</span>, and <span class="math notranslate nohighlight">\(T\)</span> are the adsorption pressure and temperatures for the reference and given states, respectively.
+Note that both reference and given state correspond to the same adosrption loading <span class="math notranslate nohighlight">\(q\)</span>. Let <span class="math notranslate nohighlight">\(f\)</span> be the function representing isotherm model then,</p>
+<div class="math notranslate nohighlight">
+\[q = f(T, P)=f(T_{ref}, P_{ref})\]</div>
+<p>Assuming <span class="math notranslate nohighlight">\(f_{ref}\)</span> be the isotherm model fitted at reference temperature, we have</p>
+<div class="math notranslate nohighlight">
+\[q = f(T, P)=f_{ref}(P_{ref})\]</div>
+<p>The value of <span class="math notranslate nohighlight">\(P_{ref}\)</span> can be subsitutted using the Clausius-Clapeyron quation shown above such that,</p>
+<div class="math notranslate nohighlight">
+\[q = f(T, P)=f_{ref}\left(P\times\exp{\left(\frac{-\Delta H_{ads}}{R}\left(\frac{1}{T}-\frac{1}{T_{ref}}\right)\right)}\right)\]</div>
+<p>The utility of the above equation is that it allows us to predict the loading at different temperatures and pressures using the isotherm model fitted at reference condition.
+Additionally, if we have pressure-loading data at different temperatures and an isotherm model fitted at the reference conditions we can also fit for <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span>.</p>
+<p><strong>HeatFit</strong> uses the methodology outlined by Ga <em>et al.</em> <a class="footnote-reference brackets" href="#ga" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> for isotherm fitting at reference condition and <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> prediction. The method involves following step :</p>
+<ul class="simple">
+<li><p><strong>Step 1</strong>: Isotherm fitting at reference temperature</p></li>
+<li><p><strong>Step 2</strong>: Fitting for <span class="math notranslate nohighlight">\(\Theta\)</span> parameter</p></li>
+<li><p><strong>Step 3</strong>: Fitting for isosteric heat of adsorption <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span></p></li>
+</ul>
+<p>In all three steps, regression is performed using MATLAB’s built-in lsqnonlin solver.
+The user can control the regression process using different sets of values for initial guesses, lower and upper bounds.</p>
+<section id="step-1-isotherm-fitting-at-reference-temperature">
+<h3>Step 1: Isotherm Fitting at Reference Temperature<a class="headerlink" href="#step-1-isotherm-fitting-at-reference-temperature" title="Link to this heading"></a></h3>
+<p>Like <strong>IsoFit</strong>, the isotherm fitting at reference temperature is performed for the chosen isotherm model using non-linear regression.
+Currently, <strong>HeatFit</strong> supports following isotherm models:</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">HeatFit Isotherm Models</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Isotherm Models</p></th>
+<th class="head"><p>Isotherm Expression</p></th>
+<th class="head"><p>Parameters</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Langmuir</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} b P}{1 + b P}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Dual-site Langmuir</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat,1} b_{1} P}{1 + b_{1} P} + \frac{q_{sat,2} b_{2} P}{1 + b_{2} P}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat,1},\ b_{1},\ q_{sat,2},\ b_{2}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Langmuir-Freundlich</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} b P^{n}}{1 + b P^{n}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ n\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Dual-site Langmuir-Freundlich</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat, 1} b P^{n_{1}}}{1 + b_{1} P^{n_{1}}} + \frac{q_{sat,2} b_{2} P^{n_{2}}}{1 + b_{2} P^{n_{2}}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat,1},\ b_{1},\ n_{1},\ q_{sat,2},\ b_{2},\ n_{2}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Quadratic</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = q_{sat}\left(\frac{b P + c P^{2}}{1 + b P + c P^{2}}\right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ c\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Temkin</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = q_{sat}\left(\frac{b P}{1 + b P}\right) + q_{sat}\theta\left(\frac{b P}{1 + b P}\right)\left(\frac{b P}{1 + b P}-1\right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ \theta\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>BET</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} b P}{(1 - c P)(1 - c P + b P)}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ c\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Sips</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} (b P)^{1/n}}{1 + (b P)^{1/n}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ n\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Toth</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} b P}{\left(1 + (b P)^n\right)^{1/n}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ n\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>The objective of the non-linear regression is to minimize the <span class="math notranslate nohighlight">\(SSE\)</span> function given as,</p>
+<div class="math notranslate nohighlight">
+\[SSE = \min_{a_{k}} \sum_{i}^N \left(q_{i, exp}^{*} - f_{ref}(P_{i}; \{a_{k}\}_{1}^{M})\right)^{2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(q_{i,exp}^{*}\)</span> represents the total number of data points and the experimental gas uptake for the given data point <span class="math notranslate nohighlight">\(i\)</span>, respectively.
+<span class="math notranslate nohighlight">\(f_{ref}(P_{i}; \{a_{k}\}_{1}^{M})\)</span> is the isotherm model corresponding to reference conditions.
+where, <span class="math notranslate nohighlight">\(P_{i}\)</span> is the pressure value for the given data point <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(a_{k}\)</span> is the set of parameters
+and <span class="math notranslate nohighlight">\(M\)</span> is the total number of parameters for the given isotherm model.</p>
+<p>In <strong>HeatFit</strong> the user can control the regression process by specifying custom initial guesses, as well as lower and upper bounds.
+Additionally, <strong>HeatFit</strong> offers a multistart option, which generates 1000 random initial guess within the specified bounds.
+The fitting process is then performed sequentially for each initial guess and the best fitting result is selected. The multistart approach is useful for fitting problems with multiple parameter solutions. In such cases, fitting using multistart option can identify the global minimum corresponding to the best parameter estimates. The multistart option is available for all isotherm models except <strong>Auto</strong> mode. In <strong>Auto</strong> mode, IsoFit performs isotherm fitting using all the available isotherm models and then selects the best model. Using multistart option for <strong>Auto</strong> mode can be computationally expensive leading to excessive running times.</p>
+<p>Root mean square error <span class="math notranslate nohighlight">\((RMSE)\)</span> is used in the program to evaluate the goodness of fit.</p>
+<div class="math notranslate nohighlight">
+\[RMSE = \sqrt{\frac{SSE}{N-M}}\]</div>
+<p>If the user chooses the <strong>Auto</strong> mode, <strong>HeatFit</strong> reports the best isotherm model with the lowest RMSE values.
+If two or more models have same value of SSE, then <strong>HeatFit</strong> will choose the model with a smaller number of parameters because of lower value of RMSE for <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> predcition.</p>
+<p><strong>HeatFit</strong> also reports coefficient of determination, <span class="math notranslate nohighlight">\(r^{2}\)</span>, value defined as:</p>
+<div class="math notranslate nohighlight">
+\[r^{2} = 1 - \frac{SSE}{\sum (q_{i,exp} - \overline{q_{i,exp}})}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\overline{q_{i,exp}}\)</span> is the mean value of experimental gas uptakes.</p>
+</section>
+<section id="step-2-fitting-for-theta-parameter">
+<h3>Step 2: Fitting for <span class="math notranslate nohighlight">\(\Theta\)</span> Parameter<a class="headerlink" href="#step-2-fitting-for-theta-parameter" title="Link to this heading"></a></h3>
+<p>Second step involves using the isotherm model and the parameters obtained from fitting at reference temperature to get a set of parameters <span class="math notranslate nohighlight">\(\Theta\)</span>,
+which is defined as,</p>
+<div class="math notranslate nohighlight">
+\[\Theta = \{\theta_j\}_{j=1}^Z\]</div>
+<p>where <span class="math notranslate nohighlight">\(Z\)</span> is the total number of temperature values used in the fitting process.
+Every <span class="math notranslate nohighlight">\(θ_{j}\)</span> value in the <span class="math notranslate nohighlight">\(\Theta\)</span> vector corresponds to temperature value <span class="math notranslate nohighlight">\(T_{j}\)</span>.
+Then the program uses non-linear regression to fit for each <span class="math notranslate nohighlight">\(θ_{j}\)</span> value with the objective function defined as follows,</p>
+<div class="math notranslate nohighlight">
+\[SSE = \min_{\theta_{j}} \left(q_{j, exp}^{*} - g(P; \theta_{j})\right)^{2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(q_{j, exp}^{*}\)</span> is the experimental gas uptake at temperature <span class="math notranslate nohighlight">\(T_{j}\)</span> while
+<span class="math notranslate nohighlight">\(g(P; \theta_{j})\)</span> can be expressed as,</p>
+<div class="math notranslate nohighlight">
+\[g(P; \theta_{j}) = f_{ref} \left(P\times\theta_{j};\ \{a_{k,ref}\}_{k=1}^{M}\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{ref}\)</span> and <span class="math notranslate nohighlight">\(a_{k,ref}\)</span> represent the isotherm function and isotherm function
+parameters obtained in step 1 at reference conditions, respectively.</p>
+</section>
+<section id="step-3-fitting-for-delta-h-ads">
+<h3>Step 3: Fitting for <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span><a class="headerlink" href="#step-3-fitting-for-delta-h-ads" title="Link to this heading"></a></h3>
+<p>Next, the correlation between <span class="math notranslate nohighlight">\(θ_{j}\)</span> and <span class="math notranslate nohighlight">\(T_{j}\)</span> is used to fit for <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span>.
+The correlation is given by the Clausius-Clapeyron equation as:</p>
+<div class="math notranslate nohighlight">
+\[\theta_{j, pred} = \exp\left(\frac{-\Delta H_{ads}}{R}\left(\frac{1}{T_{j}}-\frac{1}{T_{ref}}\right)\right)\]</div>
+<p>The program uses non-linear regression to fit for <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> value
+while minimizing the objective function defined as:</p>
+<div class="math notranslate nohighlight">
+\[SSE = \min_{\Delta H_{ads}} \sum_{j=1}^{Z}\left(\theta_{j} - \theta_{j, pred}\right)^{2}\]</div>
+<p><strong>HeatFit</strong> also reports RMSE value for <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> fitting, which is given as,</p>
+<div class="math notranslate nohighlight">
+\[RMSE = \sqrt{\frac{SSE}{Z}}\]</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="virial-equation">
+<h2>Virial Equation<a class="headerlink" href="#virial-equation" title="Link to this heading"></a></h2>
+<p>The Virial equation is given as,</p>
+<div class="math notranslate nohighlight">
+\[\ln P = \ln q^{*} + \frac{1}{T}\sum_{i=0}^{m-1}a_{i} (q^{*})^{i} + \sum_{j=0}^{n-1}b_{j} (q^{*})^{j}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_{i}\)</span> and <span class="math notranslate nohighlight">\(b_{j}\)</span> are the Virial fitting parameters also known as Virial coefficients. <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span> refers to the number of Virial parameters
+<span class="math notranslate nohighlight">\(a_{i}\)</span> and <span class="math notranslate nohighlight">\(b_{j}\)</span>, respectively. In contrast with the isotherm models discussed earlier, Virial equation expresses the pressure
+as a function of adsorption loading <span class="math notranslate nohighlight">\(q^{*}\)</span> and temperature <span class="math notranslate nohighlight">\(T\)</span>. Moreover, the same set of Virial parameters <span class="math notranslate nohighlight">\(a_{i}\)</span> and <span class="math notranslate nohighlight">\(b_{j}\)</span> are simultaneously
+used to describe the isotherm data at different temperatures. The isosteric heat of adsorption <span class="math notranslate nohighlight">\(Q_{st}(q^{*})\)</span> is a function of adsorption loading given as,</p>
+<div class="math notranslate nohighlight">
+\[Q_{st}(q^{*}) = -R\sum_{i=0}^{m-1}a_{i}(q)^{i}\]</div>
+<p>The isosteric heat of adsorption for the infinite dilution <span class="math notranslate nohighlight">\(Q_{st}^{0}\)</span> (i.e. for very low adsorption loading) is expressed as,</p>
+<div class="math notranslate nohighlight">
+\[Q_{st}^{0} = -R\ a_{0}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_{0}\)</span> is the first Virial coefficient. Note the relationship between <span class="math notranslate nohighlight">\(Q_{st}\)</span> and <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> is,</p>
+<div class="math notranslate nohighlight">
+\[Q_{st} = -\Delta H_{ads}\]</div>
+<p>Hence, unlike Clausius-Clapeyron approach, the <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> can be directly obtained after fitting the Virial equation to
+the isotherm data.</p>
+<section id="virial-equation-fitting">
+<h3>Virial Equation Fitting<a class="headerlink" href="#virial-equation-fitting" title="Link to this heading"></a></h3>
+<p>In the case of Virial equation, <strong>HeatFit</strong> uses non-linear regression by minimizing the <span class="math notranslate nohighlight">\((SSE)\)</span> function:</p>
+<div class="math notranslate nohighlight">
+\[SSE = \min_{a_{k}, b_{k}} \sum_{i}^N \left(\ln (P_{i, exp}) - f(q_{i, exp}^{*}, T_{i}; \{a_{k}\}_{0}^{m-1} \{b_{k}\}_{0}^{n-1})\right)^{2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the total number of data points, <span class="math notranslate nohighlight">\(P_{i,exp}\)</span>, <span class="math notranslate nohighlight">\(q_{i,exp}^{*}\)</span>, and <span class="math notranslate nohighlight">\(T_{i}\)</span> are the experimental
+pressure, experimental adsorption loading, and temperature values for the given data point <span class="math notranslate nohighlight">\(i\)</span>, respectively. <span class="math notranslate nohighlight">\(f\)</span> is the Virial equation; <span class="math notranslate nohighlight">\(a_{k}\)</span>, <span class="math notranslate nohighlight">\(b_{k}\)</span>
+refers to the <span class="math notranslate nohighlight">\(k^{th}\)</span> Virial coefficient, <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span> are the total number of Virial coefficient <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, respectively.</p>
+<p>This form of <span class="math notranslate nohighlight">\(SSE\)</span> is used because the Virial equation expresses the natural logarithm of adsorption pressure as a function of adsorption uptake and temperature.</p>
+<p><strong>HeatFit</strong> also reports the <span class="math notranslate nohighlight">\((RMSE)\)</span> and <span class="math notranslate nohighlight">\(r^{2}\)</span> values as a measure of the goodness of fit.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}RMSE = \sqrt{\frac{SSE}{N-M}},\\
+r^{2} = 1 - \frac{SSE}{\sum (P_{i,exp} - \overline{P_{i,exp}})}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(M\)</span> is the combined total number of Virial coefficients <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> and
+<span class="math notranslate nohighlight">\(\overline{P_{i,exp}}\)</span> is the mean value of experimental pressure.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Fitting multi-temperature isotherm data using Virial equation can be challenging as the same set
+of Virial parameters <span class="math notranslate nohighlight">\(a_{i}\)</span> and <span class="math notranslate nohighlight">\(b_{j}\)</span> are simultaneously used to describe the isotherm data. Hence, it is important to use as few parameters as possible.
+The GUI features of <strong>HeatFit</strong> enable users to quickly try different numbers and combinations of Virial parameters. We advise the user to start with few parameters,
+gradually increasing the number of parameters while also keeping the check on standard errors and RMSE values, untill no significant
+improvement in RMSE is observed and the standard errors are also reasonable. Please note that parameter values with high standard error inidicate overfitting and
+are unreliable.</p>
+</div>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="ga" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Dr. Ga Paper.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="IsoFit.html" class="btn btn-neutral float-left" title="IsoFit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="MixPred.html" class="btn btn-neutral float-right" title="MixPred" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Muhammad Hassan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

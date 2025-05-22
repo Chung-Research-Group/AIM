@@ -1,0 +1,186 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MixPred &mdash; AIM Documentation 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="canonical" href="https://hassan-azizi.github.io/AIM/MixPred.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="BreakLab" href="BreakLab.html" />
+    <link rel="prev" title="HeatFit" href="HeatFit.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/AIM_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="AIM%20Modules.html">AIM Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="IsoFit.html">IsoFit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HeatFit.html">HeatFit</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">MixPred</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BreakLab.html">BreakLab</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Input-Output%20Data%20Files.html">Input-Ouput Data Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIM Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="AIM%20Modules.html">AIM Modules</a></li>
+      <li class="breadcrumb-item active">MixPred</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/MixPred.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mixpred">
+<h1>MixPred<a class="headerlink" href="#mixpred" title="Link to this heading"></a></h1>
+<p><strong>MixPred</strong> is the module for mixture isotherm prediction for the given pressure and composition.
+<strong>MixPred</strong> GUI is shown below:</p>
+<a class="reference internal image-reference" href="_images/MixPred.png"><img alt="MixPred" class="align-center" src="_images/MixPred.png" style="width: 1000px;" />
+</a>
+<hr class="docutils" />
+<p>The isotherm fitting results from <strong>IsoFit</strong> and <strong>HeatFit</strong> can be directly loaded into <strong>MixPred</strong> module,
+and the user can specify the desired pressure range and mixture composition to calculate the mixture loadings.</p>
+<p>Watch how to use <strong>MixPred</strong> <a class="reference internal" href="Tutorials.html#mixpred-label"><span class="std std-ref">here</span></a></p>
+<p><strong>MixPred</strong> has two models for
+mixture adsorption loading prediction which are as follows:</p>
+<ul class="simple">
+<li><p>Extended Dual-site Langmuir Model (EDSL)</p></li>
+<li><p>Ideal Adsorbed Solution Theory (IAST)</p></li>
+</ul>
+<section id="extended-dual-site-langmuir-model-edsl">
+<h2>Extended Dual-site Langmuir Model (EDSL)<a class="headerlink" href="#extended-dual-site-langmuir-model-edsl" title="Link to this heading"></a></h2>
+<p>The extended dual-site Langmuir (EDSL) model is a generalization of the Langmuir model for multi-component mixture adsorption. The model is expressed as,</p>
+<div class="math notranslate nohighlight">
+\[q_{mix,i}^{*} = \frac{q_{sat,1,i}b_{1,i}P_{i}}{1+\sum_{1}^{N}b_{1,j}P_{j}}
+          + \frac{q_{sat,2,i}b_{2,i}P_{i}}{1+\sum_{1}^{N}b_{2,j}P_{j}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of components involved; <span class="math notranslate nohighlight">\(q_{sat,1,i}\)</span>, <span class="math notranslate nohighlight">\(q_{sat,2,i}\)</span>, <span class="math notranslate nohighlight">\(b_{1,i}\)</span>, <span class="math notranslate nohighlight">\(b_{2,i}\)</span>, and <span class="math notranslate nohighlight">\(P_{i}\)</span> are
+the single or pure component Langmuir isotherm parameters and partial pressure of component <span class="math notranslate nohighlight">\(i\)</span>, respectively. The pure component Langmuir isotherm parameters for
+individual components can be obtained by fitting Langmuir isotherm model to the pure component isotherm data for the given component using either <strong>IsoFit</strong> or <strong>HeatFit</strong>.
+Note that the EDSL model is thermodynamically consistent only when the saturation capacities for each component are equal.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}q_{sat, 1, 1}=q_{sat, 1, 2}=q_{sat, 1, 3}= ... q_{sat, 1, N} \\
+q_{sat, 2, 1}=q_{sat, 2, 2}=q_{sat, 2, 3}= ... q_{sat, 2, N}\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The EDSL model in <strong>MixPred</strong> is applicable only when the isotherm of each individual component is described using the Langmuir isotherm model.</p>
+</div>
+</section>
+<section id="ideal-adsorbed-solution-theory-iast">
+<h2>Ideal Adsorbed Solution Theory (IAST)<a class="headerlink" href="#ideal-adsorbed-solution-theory-iast" title="Link to this heading"></a></h2>
+<p>IAST is a thermodynamic framework to calculate the mixture isotherms using pure component isotherm. The IAST is based on three fundamental assumptions:</p>
+<ul class="simple">
+<li><p>The surface area of the adsorbent is equally accessible to all adsorbates.</p></li>
+<li><p>The adsorbed phase is an ideal solution.</p></li>
+<li><p>The adsorbent is homogeneous.</p></li>
+</ul>
+<p>The solution of the IAST involves solving non-linear equations consisting of a rediced grand potential. For the component <span class="math notranslate nohighlight">\(i\)</span>, the reduced grand potential <span class="math notranslate nohighlight">\(\psi_{i}^{*}\)</span> is given as,</p>
+<div class="math notranslate nohighlight">
+\[\psi_{i}^{*} = \int_{0}^{P_{i}^{*}} \frac{q_{i}^{*}(P)}{P} \,dP\]</div>
+<p>where <span class="math notranslate nohighlight">\(P_{i}^{*}\)</span> is the fictitious pressure and <span class="math notranslate nohighlight">\(q_{i}^{*}\)</span> is the equilibrium loading of component <span class="math notranslate nohighlight">\(i\)</span> as obtained from pure component isotherm model. The fictitious pressure <span class="math notranslate nohighlight">\(P_{i}^{*}\)</span> is the pressure
+for component <span class="math notranslate nohighlight">\(i\)</span> at which it exerts the same reduced grand potential as the other components in the mixture. <span class="math notranslate nohighlight">\(P_{i}^{*}\)</span> is related to partial pressure <span class="math notranslate nohighlight">\(P_{i}\)</span> of component <span class="math notranslate nohighlight">\(i\)</span> given as,</p>
+<div class="math notranslate nohighlight">
+\[P_{i} = x_{i}\,P_{i}^{*} \qquad \mathrm{for}\, i=1,2,3,\ldots, N.\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of adsorbing components in the mixture and <span class="math notranslate nohighlight">\(x_{i}\)</span> is the adsorbed mole fraction of component <span class="math notranslate nohighlight">\(i\)</span>. Note that,</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i}\,x_{i} = 1\]</div>
+<p>IAST states that adsorption equilibrium is achieved when the reduced grand potential of each component is same,</p>
+<div class="math notranslate nohighlight">
+\[\psi_{1}^{*} = \psi_{2}^{*} = \psi_{3}^{*} = ... \psi_{N}^{*}\]</div>
+<p>In <strong>MixPred</strong> the IAST equations above are solved for <span class="math notranslate nohighlight">\(2N\)</span> unknows, <span class="math notranslate nohighlight">\(P_{i}^{*}\)</span> and <span class="math notranslate nohighlight">\(x_{i}\)</span>. The mixture adsorption loading for each component are then calculated using</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}q_{tot} = \frac{1}{\sum_{i}^{N}\,\left(\frac{x_{i}}{q_{i}^{*}(P_{i}^{*})}\right)} \\
+q_{mix, i}^{*} = x_{i}\,q_{tot}\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The IAST equations are highly non-linear and often extremely sensitive to the initial guess used. The solution can often be computationally expensive and time-consuming.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="HeatFit.html" class="btn btn-neutral float-left" title="HeatFit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="BreakLab.html" class="btn btn-neutral float-right" title="BreakLab" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Muhammad Hassan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
