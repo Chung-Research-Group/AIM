@@ -157,6 +157,11 @@ function opt = isotherm_fit_opt(isotherm_model, loading_data, Pressure)
             opt.num_params = num_param_vector(10);
             opt.lb = zeros(1, opt.num_params);
             opt.ub = UL_COMMON .* ones(1, opt.num_params);
+            if (nargin==3)
+                % P_tr is constrained within max and min pressure data
+                opt.lb(end) = min(Pressure, [], "all");        
+                opt.ub(end) = max(Pressure, [], "all");
+            end
             % opt.ub([2, 3]) = UL_langmuir_constant .* BET_tol;
             % opt.guess = [sat_loading_guess, K_guess, C_guess, n_guess];
             % The guess for q_LP should be higher than q_NP
