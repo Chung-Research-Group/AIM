@@ -16,6 +16,8 @@ function [] = isotherm_plots(ax, pressure_data, loading_data, T_flag, T_array, i
     % color_array = ["blue", "green", "red"];       % Array to hold colors
     %% Plotting isotherm data
     cla (ax, "reset");
+    colororder(ax, "gem12");
+
     hold(ax, 'on');        % For multiple plots
     if ~T_flag
         % Plot isotherm for single temperature
@@ -142,16 +144,25 @@ function [] = isotherm_plots(ax, pressure_data, loading_data, T_flag, T_array, i
 
     % Get color order from the axes
     colors = ax.ColorOrder;
+    color_idx = 1;
 
     for i=1:length(scatter_handles)
         % Setting the corresponding scatter and line pair to have the same
-        % color index
+        % color index        
         if ~isempty(scatter_handles)
-            set(scatter_handles(i), 'CData', colors(i, :));
+            set(scatter_handles(i), 'CData', colors(color_idx, :));
         end
 
         if ~isempty(line_handles)
-            set(line_handles(i), 'Color', colors(i, :));
+            set(line_handles(i), 'Color', colors(color_idx, :));
+        end
+
+        % Max colors in the paletter are 12, hence, need to cycle through
+        % them.
+        if rem(i, length(colors)) == 0
+            color_idx = 1;
+        else
+            color_idx = color_idx+1;
         end
     end
 end
