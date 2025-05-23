@@ -14,7 +14,7 @@ AIM
 
 -------
 
-**AIM** (Adsorption Inetrgated Modules) is a collection of MATLAB based GUI modules for adsorption isotherm based fixed bed process modelling. 
+**AIM** (Adsorption Integrated Modules) is a collection of MATLAB based GUI modules for adsorption isotherm based fixed bed process modelling. 
 **AIM** modules provide an integrated workflow for adsorption isotherm fitting at single and multiple temperatures, isosteric heat of adsorption estimation, mixture adsorption isotherm
 predcition, and multicomponent fixed bed breakthrough simulation.
 
