@@ -14,7 +14,7 @@ function aif_data = parse_aif(filename)
     loop_count = 0;
     
     % Matching Expression
-    match_exp = '(\-\d*|\d*)\.\d*|(\-\d*|\d*)';
+    match_exp = '\-?(\d+(\.\d*)?|\.\d+)';
 
     % Opening the file
     fileID = fopen(filename, "r");
