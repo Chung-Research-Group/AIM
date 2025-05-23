@@ -11,7 +11,7 @@ function [] = mixture_plots(ax, num_comp, name_comp, pressure, mixture_loadings,
     fontweight = 'bold';
     % fontname = 'AvantGrande';
     fontname = 'Calibri';
- 
+    colororder(ax, "gem12");
     %% Plotting isotherm data
     cla (ax, "reset");
     hold(ax, 'on');        % For multiple plots

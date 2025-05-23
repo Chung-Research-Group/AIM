@@ -21,6 +21,7 @@ function [] = plots(ax , L, N, variable_to_plot, solution, plot_type, time_value
 
     fontsize = 20;
     fontname = 'Calibri';
+    colororder(ax, "gem12");
     % ax.FontSize = 18;
     %
     %% Pressure 
