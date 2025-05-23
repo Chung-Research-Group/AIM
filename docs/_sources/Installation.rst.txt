@@ -9,16 +9,16 @@ Installation
 Windows
 -----------------
 
-AIM GUI software can be freely downloaded from :download:`here <_static/AIM-Installer.tar.gz>`
+AIM GUI software can be freely downloaded from :download:`here <_static/AIM_Installer_v_1.0.tar.gz>`
 
-1. Unzip the ``AIM-Installer.tar.gz`` file.
-2. Use ``AIM_Installer.exe`` file for installing AIM.
+1. Unzip the ``AIM_Installer_v_1.0.tar.gz`` file.
+2. Use ``AIM_Installer_v_1.0.exe`` file for installing AIM.
 
 AIM application requires MATLAB Runtime environment. The AIM Installer will automatically install both AIM application and MATLAB Runtime.
 
 Users can also specify the desired installation location for both AIM and MATLAB Runtime.
 
-Please note that ``AIM_Installer.exe`` file will work only on Windows platform.
+Please note that ``AIM_Installer_v_1.0.exe`` file will work only on Windows platform.
 
 Linux and macOS
 -----------------
