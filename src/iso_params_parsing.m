@@ -7,17 +7,17 @@ function opt = iso_params_parsing(isotherm_model, fitted_iso_params)
             opt.unit_params = {'(mol/kg)', '(1/Pa)'};
             opt.express = {'$q^{*}(P) = \frac{q_{sat}bP}{1 + bP}$'};    
         case 'DS-Langmuir'
-            opt.name_params = {'q_b_sat', 'b', 'q_d_sat', 'd'};
+            opt.name_params = {'q_sat_1', 'b_1', 'q_sat_2', 'b_2'};
             opt.unit_params = {'(mol/kg)', '(1/Pa)', '(mol/kg)', '(1/Pa)'};
-            opt.express = {'$q^{*}(P) = \frac{q_{b,sat}bP}{1 + bP} + \frac{q_{d,sat}dP}{1 + dP}$'};
+            opt.express = {'$q^{*}(P) = \frac{q_{sat,1}b_{1}P}{1 + b_{1}P} + \frac{q_{sat,2}b_{2}P}{1 + b_{2}P}$'};
         case 'SS-Langmuir-Freundlich'
             opt.name_params = {'q_sat', 'b', 'n'};
             opt.unit_params = {'(mol/kg)', '(1/Pa^n)', '(-)'};
             opt.express = {'$q^{*}(P) = \frac{q_{sat}bP^{n}}{1 + bP^{n}}$'};
         case 'DS-Langmuir-Freundlich'
-            opt.name_params = {'q_b_sat', 'b', 'n_b', 'q_d_sat', 'd', 'n_d'};
+            opt.name_params = {'q_sat_1', 'b_1', 'n_1', 'q_sat_2', 'b_2', 'n_2'};
             opt.unit_params = {'(mol/kg)', '(1/Pa^n_b)', '(-)', '(mol/kg)', '(1/Pa^n_d)', '(-)'};
-            opt.express = {'$q^{*}(P) = \frac{q_{b,sat}bP^{n_{b}}}{1 + bP^{n_{b}}} + \frac{q_{d,sat}dP^{n_{d}}}{1 + dP^{n_{d}}}$'};
+            opt.express = {'$q^{*}(P) = \frac{q_{sat,1}b_{1}P^{n_{1}}}{1 + b_{1}P^{n_{1}}} + \frac{q_{sat,2}b_{2}P^{n_{2}}}{1 + b_{2}P^{n_{2}}}$'};
         case 'Quadratic'
             opt.name_params = {'q_sat', 'b', 'c'};
             opt.unit_params = {'(mol/kg)', '(1/Pa)', '(1/Pa^2)'};
@@ -46,15 +46,15 @@ function opt = iso_params_parsing(isotherm_model, fitted_iso_params)
             opt.express = '$$x=\frac{P}{P_{0}},\quad s=Kx\\ q^{*}(s) = q_{sat}\frac{Cs\{1-(1+n)s^{n}+ns^{n+1}\}}{(1-s)\{1+(C-1)s-Cs^{n+1}\}}$$';
         case 'Do-Do'
             opt.name_params = {'q_sat', 'f', 'K_1', 'K_2', 'alpha', 'beta'};
-            opt.express = ['$$x=\frac{P}{P_{0}}\\ q^{*}(x) = q_{sat}\left(f\frac{K_{1}x\{1-(1+\beta)x^{\beta}+\beta x^{\beta +1}\}}{(1-x)\{1+(K_{1}-1)x-K_{1}x^{\beta +1}\}}'...
-                                        +'\\+(1-f)\frac{K_{2}x^{\alpha}}{1+K_{2}x^{\alpha}$$\right)'];
+            opt.express = ['$$x=\frac{P}{P_{0}},\\ q^{*}(x) = q_{sat}\left( f\frac{K_{1}x\{1-(1+\beta)x^{\beta}+\beta x^{\beta +1}\}}{(1-x)\{1+(K_{1}-1)x-K_{1}x^{\beta +1}\}}'...
+                                        '\\+(1-f)\frac{K_{2}x^{\alpha}}{1+K_{2}x^{\alpha}} \biggl)$$'];
         case 'Structural-Transition-Adsorption'
             opt.name_params = {'q_NP_sat', 'b_NP', 'q_LP_sat', 'b_LP', 's', 'P_tr'};
             opt.express = ['$$y(P)=\left(\frac{1+b_{NP}P_{tr}}{1+b_{NP}P}\right)^{q_{NP,sat}}'...
                             '\times\left(\frac{1+b_{LP}P}{1+b_{LP}P_{tr}}\right)^{q_{LP,sat}},'...
                             '\\\sigma(P)=\frac{y^{s}}{1+y^{s}},' ...
                             '\\q^{*}(P) = \left(1-\sigma\right)\left(\frac{q_{NP,sat}b_{NP}P}{1+b_{NP}P}\right)'...
-                            '+\sigma\left(\frac{q_{LP,sat}b_{LP}P}{1+b_{LP}P}\right)'];
+                            '+\sigma\left(\frac{q_{LP,sat}b_{LP}P}{1+b_{LP}P}\right)$$'];
         
         case 'Virial'
             opt.name_params = {};
