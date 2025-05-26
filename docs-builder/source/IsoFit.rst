@@ -86,7 +86,10 @@ where, :math:`P_{i}` is the pressure value for the given data point :math:`i`, :
 and :math:`M` is the total number of parameters for the given isotherm model.
 
 In IsoFit, regression is performed using the MATLAB’s built-in non-linear least square solver **lsqnonlin**. The user can control the regression process by specifying custom initial guesses, as well as lower and upper bounds.
-Additionally, IsoFit offers a multistart option, which generates 1000 random initial guess within the specified bounds. The fitting process is then performed sequentially for each initial guess and the best fitting result is selected. The multistart approach is useful for fitting problems with multiple parameter solutions. In such cases, fitting using multistart option can identify the global minimum corresponding to the best parameter estimates. The multistart option is available for all isotherm models except **Auto** mode. In **Auto** mode, IsoFit performs isotherm fitting using all the available isotherm models and then selects the best model. Using multistart option for **Auto** mode can be computationally expensive leading to excessive running times.
+Additionally, **IsoFit** offers a multistart option, which generates 1000 random initial guess within the specified bounds. The fitting process is then performed sequentially for each initial guess and the best fitting result is selected. 
+The multistart approach is useful for fitting problems with multiple parameter solutions. In such cases, fitting using multistart option can identify the global minimum corresponding to the best parameter estimates. 
+The multistart option is available for all isotherm models except **Auto** mode. In **Auto** mode, **IsoFit** performs isotherm fitting using all the available isotherm models and then selects the best model. 
+Using multistart option for **Auto** mode can be computationally expensive, leading to excessive running times.
 
 Root mean square error :math:`(RMSE)` is used in the program to evaluate the goodness of fit.
 
@@ -94,9 +97,9 @@ Root mean square error :math:`(RMSE)` is used in the program to evaluate the goo
   RMSE = \sqrt{\frac{SSE}{N-M}}
 
 If the user chooses the **Auto** mode, **IsoFit** reports the best isotherm model with the lowest RMSE values. 
-If two or more models have same value of SSE, then IsoFit will choose the model with a smaller number of parameters because of lower value of RMSE.
+If two or more models have the same value of SSE, then IsoFit will choose the model with a smaller number of parameters because of lower value of RMSE.
 
-IsoFit also reports coefficient of determination, :math:`r^{2}`, value defined as:
+**IsoFit** also reports coefficient of determination, :math:`r^{2}`, value defined as:
 
 .. math::
   r^{2} = 1 - \frac{SSE}{\sum (q_{i,exp} - \overline{q_{i,exp}})}

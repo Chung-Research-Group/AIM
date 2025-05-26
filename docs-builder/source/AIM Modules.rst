@@ -23,7 +23,7 @@ AIM Modules
 | **IsoFit**: Fit various isotherm models to single temperature isotherm data.
 | **HeatFit**: Fit various isotherm models to multi-temperature isotherm data and predict isosteric heat of adsorption using Clausius-Clapeyron or Virial equation.
 | **MixPred**: Predict mixture isotherm using Ideal Adsorbed Solution Theory (IAST) and Extended Dual-site Langmuir (EDSL) models.
-| **BreakLab**: Predict multicomponent isothermal/nonisothermal breakthrough curves for fixed bed.
+| **BreakLab**: Predict multicomponent isothermal/non-isothermal breakthrough curves for fixed bed.
 
 
 

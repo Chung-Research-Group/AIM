@@ -7,7 +7,7 @@ HeatFit
 ===============================
 
 **HeatFit** is the module for isotherm model fitting to multi-temperature isotherm data and
-isosteric heat of adsoprtion :math:`\Delta H_{ads}` prediction using Clausius-Clapeyron or Virial equations. **HeatFit** GUI is shown below:
+isosteric heat of adsorption :math:`\Delta H_{ads}` prediction using Clausius-Clapeyron or Virial equations. **HeatFit** GUI is shown below:
 
 .. image:: images/HeatFit.png
    :width: 1000
@@ -37,7 +37,7 @@ pressure. The assumption yields the following form:
   \ln\left(\frac{P_{ref}}{P}\right) = \frac{-\Delta H_{ads}}{R}\left(\frac{1}{T}-\frac{1}{T_{ref}}\right)
 
 where :math:`P_{ref}`, :math:`T_{ref}`, :math:`P`, and :math:`T` are the adsorption pressure and temperatures for the reference and given states, respectively.
-Note that both reference and given state correspond to the same adosrption loading :math:`q`. Let :math:`f` be the function representing isotherm model then, 
+Note that both reference and given state correspond to the same adsorption loading :math:`q`. Let :math:`f` be the function representing isotherm model then, 
 
 .. math::
   q = f(T, P)=f(T_{ref}, P_{ref})
@@ -47,7 +47,7 @@ Assuming :math:`f_{ref}` be the isotherm model fitted at reference temperature, 
 .. math::
   q = f(T, P)=f_{ref}(P_{ref})
 
-The value of :math:`P_{ref}` can be subsitutted using the Clausius-Clapeyron quation shown above such that,
+The value of :math:`P_{ref}` can be substituted using the Clausius-Clapeyron equation shown above such that,
 
 .. math::
   q = f(T, P)=f_{ref}\left(P\times\exp{\left(\frac{-\Delta H_{ads}}{R}\left(\frac{1}{T}-\frac{1}{T_{ref}}\right)\right)}\right)
@@ -56,7 +56,7 @@ The utility of the above equation is that it allows us to predict the loading at
 Additionally, if we have pressure-loading data at different temperatures and an isotherm model fitted at the reference conditions we can also fit for :math:`\Delta H_{ads}`. 
 
 
-**HeatFit** uses the methodology outlined by Ga *et al.* [#Ga]_ for isotherm fitting at reference condition and :math:`\Delta H_{ads}` prediction. The method involves following step :
+**HeatFit** uses the methodology outlined by Ga *et al.* [#Ga]_ for isotherm fitting at reference condition and :math:`\Delta H_{ads}` prediction. The method involves the following steps:
 
 * **Step 1**: Isotherm fitting at reference temperature
 * **Step 2**: Fitting for :math:`\Theta` parameter
@@ -69,7 +69,7 @@ Step 1: Isotherm Fitting at Reference Temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Like **IsoFit**, the isotherm fitting at reference temperature is performed for the chosen isotherm model using non-linear regression.
-Currently, **HeatFit** supports following isotherm models:
+Currently, **HeatFit** supports the following isotherm models:
 
 .. list-table:: HeatFit Isotherm Models
    :header-rows: 1
@@ -119,7 +119,9 @@ and :math:`M` is the total number of parameters for the given isotherm model.
 
 In **HeatFit** the user can control the regression process by specifying custom initial guesses, as well as lower and upper bounds.
 Additionally, **HeatFit** offers a multistart option, which generates 1000 random initial guess within the specified bounds.
-The fitting process is then performed sequentially for each initial guess and the best fitting result is selected. The multistart approach is useful for fitting problems with multiple parameter solutions. In such cases, fitting using multistart option can identify the global minimum corresponding to the best parameter estimates. The multistart option is available for all isotherm models except **Auto** mode. In **Auto** mode, IsoFit performs isotherm fitting using all the available isotherm models and then selects the best model. Using multistart option for **Auto** mode can be computationally expensive leading to excessive running times.
+The fitting process is then performed sequentially for each initial guess and the best fitting result is selected. The multistart approach is useful for fitting problems with multiple parameter solutions. 
+In such cases, fitting using multistart option can identify the global minimum corresponding to the best parameter estimates. The multistart option is available for all isotherm models except **Auto** mode. 
+In **Auto** mode, **HeatFit** performs isotherm fitting using all the available isotherm models and then selects the best model. Using multistart option for **Auto** mode can be computationally expensive, leading to excessive running times.
 
 Root mean square error :math:`(RMSE)` is used in the program to evaluate the goodness of fit.
 
@@ -238,9 +240,9 @@ where :math:`M` is the combined total number of Virial coefficients :math:`a` an
 .. note::
   Fitting multi-temperature isotherm data using Virial equation can be challenging as the same set 
   of Virial parameters :math:`a_{i}` and :math:`b_{j}` are simultaneously used to describe the isotherm data. Hence, it is important to use as few parameters as possible.
-  The GUI features of **HeatFit** enable users to quickly try different numbers and combinations of Virial parameters. We advise the user to start with few parameters,
-  gradually increasing the number of parameters while also keeping the check on standard errors and RMSE values, untill no significant
-  improvement in RMSE is observed and the standard errors are also reasonable. Please note that parameter values with high standard error inidicate overfitting and
+  The GUI features of **HeatFit** enable users to quickly try different numbers and combinations of Virial parameters. We advise the user to start with a few parameters,
+  gradually increasing the number of parameters while also keeping the check on standard errors and RMSE values, until no significant
+  improvement in RMSE is observed and the standard errors are also reasonable. Please note that parameter values with high standard error indicate overfitting and
   are unreliable.  
 
 

@@ -7,9 +7,9 @@ Input-Ouput Data Files
 ======================
 
 AIM modules **IsoFit** and **HeatFit** read isotherm data from input files and generate ouput files containing
-isotherm fitting results. The AIM integrated workflow allows to directly load output files from **IsoFit** and **HeatFit** into 
-**MixPred** and **BreakLab** modules. Schematic below highlights the input/output files and workflow within AIM modules. Both input and output files have a well-defined, human-readable format to ensure accewssibility 
-to users with diverse backgrounds. In this section, we outline the supported input file formats and guidelines to faciliatet isotherm data files.
+isotherm fitting results. The AIM integrated workflow allows the user to directly load output files from **IsoFit** and **HeatFit** into 
+**MixPred** and **BreakLab** modules. The schematic below highlights the input/output files and workflow within AIM modules. Both input and output files have a well-defined, human-readable format to ensure accessibility 
+to users with diverse backgrounds. In this section, we outline the supported input file formats and guidelines to facilitate isotherm data files preparation.
 
 .. image:: images/scheme.png
    :width: 700
@@ -22,14 +22,14 @@ to users with diverse backgrounds. In this section, we outline the supported inp
 Input File
 --------------
 
-IsoFit and HeatFit can import isotherm data from
+**IsoFit** and **HeatFit** can import isotherm data from
 
 * General input data files in the following formats: \*.csv, \*.txt, \*.xlsx, \*.dat.
 * Adsorption Information Format (AIF).
 
 The general input data file contains tabular data with columns corresponding to pressure and adsorption uptake values. 
 Additionally, the user can specify the meta information in the input file such as temperature value and units of pressure, adsorption uptake, and temperature. 
-A typical input file for IsoFit and HeatFit modules is shown below.
+A typical input file for **IsoFit** and **HeatFit** modules is shown below.
 
 .. .. image:: images/input.png
 ..    :width: 750
@@ -52,10 +52,10 @@ A typical input file for IsoFit and HeatFit modules is shown below.
     5.0     0.008703644
     6.0     0.0103347517
 
-The meta information tags are specified at the beginning of the input file followed by the isotherm data. The firdst column
+The meta information tags are specified at the beginning of the input file followed by the isotherm data. The first column
 specifies the pressure values, while the second column specifies the gas uptake values.
 
-We recommend following the guidelines below while preparing the generic input data file
+We recommend the following guidelines for preparing the generic input data file
 
 * The first column of the isotherm data should contain pressure values, and the second column should contain gas adsorption uptake (adsorption loading) values.
 * The columns should be separated either by a single tab, whitespace, or comma. 
@@ -69,7 +69,7 @@ We recommend following the guidelines below while preparing the generic input da
 
 * In the case of importing data from a spreadsheet (\*.xlsx), please specify the data in the first sheet.
 * If the AIF file contains both adsorption and desorption data, only the adsorption data will be read. In case isotherm fitting using desorption data is required, please use a separate input file.
-* The temperature value is read only in HeatFit module. IsoFit ignores the temperature value.
+* The temperature value is read only in **HeatFit** module. **IsoFit** ignores the temperature value.
 
 In addition to isotherm data, IsoFit also requires saturation/total pressure (:math:`P_{0}`) to calculate the relative pressure in the case when user choose either **Auto** or **Dubinin-Astakhov**, **Klotz**, and **Do-Do** models. 
 The :math:`P_{0}` can be specified via one of the following methods:
@@ -103,7 +103,7 @@ The :math:`P_{0}` can be specified via one of the following methods:
      - _units_temperature
 
 Several sample input files can be found in our repository `sample-input-files <https://github.com/mtap-research/AIM/tree/main/input-files>`_. Users can use those files
-and copy, paste their data for quickstart experience of **IsoFit** and **HeatFit** .
+and copy, paste their data for a quickstart experience of **IsoFit** and **HeatFit** .
 
 Ouput Files
 --------------
@@ -136,6 +136,5 @@ A typical ouput file from **HeatFit** is shown below.
 Fitting statistics include Root Mean Square Error (RMSE) and :math:`r^2` value. 
 The output file from HeatFit also contains reference temperature used for fitting and fitted isosteric heat of adsorption values. 
 The output file uses custom extension **\*.bliso** to facilitate integrated workflow within AIM modules. However, the file itself is human-readable and can be opened with any text editor such as Notepad, WordPad etc. 
-The fitted isotherm parameters in the output file can be directly loaded in MixPred and BreakLab modules for mixture adsorption prediction and breakthrough simulation, respectively. 
-The user is advised not to modify the extension and keywords in the output file, as this can cause issues in isotherm parameter loading
-
+The fitted isotherm parameters in the output file can be directly loaded in **MixPred** and **BreakLab** modules for mixture adsorption prediction and breakthrough simulation, respectively. 
+The user is advised not to modify the extension and keywords in the output file, as this can cause issues in isotherm parameter loading.

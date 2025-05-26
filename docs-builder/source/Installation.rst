@@ -39,17 +39,17 @@ Prerequisites
 While compiling the source code, one has two options:
 
 1. Create an application installer with MATLAB Runtime.
-2. Create an application installer without MATLAB Runtime. In this case, users of the application will need to download the MATLAB Runtime.
+2. Create an application installer without MATLAB Runtime. In this case, users of the application will need to download MATLAB Runtime.
 
 In case 1, you must download the MATLAB Runtime installer that matches both the version and update level of MATLAB used to create the installer.
-Details about instaling MATLAB Runtime on different platforms can be found on `MATLAB Website <https://www.mathworks.com/help/compiler/install-the-matlab-runtime.html>`_
+Details about installing MATLAB Runtime on different platforms can be found on `MATLAB Website <https://www.mathworks.com/help/compiler/install-the-matlab-runtime.html>`_
 
 Compilation
 ~~~~~~~~~~~~~
 
 1. **Download the AIM sourcecode**
    
-   * The source code of AIM is opensource and is freely avaibale at our GitHub repository `AIM Repository <https://github.com/mtap-research/AIM>`_.
+   * The source code of AIM is opensource and is freely available at our GitHub repository `AIM Repository <https://github.com/mtap-research/AIM>`_.
      You can clone the repository using Git:
 
       .. code-block:: bash
@@ -67,7 +67,7 @@ Compilation
 
 4. **Check Necessary Files**
    
-   * The project template file ``AIM_Build.prj`` is already configured and contain all the neccessary files.
+   * The project template file ``AIM_Build.prj`` is already configured and contains all the necessary files.
    * Do not change the location of the ``AIM_Build.prj`` file. It must be present in the AIM repository root directory.
 
 5. **Compile the Application**
