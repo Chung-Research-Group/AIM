@@ -16,16 +16,16 @@ AIM
 
 **AIM** (Adsorption Integrated Modules) is a collection of MATLAB based GUI modules for adsorption isotherm based fixed bed process modelling. 
 **AIM** modules provide an integrated workflow for adsorption isotherm fitting at single and multiple temperatures, isosteric heat of adsorption estimation, mixture adsorption isotherm
-predcition, and multicomponent fixed bed breakthrough simulation.
+prediction, and multicomponent fixed bed breakthrough simulation.
 
-Primary featues of AIM include:
+Primary features of AIM include:
 
 * Integrated workflow within modules
-* GUI environemnet to facilaitate data input/output, model seelction, and simulation type selection
+* GUI environment to facilitate data input/output, model and simulation type selection
 * Dynamic plots for pressure, loading, temperature, and composition
 * Data and graphics export in different formats
 
-AIM software and the associated source code are open-source and freely avaibale at our GitHub repository `AIM repository <https://github.com/mtap-research/AIM>`_.
+AIM software and the associated source code are open-source and freely available at our GitHub repository `AIM repository <https://github.com/mtap-research/AIM>`_.
 
 .. toctree::
    :maxdepth: 2

@@ -7,7 +7,7 @@ BreakLab
 ===============================
 
 **BreakLab** is the module for isothermal/non-isothermal multicomponent fixed bed breakthrough simulation for up to 5 components.
-**BreakLab** GUI  is shown below:  
+**BreakLab** GUI is shown below:  
  
 .. image:: images/BreakLab.png
    :width: 1000
@@ -20,14 +20,14 @@ The isotherm fitting results from **IsoFit** and **HeatFit** for different compo
 
 Watch how to use **BreakLab** :ref:`here <BreakLab-label>`
 
-The mathematical model implemented in BreakLab and the required properties and parameters for breakthrough simulation are summarised below.
+The mathematical model implemented in BreakLab and the required properties and parameters for breakthrough simulation are summarized below.
 
 Mathematical Model
 ---------------------------------------------
 
 The mathematical model of BreakLab is based on the following assumptions:
 
-* The gas flow is axially dispersed and charecterized by an axial dispersion coefficient.
+* The gas flow is axially dispersed and characterized by an axial dispersion coefficient.
 * The gas phase is ideal.
 * Pressure drop in the column is given by Ergun's equation.
 * The steady state momentum balance is applicable.
@@ -40,7 +40,7 @@ The mathematical model of BreakLab is based on the following assumptions:
 
 The material, energy and momentum balances are developed based on conservation of mass, energy, and momentum in the fixed bed, respectively.
 The resulting balance equations are partial differential equations (PDEs) and consist of mole conservation of component :math:`i`, overall mass balance, conservation of total momentum and the total energy
-of the system. The balance equations are summarised in table below. Please check the journal article for a more detailed discussion on deriving these 
+of the system. The balance equations are summarized in the table below. Please check the journal article for a more detailed discussion on deriving these 
 forms of balance equations.
 
 .. list-table:: BreakLab Balance Equations
@@ -74,7 +74,7 @@ Axial dispersion coefficient :math:`D_{ax}` is calculated using,
 Boundary Conditions
 ~~~~~~~~~~~~~~~~~~~~
 
-BreakLab uses the Danckwerts boundary conditions (BCs) for dispersed plug flow system. The BCs are summarised in table below.
+BreakLab uses the Danckwerts boundary conditions (BCs) for dispersed plug flow system. The BCs are summarized in the table below.
 
 .. list-table:: BreakLab Boundary Conditions
    :header-rows: 1
@@ -98,7 +98,7 @@ BreakLab uses the Danckwerts boundary conditions (BCs) for dispersed plug flow s
 
 \* here :math:`f` represents the Ergun equation. Only the velocity is specified at inlet and pressure is back calculated using Ergun equation.
 
-Together the balance equations and BCs consitute the mathematical model of BreakLab.
+Together the balance equations and BCs constitute the mathematical model of BreakLab.
 
 Numerical Simulation
 ---------------------------------------------
@@ -116,7 +116,7 @@ for spatial discretization of the above PDEs. Spatial discretization yields ordi
 Breakthrough Simulation Input
 -----------------------------
 
-The table below summarises all the input properties and parameters required for running a breakthrough simulation in BreakLab.
+The table below summarizes all the input properties and parameters required for running a breakthrough simulation in BreakLab.
 
 .. list-table:: BreakLab Inputs
    :header-rows: 1

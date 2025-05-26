@@ -172,13 +172,16 @@ regression by minimizing the sum of squared error <span class="math notranslate 
 where, <span class="math notranslate nohighlight">\(P_{i}\)</span> is the pressure value for the given data point <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(a_{k}\)</span> is the set of parameters
 and <span class="math notranslate nohighlight">\(M\)</span> is the total number of parameters for the given isotherm model.</p>
 <p>In IsoFit, regression is performed using the MATLAB’s built-in non-linear least square solver <strong>lsqnonlin</strong>. The user can control the regression process by specifying custom initial guesses, as well as lower and upper bounds.
-Additionally, IsoFit offers a multistart option, which generates 1000 random initial guess within the specified bounds. The fitting process is then performed sequentially for each initial guess and the best fitting result is selected. The multistart approach is useful for fitting problems with multiple parameter solutions. In such cases, fitting using multistart option can identify the global minimum corresponding to the best parameter estimates. The multistart option is available for all isotherm models except <strong>Auto</strong> mode. In <strong>Auto</strong> mode, IsoFit performs isotherm fitting using all the available isotherm models and then selects the best model. Using multistart option for <strong>Auto</strong> mode can be computationally expensive leading to excessive running times.</p>
+Additionally, <strong>IsoFit</strong> offers a multistart option, which generates 1000 random initial guess within the specified bounds. The fitting process is then performed sequentially for each initial guess and the best fitting result is selected.
+The multistart approach is useful for fitting problems with multiple parameter solutions. In such cases, fitting using multistart option can identify the global minimum corresponding to the best parameter estimates.
+The multistart option is available for all isotherm models except <strong>Auto</strong> mode. In <strong>Auto</strong> mode, <strong>IsoFit</strong> performs isotherm fitting using all the available isotherm models and then selects the best model.
+Using multistart option for <strong>Auto</strong> mode can be computationally expensive, leading to excessive running times.</p>
 <p>Root mean square error <span class="math notranslate nohighlight">\((RMSE)\)</span> is used in the program to evaluate the goodness of fit.</p>
 <div class="math notranslate nohighlight">
 \[RMSE = \sqrt{\frac{SSE}{N-M}}\]</div>
 <p>If the user chooses the <strong>Auto</strong> mode, <strong>IsoFit</strong> reports the best isotherm model with the lowest RMSE values.
-If two or more models have same value of SSE, then IsoFit will choose the model with a smaller number of parameters because of lower value of RMSE.</p>
-<p>IsoFit also reports coefficient of determination, <span class="math notranslate nohighlight">\(r^{2}\)</span>, value defined as:</p>
+If two or more models have the same value of SSE, then IsoFit will choose the model with a smaller number of parameters because of lower value of RMSE.</p>
+<p><strong>IsoFit</strong> also reports coefficient of determination, <span class="math notranslate nohighlight">\(r^{2}\)</span>, value defined as:</p>
 <div class="math notranslate nohighlight">
 \[r^{2} = 1 - \frac{SSE}{\sum (q_{i,exp} - \overline{q_{i,exp}})}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\overline{q_{i,exp}}\)</span> is the mean value of experimental gas uptakes.</p>

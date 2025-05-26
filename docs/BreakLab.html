@@ -89,18 +89,18 @@
   <section id="breaklab">
 <h1>BreakLab<a class="headerlink" href="#breaklab" title="Link to this heading"></a></h1>
 <p><strong>BreakLab</strong> is the module for isothermal/non-isothermal multicomponent fixed bed breakthrough simulation for up to 5 components.
-<strong>BreakLab</strong> GUI  is shown below:</p>
+<strong>BreakLab</strong> GUI is shown below:</p>
 <a class="reference internal image-reference" href="_images/BreakLab.png"><img alt="BreakLab_logo" class="align-center" src="_images/BreakLab.png" style="width: 1000px;" />
 </a>
 <hr class="docutils" />
 <p>The isotherm fitting results from <strong>IsoFit</strong> and <strong>HeatFit</strong> for different components can be directly loaded into <strong>BreakLab</strong> module.</p>
 <p>Watch how to use <strong>BreakLab</strong> <a class="reference internal" href="Tutorials.html#breaklab-label"><span class="std std-ref">here</span></a></p>
-<p>The mathematical model implemented in BreakLab and the required properties and parameters for breakthrough simulation are summarised below.</p>
+<p>The mathematical model implemented in BreakLab and the required properties and parameters for breakthrough simulation are summarized below.</p>
 <section id="mathematical-model">
 <h2>Mathematical Model<a class="headerlink" href="#mathematical-model" title="Link to this heading"></a></h2>
 <p>The mathematical model of BreakLab is based on the following assumptions:</p>
 <ul class="simple">
-<li><p>The gas flow is axially dispersed and charecterized by an axial dispersion coefficient.</p></li>
+<li><p>The gas flow is axially dispersed and characterized by an axial dispersion coefficient.</p></li>
 <li><p>The gas phase is ideal.</p></li>
 <li><p>Pressure drop in the column is given by Ergun’s equation.</p></li>
 <li><p>The steady state momentum balance is applicable.</p></li>
@@ -113,7 +113,7 @@
 </ul>
 <p>The material, energy and momentum balances are developed based on conservation of mass, energy, and momentum in the fixed bed, respectively.
 The resulting balance equations are partial differential equations (PDEs) and consist of mole conservation of component <span class="math notranslate nohighlight">\(i\)</span>, overall mass balance, conservation of total momentum and the total energy
-of the system. The balance equations are summarised in table below. Please check the journal article for a more detailed discussion on deriving these
+of the system. The balance equations are summarized in the table below. Please check the journal article for a more detailed discussion on deriving these
 forms of balance equations.</p>
 <table class="docutils align-default" id="id1">
 <caption><span class="caption-text">BreakLab Balance Equations</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
@@ -148,7 +148,7 @@ forms of balance equations.</p>
 \[D_{ax} = 0.7D_{m} + v_{0}r_{p}\]</div>
 <section id="boundary-conditions">
 <h3>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading"></a></h3>
-<p>BreakLab uses the Danckwerts boundary conditions (BCs) for dispersed plug flow system. The BCs are summarised in table below.</p>
+<p>BreakLab uses the Danckwerts boundary conditions (BCs) for dispersed plug flow system. The BCs are summarized in the table below.</p>
 <table class="docutils align-default" id="id2">
 <caption><span class="caption-text">BreakLab Boundary Conditions</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
 <thead>
@@ -177,7 +177,7 @@ forms of balance equations.</p>
 </tbody>
 </table>
 <p>* here <span class="math notranslate nohighlight">\(f\)</span> represents the Ergun equation. Only the velocity is specified at inlet and pressure is back calculated using Ergun equation.</p>
-<p>Together the balance equations and BCs consitute the mathematical model of BreakLab.</p>
+<p>Together the balance equations and BCs constitute the mathematical model of BreakLab.</p>
 </section>
 </section>
 <section id="numerical-simulation">
@@ -192,7 +192,7 @@ for spatial discretization of the above PDEs. Spatial discretization yields ordi
 </section>
 <section id="breakthrough-simulation-input">
 <h2>Breakthrough Simulation Input<a class="headerlink" href="#breakthrough-simulation-input" title="Link to this heading"></a></h2>
-<p>The table below summarises all the input properties and parameters required for running a breakthrough simulation in BreakLab.</p>
+<p>The table below summarizes all the input properties and parameters required for running a breakthrough simulation in BreakLab.</p>
 <table class="docutils align-default" id="id3">
 <caption><span class="caption-text">BreakLab Inputs</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
 <thead>
