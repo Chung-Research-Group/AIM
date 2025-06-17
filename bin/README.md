@@ -1,6 +1,6 @@
 AIM Installation
 =========================
-Use the AIM_Installer.exe file for installing AIM. 
+Use the AIM_Installer file for installing AIM. 
 
 AIM application requires **MATLAB Runtime** environment to run on machines which do not have MATLAB installed.
 The AIM Installer will install both AIM application and MATLAB Runtime.
