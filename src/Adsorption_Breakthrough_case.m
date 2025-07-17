@@ -1,4 +1,12 @@
 function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
+    %% Global Vars
+    global cached_loadings; 
+    global cached_p0;
+    global cached_p0_local;
+    cached_loadings = [];
+    cached_p0 = [];
+    cached_p0_local = [];
+
     %% Prameter loading and unpacking
     num_component = parameter_set.CompNum;
     isotherm_params = parameter_set.IsothermParams;
@@ -365,8 +373,8 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     %% EVENT FUNCTION
     function [value, isterminal, direction] = event_function(~, ~)
         if progress_bar.CancelRequested
-        %             value = 0;
-            error("Simulation stopped by user!!!")
+                    value = 0;
+            % error("Simulation stopped by user!!!")
         else
             value = 1;
         end
