@@ -234,7 +234,8 @@ function derivatives = Adsorption_step_IAST_Iso(~, state_vars, Params, isotherm_
     y_array = [y_1, y_2, y_3, y_4];
     eq_loading = zeros(size(y_1, 1),5);
     
-    eq_loading(:, 1:comp_num-1) = IAST_func(comp_num-1, isotherm_params_array, P.*P_0, y_array(:, 1:comp_num-1), T.*T_0, 0);
+    % eq_loading(:, 1:comp_num-1) = IAST_func(comp_num-1, isotherm_params_array, P.*P_0, y_array(:, 1:comp_num-1), T.*T_0, 0);
+    eq_loading(:, 1:comp_num-1) = IAST_func_fastIAS(comp_num-1, isotherm_params_array, P.*P_0, y_array(:, 1:comp_num-1), T.*T_0, 0);
 
     % if comp_num == 2
     %     eq_loading = IAST_func(comp_num-1, P.*P_0, isotherm_params_array(:, 1), y_1, T.*T_0);
