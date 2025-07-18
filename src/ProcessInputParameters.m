@@ -19,7 +19,8 @@ function InputParams = ProcessInputParameters(parameter_set)
     mass_trans_coef = zeros(1, max_num_comp);
     
     % Column and Feed properties and parameters
-    P_0         = column_bed(1) * 1000;                 % Adsorption pressure [kPa --> Pa]
+    % P_0         = column_bed(1) * 1000;                 % Adsorption pressure [kPa --> Pa]
+    P_0         = column_bed(1);                        % Adsorption pressure [Pa]
     L           = column_bed(2)       ;                 % Length of the column [m]   
     dia_in      = column_bed(3)       ;                 % Internal Diameter of bed [m]
     T_wall      = column_bed(4)       ;                 % Temperature of Wall [oC]
@@ -70,8 +71,9 @@ function InputParams = ProcessInputParameters(parameter_set)
     
     % Feed gas parameters and constants
     R          = 8.314                          ;   % Universal gas constant [J/mol/K : Pa*m^3/mol/K]
-    T_0        = feed_temperature+273.15        ;   % Feed temperature of flue gas [K]
-    C_tot      = P_0/R/T_0                  ;
+    % T_0        = feed_temperature+273.15        ;   % Feed temperature of flue gas [K]
+    T_0        = feed_temperature;              % Feed temperature [K]             
+    C_tot      = P_0/R/T_0                      ;
     
     if FeedFlowType == 0
         v_0 = feed_gas_props(5);
@@ -91,7 +93,10 @@ function InputParams = ProcessInputParameters(parameter_set)
     t_ads = numerical_par(2);     % Time of Sorption-Reaction Process    
     
     dz          = L / N                 ;   % Differntial length of the bed [m]
-    T_wall      = T_wall+273.15         ;   % Temperature of Reactor Wall [K]
+    
+    % Temperature is already in K now.
+    % T_wall      = T_wall+273.15         ;   % Temperature of Reactor Wall [K]
+    
     P_inlet     = 1.02;
     
     

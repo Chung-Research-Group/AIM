@@ -151,7 +151,8 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     % Unpacking solution in respective variables
     % solution.t = t_1'.*L/v_0;
     solution.t = t_1.*L/v_0;
-    solution.P    = ads_reac_sol(:, 1: N+2) .* P_0/1000;     % Pressure in kPa
+    % solution.P    = ads_reac_sol(:, 1: N+2) .* P_0/1000;     % Pressure in kPa
+    solution.P    = ads_reac_sol(:, 1: N+2) .* P_0;            % Pressure in Pa
     solution.C1 = max(ads_reac_sol(:, N+3: 2*N+4),  0);          
     solution.C2  = max(ads_reac_sol(:, 2*N+5: 3*N+6), 0);
     solution.C3   = max(ads_reac_sol(:, 3*N+7: 4*N+8), 0);
@@ -162,10 +163,12 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     solution.x3C3 = ads_reac_sol(:, 7*N+15:8*N+16) .* q_s0  ;
     solution.x4C4 = ads_reac_sol(:, 8*N+17:9*N+18) .* q_s0  ;
     solution.x5C5 = ads_reac_sol(:, 9*N+19:10*N+20).* q_s0  ;
+    
+    % Temperature in K
     if calc_type
-        solution.T    = (ads_reac_sol(:, 10*N+21:11*N+22) .* T_0) - 273.15; % Temperature in oC    
+        solution.T    = (ads_reac_sol(:, 10*N+21:11*N+22) .* T_0);    
     else
-        solution.T = ones(size(ads_reac_sol(:, 1:N+2))).*T_0 - 273.15;
+        solution.T = ones(size(ads_reac_sol(:, 1:N+2))).*T_0; 
     end
 
     g = adsorbed_amount(solution);

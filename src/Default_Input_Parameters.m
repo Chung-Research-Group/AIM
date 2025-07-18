@@ -1,9 +1,9 @@
 function default_params = Default_Input_Parameters()   
     %% Column and Bed Parameters 
     L           = 1.0                 ;   % Length of the column [m]   
-    P_0         = 100                   ;   % Adsorption pressure [Pa]
+    P_0         = 101325              ;   % Adsorption pressure [Pa]
     dia_in      = 0.01                ;   % Internal Diameter of bed [m]
-    T_wall      = 25                    ;   % Temperature of Reactor Wall [oC]
+    T_wall      = 298.15              ;   % Temperature of Reactor Wall [oC]
     
     ro_total   = 748                    ;   % Solid Bulk Density of Bed
     dia_p      = 2*2.5e-04              ;   % Radius of the pellets [m]
@@ -20,7 +20,7 @@ function default_params = Default_Input_Parameters()
     end
     %
     %% Feed gas parameters and constants
-    T_0        = 25                             ;   % Feed temperature of flue gas [oC]
+    T_0        = 298.15                         ;   % Feed temperature of flue gas [oC]
     C_pg       = 42                             ;   % Specific heat of gas [J/mol/k]
     K_z        = 0.29                           ;   % Thermal conduction in gas phase [W/m/k]
     v_0        = 0.1385                         ; % Feed Superficial velocity;
