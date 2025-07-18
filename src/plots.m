@@ -26,7 +26,7 @@ function [] = plots(ax , L, N, variable_to_plot, solution, plot_type, time_value
     %
     %% Pressure 
     if strcmpi(variable_to_plot, "Pressure")
-        P = solution.P;
+        P = solution.P ./ 1e3;  % Conversion to kPa for better visualization
         % Across the column plot
         if strcmpi(plot_type, "Across the column")
             p = plot(ax, len_column, P(time_value_index,:), '-ko');
@@ -92,7 +92,8 @@ function [] = plots(ax , L, N, variable_to_plot, solution, plot_type, time_value
         ax.Title.FontWeight ="bold";
         ax.Title.FontSize = fontsize;
         ax.Title.FontName=fontname;
-        c = "Temperature ("+char(176)+"C)";
+        % c = "Temperature ("+char(176)+"C)";
+        c = "Temperature (K)";
         ylabel(ax, c, FontSize = fontsize, FontWeight="bold", FontName='AvantGrande');
     end
 %
