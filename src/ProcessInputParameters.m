@@ -32,7 +32,7 @@ function InputParams = ProcessInputParameters(parameter_set)
     epsilon_3  = epsilon_1 ...
                 + (1-epsilon_1)*epsilon_2     ;         % Void fraction total
     C_psolid                = column_bed(11)  ;         % Specific heat capacity of the solid [J/kg/K]
-    h_wall_gas              = column_bed(12)  ;         % Heat TRansfer COefficient [W/m2/K]
+    h_wall_gas              = column_bed(12)  ;         % Heat Transfer COefficient [W/m2/K]
 
     % Feed gas parameters and constants
     feed_temperature        = feed_gas_props(1)             ;   % Feed temperature of gas [oC]
@@ -90,12 +90,12 @@ function InputParams = ProcessInputParameters(parameter_set)
 
     % Numerical Parameters
     N = numerical_par(1);         % No. of Nodes
-    t_ads = numerical_par(2);     % Time of Sorption-Reaction Process    
+    t_ads = numerical_par(2);     % Time of process    
     
     dz          = L / N                 ;   % Differntial length of the bed [m]
     
     % Temperature is already in K now.
-    % T_wall      = T_wall+273.15         ;   % Temperature of Reactor Wall [K]
+    % T_wall      = T_wall+273.15         ;   % Temperature of column wall [K]
     
     P_inlet     = 1.02;
     

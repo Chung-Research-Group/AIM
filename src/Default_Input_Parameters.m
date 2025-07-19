@@ -3,14 +3,14 @@ function default_params = Default_Input_Parameters()
     L           = 1.0                 ;   % Length of the column [m]   
     P_0         = 101325              ;   % Adsorption pressure [Pa]
     dia_in      = 0.01                ;   % Internal Diameter of bed [m]
-    T_wall      = 298.15              ;   % Temperature of Reactor Wall [oC]
+    T_wall      = 298.15              ;   % Temperature of column wall [oC]
     
-    ro_total   = 748                    ;   % Solid Bulk Density of Bed
-    dia_p      = 2*2.5e-04              ;   % Radius of the pellets [m]
-    epsilon_b  = 0.48                   ;   % Void fraction bed
-    epsilon_p  = 0.24                   ;   % Void fraction particle
-    C_psolid   = 850                    ;   % Specific heat capacity of the solid [J/kg/K]
-    h_wall_gas = 71                     ;   % Heat Transfer Coefficient for Wall to gas heat transfer calculation [W/m2/K]
+    ro_total   = 500                  ;   % Solid Bulk Density of Bed
+    dia_p      = 2*2.5e-04            ;   % Radius of the pellets [m]
+    epsilon_b  = 0.48                 ;   % Void fraction bed
+    epsilon_p  = 0.24                 ;   % Void fraction particle
+    C_psolid   = 850                  ;   % Specific heat capacity of the solid [J/kg/K]
+    h_wall_gas = 71                   ;   % Heat Transfer Coefficient for Wall to gas heat transfer calculation [W/m2/K]
     %
     %% Number and names of Components
     num_comp = 2;
@@ -20,10 +20,10 @@ function default_params = Default_Input_Parameters()
     end
     %
     %% Feed gas parameters and constants
-    T_0        = 298.15                         ;   % Feed temperature of flue gas [oC]
+    T_0        = 298.15                         ;   % Feed temperature [oC]
     C_pg       = 42                             ;   % Specific heat of gas [J/mol/k]
     K_z        = 0.29                           ;   % Thermal conduction in gas phase [W/m/k]
-    v_0        = 0.1385                         ; % Feed Superficial velocity;
+    v_0        = 0.1385                         ;   % Feed Superficial velocity;
     mu         = 2.87e-5                        ;   % Viscosity of gas [Pa*s]
     D_m        = 1.60e-5                        ;   % Molecular diffusivity [m^2/s]
     %
