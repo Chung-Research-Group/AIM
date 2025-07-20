@@ -126,9 +126,10 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
         end
 
     elseif mixture_predict_method == 1
-        
+        tic;
         [t_1, ads_reac_sol] = ode15s(Adsorption_fxn_IAST, timespan, x, options);
         % sol_struc = ode15s(Adsorption_fxn_IAST, [0 time].*v_0/L, x, options);
+        toc;
     else
         error("Please specify the mixture isotherm prediction type!")
     end
@@ -382,7 +383,7 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
             value = 1;
         end
         isterminal = 1;
-        direction = [];
+        direction = 0;
     end
 %
 end
