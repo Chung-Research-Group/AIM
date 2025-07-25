@@ -29,10 +29,17 @@ function InputParams = ProcessInputParameters(parameter_set)
     dia_p                   = column_bed(7)   ;         % Radius of the pellets [m]
     epsilon_1               = column_bed(9)   ;         % Void fraction bed
     epsilon_2               = column_bed(10)  ;         % Void fraction particle
-    epsilon_3  = epsilon_1 ...
-                + (1-epsilon_1)*epsilon_2     ;         % Void fraction total
+    epsilon_3               = epsilon_1 ...
+                             + (1-epsilon_1)*epsilon_2; % Void fraction total
     C_psolid                = column_bed(11)  ;         % Specific heat capacity of the solid [J/kg/K]
     h_wall_gas              = column_bed(12)  ;         % Heat Transfer COefficient [W/m2/K]
+    
+    K_w                     = column_bed(13)  ;
+    ro_w                    = column_bed(14)  ;
+    C_pw                    = column_bed(15)  ;
+    dia_out                 = column_bed(16)  ;
+    h_wall_amb              = column_bed(17)  ;
+    T_amb                   = column_bed(18)  ;
 
     % Feed gas parameters and constants
     feed_temperature        = feed_gas_props(1)             ;   % Feed temperature of gas [oC]
@@ -121,7 +128,7 @@ function InputParams = ProcessInputParameters(parameter_set)
     dH_array(isnan(dH_array)) = 0;
     
 %% Distribute the values to the necessary variables
-    Params     = zeros(54, 1) ;
+    Params     = zeros(60, 1) ;
     Params(1)  = N			  ;
     Params(2) = L			  ;
     Params(3) = dz           ;
@@ -137,7 +144,7 @@ function InputParams = ProcessInputParameters(parameter_set)
     Params(13) = K_z		  ;
     Params(14) = P_0		  ;
     Params(15) = T_wall	      ;
-    Params(16) = dia_in	      ;
+    Params(16) = dia_in/2	  ;
     Params(18) = P_inlet	  ;
     Params(19) = MW_1  	      ;
     Params(20) = MW_2  	      ;
@@ -161,7 +168,14 @@ function InputParams = ProcessInputParameters(parameter_set)
     Params(42) = y_init_3     ;
     Params(43) = y_init_4     ;
     Params(44:48) = mass_trans_coef;
-    Params(49:53) = dH_array;
+    Params(49:53) = dH_array  ;
+    Params(54) = K_w          ;
+    Params(55) = ro_w         ;
+    Params(56) = C_pw         ;
+    Params(57) = dia_out/2    ;
+    Params(58) = h_wall_amb   ;
+    Params(59) = T_amb        ;
+
     if strcmpi(feed_gas, 'Constant Pressure') == 1
         Params(end) = 1 ;
     elseif strcmpi(feed_gas, 'Constant Velocity') == 1
@@ -169,7 +183,6 @@ function InputParams = ProcessInputParameters(parameter_set)
     else
         error('Please specify whether inlet velocity or pressure is constant for the feed step')
     end
-
 
 %% Combine all lists into one variable that can easily be passed
     InputParams = Params          ;  
