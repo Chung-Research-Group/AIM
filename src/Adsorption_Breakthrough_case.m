@@ -44,10 +44,6 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     y_init_2 = params(41);
     y_init_3 = params(42);
     y_init_4 = params(43);
-    % y_init_1 = 1e-06;
-    % y_init_2 = 1e-06;
-    % y_init_3 = 1e-06;
-    % y_init_4 = 1e-06;
 %   timespan = (0:0.01:time) .* v_0/L;
     timespan = (0:1:time+0.1) .* v_0/L;
     
@@ -55,37 +51,40 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     RelTol = numerical_params(4);
 
     %% Initial Conditions
-    x = zeros(11*N+22, 1);
+    x0 = zeros(11*N+22, 1);
     
     % Pressure
-    x(1) = 1;
-    x(2:N+2) = 1;
+    x0(1) = 1;
+    x0(2:N+2) = 1;
     
     % 1st Component
-    x(N+3)  = y_0_1;
-    x(N+4:2*N+4) = y_init_1;
+    x0(N+3)  = y_0_1;
+    x0(N+4:2*N+4) = y_init_1;
     
     % 2nd Component
-    x(2*N+5) = y_0_2;
-    x(2*N+6:3*N+6) =y_init_2;
+    x0(2*N+5) = y_0_2;
+    x0(2*N+6:3*N+6) =y_init_2;
  
     % 3rd Component
-    x(3*N+7) = y_0_3;
-    x(3*N+8:4*N+8) = y_init_3;
+    x0(3*N+7) = y_0_3;
+    x0(3*N+8:4*N+8) = y_init_3;
     
     % 4th Component
-    x(4*N+9) = y_0_4;
-    x(4*N+10:5*N+10) = y_init_4;
+    x0(4*N+9) = y_0_4;
+    x0(4*N+10:5*N+10) = y_init_4;
     
     % Molar loadings
-    x(5*N+11:6*N+12) = 0;
-    x(6*N+13:7*N+14) = 0;
-    x(7*N+15:8*N+16) = 0;
-    x(8*N+17:9*N+18) = 0;
-    x(9*N+19:10*N+20) = 0;
+    x0(5*N+11:6*N+12) = 0;
+    x0(6*N+13:7*N+14) = 0;
+    x0(7*N+15:8*N+16) = 0;
+    x0(8*N+17:9*N+18) = 0;
+    x0(9*N+19:10*N+20) = 0;
     
-    % Temperature
-    x(10*N+21:11*N+22) = T_0/T_0;
+    % Gas Temperature
+    x0(10*N+21:11*N+22) = T_0/T_0;
+
+    % Wall Temperature
+    x0(11*N+23:12*N+24) = T_0/T_0;
  %
     %% Function Alias for isothermal/nonisothermal calculations
     switch calc_type
@@ -94,7 +93,7 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
             isotherm_params(end, :) = T_0;   % T = T_feed
             Adsorption_fxn_IAST     = @(t, x) Adsorption_step_IAST_Iso(t, x, params, isotherm_params, num_component)          ;
             Adsorption_fxn_Ext_Lang = @(t, x) Adsorption_step_EDSL_Iso(t, x, params, isotherm_params, num_component)          ;
-            x = x(1:10*N+20, 1);    % Not solving for Temperature values
+            x0 = x0(1:10*N+20, 1);    % Not solving for Gas and Wall Temperature values
         case 1
             T_ref = isotherm_params(end, 1:num_component-1);
             isotherm_params(end-1, :) = isotherm_params(end-1, :).*1e03; % dH conversion from kJ/mole to J/mole
@@ -121,13 +120,13 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
             error(['In case of Extended Langmuir method, isotherm type of' ...
                 ' all components must be either SS-Langmuir or DS-Langmuir!'])
         else
-            [t_1, ads_reac_sol] = ode15s(Adsorption_fxn_Ext_Lang, timespan, x, options);
+            [t_1, ads_reac_sol] = ode15s(Adsorption_fxn_Ext_Lang, timespan, x0, options);
             % sol_struc = ode15s(Adsorption_fxn_Ext_Lang, [0 time].*v_0/L, x, options);
         end
 
     elseif mixture_predict_method == 1
         tic;
-        [t_1, ads_reac_sol] = ode15s(Adsorption_fxn_IAST, timespan, x, options);
+        [t_1, ads_reac_sol] = ode15s(Adsorption_fxn_IAST, timespan, x0, options);
         % sol_struc = ode15s(Adsorption_fxn_IAST, [0 time].*v_0/L, x, options);
         toc;
     else
@@ -167,12 +166,14 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     
     % Temperature in K
     if calc_type
-        solution.T    = (ads_reac_sol(:, 10*N+21:11*N+22) .* T_0);    
+        solution.T    = (ads_reac_sol(:, 10*N+21:11*N+22) .* T_0);
+        solution.Tw   = (ads_reac_sol(:, 11*N+23:12*N+24) .* T_0);
     else
-        solution.T = ones(size(ads_reac_sol(:, 1:N+2))).*T_0; 
+        solution.T = ones(size(ads_reac_sol(:, 1:N+2))).*T_0;
+        solution.Tw = ones(size(ads_reac_sol(:, 1:N+2))).*T_0;
     end
 
-    g = adsorbed_amount(solution);
+    % g = adsorbed_amount(solution);
 %%  Supplementary Functions
     %% Solution Correction Function
     function x_new = Correction_func(x)
