@@ -49,8 +49,8 @@ function Jac_S = Jacobian(N, CalcType)
                  J_x, J_x, J_x, J_x, J_x, J_0, J_0, J_x, J_0, J_0, J_T, J_0;
                  J_x, J_x, J_x, J_x, J_x, J_0, J_0, J_0, J_x, J_0, J_T, J_0;
                  J_x, J_x, J_x, J_x, J_x, J_0, J_0, J_0, J_0, J_x, J_T, J_0;
-                 J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x, J_T, J_Tw;
-                 J_0, J_0, J_0, J_0, J_0, J_0, J_0, J_0, J_0, J_0, J_T, J_Tw];
+                 J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x, J_T, J_x;
+                 J_0, J_0, J_0, J_0, J_0, J_0, J_0, J_0, J_0, J_0, J_x, J_Tw];
     else
         Jac_S = [J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x;
                  J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x;
