@@ -214,9 +214,11 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
         x(:, 8*N+16)     = x(:, 8*N+15)                     ;  % x3_N+2 = x3_N+1
         x(:, 9*N+18)     = x(:, 9*N+17)                     ;  % x4_N+2 = x4_N+1
         x(:, 10*N+20)    = x(:, 10*N+19)                    ;  % x5_N+2 = x5_N+1
-
-        % Temperature at outlet boundary
-        x(:, 11*N+22) = x(:, 11*N+21);
+        
+        if calc_type
+            % Temperature at outlet boundary
+            x(:, 11*N+22) = x(:, 11*N+21);
+        end
         
         x_new = x   ;    
     end
