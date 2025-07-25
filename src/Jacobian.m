@@ -21,11 +21,12 @@ function Jac_S = Jacobian(N, CalcType)
     d = ones(N+2, 4);
 
     J_P = full(spdiags(d, -2:1, N+2, N+2)); % Pressure Jacobian Segment
-    J_y_1 = J_P;                          % CH4 Mole fraction Jacobian Segment
-    J_y_2 = J_P;                          % H2OMole fraction Jacobian Segment
-    J_y_3  = J_P;                          % H2 Mole fraction Jacobian Segment
-    J_y_4 = J_P;                          % CO2 Mole fraction Jacobian Segment
+    J_y_1 = J_P;                            % Comp 1 Mole fraction Jacobian Segment
+    J_y_2 = J_P;                            % Comp 2 fraction Jacobian Segment
+    J_y_3  = J_P;                           % Comp 3 fraction Jacobian Segment
+    J_y_4 = J_P;                            % Comp 4 Mole fraction Jacobian Segment
     J_T = J_P;                              % Temperature Jacobian Segment
+    J_Tw = J_P;                             % Wall Temperature Jacobian Segment
     
 %% Single Node Jacobian Scheme    
     % Single Node Jacobian Scheme is used for molar adsorption loading as    
@@ -38,17 +39,18 @@ function Jac_S = Jacobian(N, CalcType)
 
 %% Overall Jacobian Scheme
     if CalcType
-        Jac_S = [J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x, J_T;
-                 J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x, J_T;
-                 J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x, J_T;
-                 J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x, J_T;
-                 J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x, J_T;
-                 J_x, J_x, J_x, J_x, J_x, J_x, J_0, J_0, J_0, J_0, J_T;
-                 J_x, J_x, J_x, J_x, J_x, J_0, J_x, J_0, J_0, J_0, J_T;
-                 J_x, J_x, J_x, J_x, J_x, J_0, J_0, J_x, J_0, J_0, J_T;
-                 J_x, J_x, J_x, J_x, J_x, J_0, J_0, J_0, J_x, J_0, J_T;
-                 J_x, J_x, J_x, J_x, J_x, J_0, J_0, J_0, J_0, J_x, J_T;
-                 J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x, J_T;];
+        Jac_S = [J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x, J_T, J_0;
+                 J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x, J_T, J_0;
+                 J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x, J_T, J_0;
+                 J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x, J_T, J_0;
+                 J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x, J_T, J_0;
+                 J_x, J_x, J_x, J_x, J_x, J_x, J_0, J_0, J_0, J_0, J_T, J_0;
+                 J_x, J_x, J_x, J_x, J_x, J_0, J_x, J_0, J_0, J_0, J_T, J_0;
+                 J_x, J_x, J_x, J_x, J_x, J_0, J_0, J_x, J_0, J_0, J_T, J_0;
+                 J_x, J_x, J_x, J_x, J_x, J_0, J_0, J_0, J_x, J_0, J_T, J_0;
+                 J_x, J_x, J_x, J_x, J_x, J_0, J_0, J_0, J_0, J_x, J_T, J_0;
+                 J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x, J_T, J_Tw;
+                 J_0, J_0, J_0, J_0, J_0, J_0, J_0, J_0, J_0, J_0, J_T, J_Tw];
     else
         Jac_S = [J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x;
                  J_P, J_y_1, J_y_2, J_y_3, J_y_4, J_x, J_x, J_x, J_x, J_x;
@@ -72,35 +74,35 @@ function Jac_S = Jacobian(N, CalcType)
     Jac_S(N+2,:) = 0;
     Jac_S(:, N+2) = 0;
 
-%   CH_4 Inlet
+%   Comp 1 Inlet
     Jac_S(N+3,:) = 0;
     Jac_S(:, N+3) = 0;
 
-%   CH_4 Oulet
+%   Comp 1 Oulet
     Jac_S(2*N+4,:) = Jac_S(2*N+3);
     Jac_S(:, 2*N+4) = 0;
 
-%   H2O Inlet
+%   Comp 2 Inlet
     Jac_S(2*N+5,:) = 0;
     Jac_S(:, 2*N+5) = 0;
 
-%   H2O Oulet
+%   Comp 2 Oulet
     Jac_S(3*N+6,:) = Jac_S(3*N+5,:);
     Jac_S(:, 3*N+6) = 0;
 
-%   H2 Inlet
+%   Comp 3 Inlet
     Jac_S(3*N+7,:) = 0;
     Jac_S(:, 3*N+7) = 0;
 
-%   H2 Oulet 
+%   Comp 3 Oulet 
     Jac_S(4*N+8,:) = Jac_S(4*N+7,:);
     Jac_S(:,4*N+8) = 0;
 
-%   CO2 Inlet 
+%   Comp 4 Inlet 
     Jac_S(4*N+9,:) = 0;
     Jac_S(:, 4*N+9) = 0;
 
-%   CO2 Oulet
+%   Comp 4 Oulet
     Jac_S(5*N+10,:) = Jac_S(5*N+9,:);
     Jac_S(:, 5*N+10) = 0;
 
@@ -112,9 +114,16 @@ function Jac_S = Jacobian(N, CalcType)
     %   Temperature Outlet
         Jac_S(11*N+22,:) = Jac_S(11*N+21,:);
         Jac_S(:, 11*N+22) = 0;
-    end
     
-    Jac_S = sparse(Jac_S);
+    %   Wall Temperature Inlet
+        Jac_S(11*N+23,:) = 0;
+        Jac_S(:, 11*N+23) = 0;
+    
+    %   Wall Temperature Outlet
+        Jac_S(12*N+24,:) = 0;
+        Jac_S(:, 12*N+24) = 0;
+    end
 
+    Jac_S = sparse(Jac_S);
 end
 
