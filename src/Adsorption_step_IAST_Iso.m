@@ -14,7 +14,7 @@ function derivatives = Adsorption_step_IAST_Iso(~, state_vars, Params, isotherm_
     % K_z     = Params(13) 		  ;
     P_0     = Params(14) 		  ;
     % T_wall  = Params(15) 	      ;
-    % dia_in  = Params(16)       ;
+    % r_in  = Params(16)       ;
     P_inlet = Params(18) 	  ;
     MW_1    = Params(19)  	      ;
     MW_2    = Params(20)  	      ;
@@ -30,7 +30,7 @@ function derivatives = Adsorption_step_IAST_Iso(~, state_vars, Params, isotherm_
     epsilon_3 = Params(30)    ;   % Void fraction total bed
     r_p = Params(31)		  ;
     ro_s =  Params(32)		  ;
-    % h_wall_gas = Params(39)   ;
+    % h_in = Params(39)   ;
     mass_trans_coeff = Params(44:48);
        
     ndot_0          =   P_0/R/T_0*v_0;   
@@ -343,8 +343,6 @@ function derivatives = Adsorption_step_IAST_Iso(~, state_vars, Params, isotherm_
     %                ./ (R * T_0) ./ sink_term  ;
 %%  2.5) Temperature change due to heat transfer to wall
     % T_w = (T_wall)/T_0  ;
-    % h_in = h_wall_gas   ;
-    % r_in = dia_in/2 ;
     % dTdt6(2:N+1) = (2 * h_in * L / r_in /v_0) .* (T_w - T(2:N+1)) ./ sink_term    ;
     
 %%  2.7) Temperature change due to mass transfer from gas to adsorbent
