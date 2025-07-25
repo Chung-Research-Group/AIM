@@ -32,13 +32,13 @@ function InputParams = ProcessInputParameters(parameter_set)
     epsilon_3               = epsilon_1 ...
                              + (1-epsilon_1)*epsilon_2; % Void fraction total
     C_psolid                = column_bed(11)  ;         % Specific heat capacity of the solid [J/kg/K]
-    h_wall_gas              = column_bed(12)  ;         % Heat Transfer COefficient [W/m2/K]
+    h_in                    = column_bed(12)  ;         % Heat Transfer COefficient [W/m2/K]
     
     K_w                     = column_bed(13)  ;
     ro_w                    = column_bed(14)  ;
     C_pw                    = column_bed(15)  ;
     dia_out                 = column_bed(16)  ;
-    h_wall_amb              = column_bed(17)  ;
+    h_out                   = column_bed(17)  ;
     T_amb                   = column_bed(18)  ;
 
     % Feed gas parameters and constants
@@ -162,7 +162,7 @@ function InputParams = ProcessInputParameters(parameter_set)
     Params(32)  = ro_s		  ;
     Params(36) = t_ads * v_0/L   ;
     Params(38) = ndot_0       ;
-    Params(39) = h_wall_gas   ;
+    Params(39) = h_in   ;
     Params(40) = y_init_1     ;
     Params(41) = y_init_2     ;
     Params(42) = y_init_3     ;
@@ -173,7 +173,7 @@ function InputParams = ProcessInputParameters(parameter_set)
     Params(55) = ro_w         ;
     Params(56) = C_pw         ;
     Params(57) = dia_out/2    ;
-    Params(58) = h_wall_amb   ;
+    Params(58) = h_out   ;
     Params(59) = T_amb        ;
 
     if strcmpi(feed_gas, 'Constant Pressure') == 1
