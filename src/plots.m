@@ -97,6 +97,41 @@ function [] = plots(ax , L, N, variable_to_plot, solution, plot_type, time_value
         ylabel(ax, c, FontSize = fontsize, FontWeight="bold", FontName='AvantGrande');
     end
 %
+%%  Wall Temperature 
+    if strcmpi(variable_to_plot, "Wall Temperature")
+        Tw = solution.Tw;
+        % Across the column plot
+        if strcmpi(plot_type, "Across the column")
+            p = plot(ax, len_column, Tw(time_value_index,:), '-o');
+            p.LineWidth = line_width;
+
+            ax.Title.String = "Wall Temperature Profile across the column";
+            xlabel(ax, 'Length (m)', FontSize = fontsize, FontWeight="bold", FontName='AvantGrande');
+        
+        % At the Outlet plot    
+        else
+            p = plot(ax, t, Tw(:, end), '-o');
+            p.LineWidth = line_width;
+            p.MarkerSize = scatter_marker_size;
+            p.MarkerIndices = 1:1500:length(t);
+
+            ax.Title.String = "Wall Temperature Profile at column outlet";
+            xlabel(ax, 'Time (s)', FontSize = fontsize, FontWeight="bold", FontName='AvantGrande');
+        end
+
+        ax.Box = "off";
+        ax.FontName = "Arial";
+        ax.Color = [1 1 1];
+        p.LineWidth = line_width;
+        p.Color = [0.65, 0.625, 0.198];
+        ax.Title.FontWeight ="bold";
+        ax.Title.FontSize = fontsize;
+        ax.Title.FontName=fontname;
+        % c = "Temperature ("+char(176)+"C)";
+        c = "Wall Temperature (K)";
+        ylabel(ax, c, FontSize = fontsize, FontWeight="bold", FontName='AvantGrande');
+    end
+%
     %% Breakthrough Profiles
     if strcmpi(variable_to_plot, "Mole Fractions")
         C1 = solution.C1;
