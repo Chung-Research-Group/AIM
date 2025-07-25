@@ -14,7 +14,7 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
     K_z     = Params(13) 		  ;
     P_0     = Params(14) 		  ;
     T_wall  = Params(15) 	      ;
-    dia_in  = Params(16)       ;
+    r_in    = Params(16)       ;
     P_inlet = Params(18) 	  ;
     MW_1    = Params(19)  	      ;
     MW_2    = Params(20)  	      ;
@@ -30,9 +30,15 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
     epsilon_3 = Params(30)    ;   % Void fraction total bed
     r_p = Params(31)		  ;
     ro_s =  Params(32)		  ;
-    h_wall_gas = Params(39)   ;
+    h_in = Params(39)   ;
     mass_trans_coeff = Params(44:48);
-       
+    K_w = Params(54);
+    ro_w = Params(55);
+    C_pw = Params(56);
+    r_out = Params(57);
+    h_out = Params(58);
+    T_amb   = Params(59);
+        
     ndot_0          =   P_0/R/T_0*v_0;   
     %   
 %% Initialize state variables
@@ -47,7 +53,7 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
     x4   = zeros(N+2, 1) ;
     x5   = zeros(N+2, 1) ;
     T    = zeros(N+2, 1) ;
-
+    Tw   = zeros(N+2, 1) ;
 
     P(1:N+2)    = state_vars(1:N+2)                 ;
     y_1(1:N+2)  = min(max(state_vars(N+3:2*N+4), 0), 1)     ;
@@ -60,6 +66,7 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
     x4(1:N+2) = max(state_vars(8*N+17:9*N+18), 0)   ;
     x5(1:N+2) = max(state_vars(9*N+19:10*N+20), 0)  ;
     T(1:N+2)  = state_vars(10*N+21:11*N+22)         ;
+    Tw(1:N+2) = state_vars(11*N+23:12*N+24)         ;
   
 %   
 %% Initialize all variables used in the function
@@ -87,6 +94,10 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
     dTdt5       = zeros(N+2, 1)    ;
     dTdt6       = zeros(N+2, 1)    ;
     dTdt7       = zeros(N+2, 1)    ;
+    dTwdt       = zeros(N+2, 1)    ;
+    dTwdt1      = zeros(N+2 ,1)    ;
+    dTwdt2      = zeros(N+2, 1)    ;
+    dTwdt3      = zeros(N+2, 1)    ;
 
     % Spatial derivatives
     dpdz        = zeros(N+2, 1)    ;
@@ -101,6 +112,7 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
     d2y_4dz2      = zeros(N+2, 1)    ;
     dTdz          = zeros(N+2, 1)    ;
     d2Tdz2        = zeros(N+2, 1)    ;
+    d2Twdz2        = zeros(N+2, 1)   ;
 %     
 %% Calculate all parameters used
     dz   = 1/N                                ;
@@ -120,6 +132,7 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
     % y_3(1) = y_0_3;    
     % y_4(1) = y_0_4;    
     % T(1) = T_0/T_0;
+    % Tw(1) = T_amb/T_0;
 
     % Danckwert's Boundary Conditions
     y_1(1) = (y_1(2) + v_0/v_0/epsilon*Pe*y_0_1*0.5*dz)/(1 + v_0/v_0/epsilon*Pe*0.5*dz);              
@@ -127,7 +140,8 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
     y_3(1) = (y_3(2) + v_0/v_0/epsilon*Pe*y_0_3*0.5*dz)/(1 + v_0/v_0/epsilon*Pe*0.5*dz);        
     y_4(1) = (y_4(2) + v_0/v_0/epsilon*Pe*y_0_4*0.5*dz)/(1 + v_0/v_0/epsilon*Pe*0.5*dz);         
     T(1) = (T(2) + v_0/v_0/epsilon*Pe_h*T_0/T_0*0.5*dz)/(1 + v_0/v_0/epsilon*Pe_h*0.5*dz);       
-    
+    Tw(1) = T_amb/T_0;
+
     if Params(end) == 1
         % Inlet pressure is specified as a constant
         P(1) = P_inlet ;
@@ -166,6 +180,7 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
     y_3(N+2) = y_3(N+1) ;
     y_4(N+2) = y_4(N+1) ;
     T(N+2) = T(N+1)     ;
+    Tw(N+2) = T_amb/T_0 ;
     if P(N+1) >= 1
         P(N+2) = 1      ;
     else
@@ -220,6 +235,11 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
     d2Tdz2(2)   =  4*(Th(2)+T(1)-2*T(2))/dz/dz       ;
     d2Tdz2(N+1) =  4*(Th(N)+T(N+2)-2*T(N+1))/dz/dz   ;
 %   
+%%  Wall Temperature
+    d2Twdz2(3:N) = (Tw(4:N+1)+Tw(2:N-1)-2*Tw(3:N))/dz/dz ;
+    d2Twdz2(2)   = (Tw(3)-Tw(2))/dz/dz                   ;
+    d2Twdz2(N+1) = (Tw(N)-Tw(N+1))/dz/dz                 ;
+%
 %% Velocity Calculations
     ro_gh          = (P_0/R/T_0)*Ph(1:N+1)./Th(1:N+1)               ;
     
@@ -323,10 +343,8 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
     dTdt5(2:N+1) = -C_pg .* epsilon_3 .* P_0 .* dPdt(2:N+1)...
                    ./ (R * T_0) ./ sink_term;
 %%  2.5) Temperature change due to heat transfer to wall
-    T_w = (T_wall)/T_0  ;
-    h_in = h_wall_gas   ;
-    r_in = dia_in/2 ;
-    dTdt6(2:N+1) = (2 * h_in * L / r_in /v_0) .* (T_w - T(2:N+1)) ./ sink_term;
+    % T_w = (T_wall)/T_0  ;
+    dTdt6(2:N+1) = (2 * h_in * L / r_in /v_0) .* (Tw(2:N+1) - T(2:N+1)) ./ sink_term;
    
 %%  2.7) Temperature change due to mass transfer from gas to adsorbent
     dTdt7(2:N+1) = - sigma_ads .* T(2:N+1) .* (dx1dt(2:N+1) + dx2dt(2:N+1) + ...
@@ -334,6 +352,14 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
 %%   2.8) Total sum of all temperature derivatives 
         dTdt(2:N+1) = dTdt1(2:N+1) + dTdt2(2:N+1) + dTdt3(2:N+1) + dTdt4(2:N+1)...
                        + dTdt5(2:N+1) + dTdt6(2:N+1) + dTdt7(2:N+1);
+%
+%% Wall energy balance
+dTwdt1(2:N+1) = K_w/ro_w/C_pw/v_0/L .* d2Twdz2(2:N+1);
+dTwdt2(2:N+1) = -2*L*r_in*h_in/ro_w/C_pw/v_0/(r_out^2 - r_in^2) .* (Tw(2:N+1) - T(2:N+1));
+dTwdt3(2:N+1) = -2*L*r_out*h_out/ro_w/C_pw/v_0/(r_out^2 - r_in^2) .* (Tw(2:N+1) - T_amb/T_0);
+
+dTwdt(2:N+1) = dTwdt1(2:N+1) + dTwdt2(2:N+1) + dTwdt3(2:N+1);
+%
 %%  
 %   3) Total mass balance
 %%  
@@ -395,6 +421,8 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
     dx5dt(N+2) = 0         ;
     dTdt(1)    = 0         ;
     dTdt(N+2)  = dTdt(N+1) ;
+    dTwdt(1)   = 0         ;
+    dTwdt(N+2) = 0         ;
 %   
 %%  Export derivatives to output
     derivatives(1:N+2)              = dPdt(1:N+2)  ;
@@ -408,6 +436,7 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
     derivatives(8*N+17:9*N+18)      = dx4dt(1:N+2) ;
     derivatives(9*N+19:10*N+20)     = dx5dt(1:N+2) ;
     derivatives(10*N+21:11*N+22)    = dTdt(1:N+2)  ;
+    derivatives(11*N+23:12*N+24)    = dTwdt(1:N+2) ;
 %
 %% Supplementary Function
     function der_out = spatial_der(y, dydz, d2ydz2, N, dz)
