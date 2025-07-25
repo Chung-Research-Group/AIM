@@ -44,6 +44,7 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     y_init_2 = params(41);
     y_init_3 = params(42);
     y_init_4 = params(43);
+    T_amb    = params(59);
 %   timespan = (0:0.01:time) .* v_0/L;
     timespan = (0:1:time+0.1) .* v_0/L;
     
@@ -84,7 +85,7 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     x0(10*N+21:11*N+22) = T_0/T_0;
 
     % Wall Temperature
-    x0(11*N+23:12*N+24) = T_0/T_0;
+    x0(11*N+23:12*N+24) = T_amb/T_0;
  %
     %% Function Alias for isothermal/nonisothermal calculations
     switch calc_type
@@ -114,6 +115,7 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     Jac_patt = Jacobian(N, calc_type);
     % options = odeset('JPattern',Jac_patt, 'RelTol', RelTol, 'AbsTol', AbsTol, 'Events', event_fxn, 'MaxStep', 5);
     options = odeset('JPattern',Jac_patt, 'RelTol', RelTol, 'AbsTol', AbsTol, 'Events', event_fxn);
+     % options = odeset('RelTol', RelTol, 'AbsTol', AbsTol, 'Events', event_fxn);
 
     if mixture_predict_method == 0
         if any(isotherm_params(1, 1:num_component) > 2)
@@ -192,19 +194,29 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
         x(:, 2*N+5:3*N+6) = max(min(x(:, 2*N+5:3*N+6), 1), 0)   ;  % 0 <= y => 1
         x(:, 3*N+7:4*N+8) = max(min(x(:, 3*N+7:4*N+8), 1), 0)   ;  % 0 <= y => 1
         x(:, 4*N+9:5*N+10) = max(min(x(:, 4*N+9:5*N+10), 1), 0) ;  % 0 <= y => 1
-     
+        
+        % Mole fraction at outlet boundary
+        x(:, 2*N+4) = x(:, 2*N+3);
+        x(:, 3*N+6) = x(:, 3*N+5);
+        x(:, 4*N+8) = x(:, 4*N+7);
+        x(:, 5*N+10) = x(:, 5*N+9);
+        
+        % Molar Loading at inlet boundary
         x(:, 5*N+11)     = x(:, 5*N+12)                     ;  % x1_1 = x1_2
         x(:, 6*N+13)     = x(:, 6*N+14)                     ;  % x2_1 = x2_2
         x(:, 7*N+15)     = x(:, 7*N+16)                     ;  % x3_1 = x3_2
         x(:, 8*N+17)     = x(:, 8*N+18)                     ;  % x4_1 = x4_2
         x(:, 9*N+19)     = x(:, 9*N+20)                     ;  % x5_1 = x5_2
     
-        
+        % Molar Loading at outlet boundary
         x(:, 6*N+12)     = x(:, 6*N+11)                     ;  % x1_N+2 = x1_N+1
         x(:, 7*N+14)     = x(:, 7*N+13)                     ;  % x2_N+2 = x2_N+1
         x(:, 8*N+16)     = x(:, 8*N+15)                     ;  % x3_N+2 = x3_N+1
         x(:, 9*N+18)     = x(:, 9*N+17)                     ;  % x4_N+2 = x4_N+1
         x(:, 10*N+20)    = x(:, 10*N+19)                    ;  % x5_N+2 = x5_N+1
+
+        % Temperature at outlet boundary
+        x(:, 11*N+22) = x(:, 11*N+21);
         
         x_new = x   ;    
     end
