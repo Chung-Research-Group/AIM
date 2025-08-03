@@ -156,7 +156,6 @@ function derivatives = Adsorption_step_IAST_Iso(~, state_vars, Params, isotherm_
         error('Please specify whether inlet velocity or pressure is constant for the feed step')
     end
 %   
-
 %%  OUTLET Boundary
     y_1(N+2) = y_1(N+1) ;
     y_2(N+2) = y_2(N+1) ;
@@ -235,8 +234,9 @@ function derivatives = Adsorption_step_IAST_Iso(~, state_vars, Params, isotherm_
     eq_loading = zeros(size(y_1, 1),5);
     
     % eq_loading(:, 1:comp_num-1) = IAST_func(comp_num-1, isotherm_params_array, P.*P_0, y_array(:, 1:comp_num-1), T.*T_0, 0);
-    eq_loading(:, 1:comp_num-1) = IAST_func_fastIAS(comp_num-1, isotherm_params_array, P.*P_0, y_array(:, 1:comp_num-1), T.*T_0, 0);
-
+    % eq_loading(:, 1:comp_num-1) = IAST_func_fastIAS(comp_num-1, isotherm_params_array, P.*P_0, y_array(:, 1:comp_num-1), T.*T_0, 0);
+    eq_loading(:, 1:comp_num-1) = IAST_func_NR(comp_num-1, isotherm_params_array, P.*P_0, y_array(:, 1:comp_num-1), T.*T_0, 0);
+    
     % if comp_num == 2
     %     eq_loading = IAST_func(comp_num-1, P.*P_0, isotherm_params_array(:, 1), y_1, T.*T_0);
     %     eq_loading = [eq_loading, zeros(size(y_1)), zeros(size(y_1)), zeros(size(y_1)), zeros(size(y_1))];
@@ -428,6 +428,9 @@ function derivatives = Adsorption_step_IAST_Iso(~, state_vars, Params, isotherm_
     derivatives(9*N+19:10*N+20)     = dx5dt(1:N+2) ;
     % derivatives(10*N+21:11*N+22)    = dTdt(1:N+2)  ;
 %
+    if any(isnan(derivatives))
+        h = 1;
+    end
 %% Supplementary Function
     function der_out = spatial_der(y, dydz, d2ydz2, N, dz)
         % First Derivative
