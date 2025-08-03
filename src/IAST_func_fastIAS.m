@@ -23,7 +23,7 @@ global cached_p0;
     end
     
     % guess = initial_guess(:, 1:num_components-1);
-    useCache = 1;
+    useCache = 0;
     if ~(isempty(cached_p0)) && useCache
         guess = cached_p0;
     else
