@@ -1,11 +1,9 @@
 function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     %% Global Vars
-    global cached_loadings; 
     global cached_p0;
+    global Henry_Coeff;
     global cached_p0_local;
-    cached_loadings = [];
     cached_p0 = [];
-    cached_p0_local = [];
 
     %% Prameter loading and unpacking
     num_component = parameter_set.CompNum;
@@ -50,6 +48,12 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     
     AbsTol = numerical_params(3);
     RelTol = numerical_params(4);
+    
+    % Calculating Henry coefficient
+    p_range = linspace(1e-7, 1e-6, 2).';
+    p_comp = repmat(p_range, 1, num_component-1);
+    loading = Isotherm_functions(num_component-1, isotherm_params, p_comp, 298.15, 0, 1);
+    Henry_Coeff = (loading(end, :) - loading(end-1, :)) ./ (p_range(end)-p_range(end-1));
 
     %% Initial Conditions
     x0 = zeros(11*N+22, 1);
@@ -122,13 +126,13 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
             error(['In case of Extended Langmuir method, isotherm type of' ...
                 ' all components must be either SS-Langmuir or DS-Langmuir!'])
         else
-            [t_1, ads_reac_sol] = ode15s(Adsorption_fxn_Ext_Lang, timespan, x0, options);
+            [t_1, ode_sol] = ode15s(Adsorption_fxn_Ext_Lang, timespan, x0, options);
             % sol_struc = ode15s(Adsorption_fxn_Ext_Lang, [0 time].*v_0/L, x, options);
         end
 
     elseif mixture_predict_method == 1
         tic;
-        [t_1, ads_reac_sol] = ode15s(Adsorption_fxn_IAST, timespan, x0, options);
+        [t_1, ode_sol] = ode15s(Adsorption_fxn_IAST, timespan, x0, options);
         % sol_struc = ode15s(Adsorption_fxn_IAST, [0 time].*v_0/L, x, options);
         toc;
     else
@@ -145,34 +149,34 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     % ads_reac_sol = ads_reac_sol';
 
     % Solution Correction
-    ads_reac_sol = Correction_func(ads_reac_sol);
+    ode_sol = Correction_func(ode_sol);
 
     % Pressure Correction
-    ads_reac_sol = pressure_correction(ads_reac_sol, n_dot0, "Bottom");
+    ode_sol = pressure_correction(ode_sol, n_dot0, "Bottom");
 
     % Unpacking solution in respective variables
     % solution.t = t_1'.*L/v_0;
     solution.t = t_1.*L/v_0;
     % solution.P    = ads_reac_sol(:, 1: N+2) .* P_0/1000;     % Pressure in kPa
-    solution.P    = ads_reac_sol(:, 1: N+2) .* P_0;            % Pressure in Pa
-    solution.C1 = max(ads_reac_sol(:, N+3: 2*N+4),  0);          
-    solution.C2  = max(ads_reac_sol(:, 2*N+5: 3*N+6), 0);
-    solution.C3   = max(ads_reac_sol(:, 3*N+7: 4*N+8), 0);
-    solution.C4  = max(ads_reac_sol(:, 4*N+9: 5*N+10), 0);
+    solution.P    = ode_sol(:, 1: N+2) .* P_0;            % Pressure in Pa
+    solution.C1 = max(ode_sol(:, N+3: 2*N+4),  0);          
+    solution.C2  = max(ode_sol(:, 2*N+5: 3*N+6), 0);
+    solution.C3   = max(ode_sol(:, 3*N+7: 4*N+8), 0);
+    solution.C4  = max(ode_sol(:, 4*N+9: 5*N+10), 0);
     solution.C5 = max(1 - solution.C1 - solution.C2 - solution.C3 - solution.C4, 0);
-    solution.x1C1 = ads_reac_sol(:, 5*N+11:6*N+12) .* q_s0  ;
-    solution.x2C2 = ads_reac_sol(:, 6*N+13:7*N+14) .* q_s0  ;
-    solution.x3C3 = ads_reac_sol(:, 7*N+15:8*N+16) .* q_s0  ;
-    solution.x4C4 = ads_reac_sol(:, 8*N+17:9*N+18) .* q_s0  ;
-    solution.x5C5 = ads_reac_sol(:, 9*N+19:10*N+20).* q_s0  ;
+    solution.x1C1 = ode_sol(:, 5*N+11:6*N+12) .* q_s0  ;
+    solution.x2C2 = ode_sol(:, 6*N+13:7*N+14) .* q_s0  ;
+    solution.x3C3 = ode_sol(:, 7*N+15:8*N+16) .* q_s0  ;
+    solution.x4C4 = ode_sol(:, 8*N+17:9*N+18) .* q_s0  ;
+    solution.x5C5 = ode_sol(:, 9*N+19:10*N+20).* q_s0  ;
     
     % Temperature in K
     if calc_type
-        solution.T    = (ads_reac_sol(:, 10*N+21:11*N+22) .* T_0);
-        solution.Tw   = (ads_reac_sol(:, 11*N+23:12*N+24) .* T_0);
+        solution.T    = (ode_sol(:, 10*N+21:11*N+22) .* T_0);
+        solution.Tw   = (ode_sol(:, 11*N+23:12*N+24) .* T_0);
     else
-        solution.T = ones(size(ads_reac_sol(:, 1:N+2))).*T_0;
-        solution.Tw = ones(size(ads_reac_sol(:, 1:N+2))).*T_0;
+        solution.T = ones(size(ode_sol(:, 1:N+2))).*T_0;
+        solution.Tw = ones(size(ode_sol(:, 1:N+2))).*T_0;
     end
 
     % g = adsorbed_amount(solution);
@@ -397,6 +401,7 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
         else
             value = 1;
         end
+        cached_p0 = cached_p0_local;
         isterminal = 1;
         direction = 0;
     end
