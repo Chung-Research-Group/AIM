@@ -15,7 +15,9 @@ function [] = plots(ax , L, N, variable_to_plot, solution, plot_type, time_value
     len_column(end) = len_column(N+1) + dz/2;
 %     time_value_index = round(time_value/0.01 + 1);
     time_value_index = round(time_value/1 + 1);
-    
+    if time_value_index > size(t, 1)
+        error("Data for time value does not exist...");
+    end
     line_width = 2.5;
     scatter_marker_size = 3.0;
 
