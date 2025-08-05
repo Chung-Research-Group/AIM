@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration file="D:\MATLAB Drive\AIM-repo-work\AIM\AIM_Build.prj" location="D:\MATLAB Drive\AIM-repo-work\AIM" name="AIM_Build" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="2095143029" file="D:\MATLAB Drive\AIM-repo-work\AIM\AIM_Build.prj" location="D:\MATLAB Drive\AIM-repo-work\AIM" name="AIM_Build" preferred-package-location="D:\MATLAB Drive\AIM-repo-work\AIM\AIM_Build\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>AIM</param.appname>
     <param.icon>${PROJECT_ROOT}\AIM_Build_resources\icon.ico</param.icon>
     <param.icons>
@@ -8,7 +8,7 @@
       <file>${PROJECT_ROOT}\AIM_Build_resources\icon_24.png</file>
       <file>${PROJECT_ROOT}\AIM_Build_resources\icon_16.png</file>
     </param.icons>
-    <param.version>1.0</param.version>
+    <param.version>1.0.3</param.version>
     <param.authnamewatermark>Muhammad Hassan</param.authnamewatermark>
     <param.email>hassanaz.14@outlook.com</param.email>
     <param.company>MTAP Lab Pusan National University</param.company>
@@ -48,7 +48,6 @@
 	 -?  print help on how to use the application 
 	 input arguments</param.help.text>
     <unset>
-      <param.version />
       <param.guid />
       <param.installpath.string />
       <param.installpath.combo />
