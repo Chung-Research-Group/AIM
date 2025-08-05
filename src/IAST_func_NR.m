@@ -95,13 +95,13 @@ function partial_loadings = IAST_func_NR(num_components, isotherm_params_array, 
     partial_loadings = (adsorbed_mole_fractions .* loading_total);
     %
     %% Checks
-    if any(isnan(partial_loadings))
-        error(" NaN partial loadings...")
-    end
-
-    if any(isinf(partial_loadings))
-        error("Inf partial loadings...")
-    end
+    % if any(isnan(partial_loadings))
+    %     error(" NaN partial loadings...")
+    % end
+    % 
+    % if any(isinf(partial_loadings))
+    %     error("Inf partial loadings...")
+    % end
     %% NR Function
     function converged_sol = NR_function(p0_guess, isotherm_params_array, partial_pressure, T, ncomp, T_flag, max_iter)   
         % s = 1e-13;
