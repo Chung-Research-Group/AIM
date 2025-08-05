@@ -396,7 +396,7 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     %% EVENT FUNCTION
     function [value, isterminal, direction] = event_function(~, ~)
         if progress_bar.CancelRequested
-                    value = 0;
+            value = 0;
             % error("Simulation stopped by user!!!")
         else
             value = 1;
