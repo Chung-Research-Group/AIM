@@ -8,7 +8,7 @@
       <file>${PROJECT_ROOT}\AIM_Build_resources\icon_24.png</file>
       <file>${PROJECT_ROOT}\AIM_Build_resources\icon_16.png</file>
     </param.icons>
-    <param.version>1.1</param.version>
+    <param.version>1.0</param.version>
     <param.authnamewatermark>Muhammad Hassan</param.authnamewatermark>
     <param.email>hassanaz.14@outlook.com</param.email>
     <param.company>MTAP Lab Pusan National University</param.company>
@@ -32,7 +32,7 @@
     <param.web.mcr>true</param.web.mcr>
     <param.package.mcr>false</param.package.mcr>
     <param.no.mcr>false</param.no.mcr>
-    <param.web.mcr.name>AIM_Installer_v_1.0_beta_2</param.web.mcr.name>
+    <param.web.mcr.name>AIM_Installer_v_1.0_beta_3</param.web.mcr.name>
     <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
     <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
     <param.windows.command.prompt>true</param.windows.command.prompt>
@@ -48,6 +48,7 @@
 	 -?  print help on how to use the application 
 	 input arguments</param.help.text>
     <unset>
+      <param.version />
       <param.guid />
       <param.installpath.string />
       <param.installpath.combo />
@@ -88,9 +89,10 @@
       <file>${PROJECT_ROOT}\src\Default_Input_Parameters.m</file>
       <file>${PROJECT_ROOT}\src\EDSL_func.m</file>
       <file>${PROJECT_ROOT}\src\EDSL_func_mix_pred_app.m</file>
+      <file>${PROJECT_ROOT}\src\get_intro_string.m</file>
       <file>${PROJECT_ROOT}\src\heat_plot.m</file>
-      <file>${PROJECT_ROOT}\src\IAST_func.m</file>
-      <file>${PROJECT_ROOT}\src\IAST_func_mix_pred_app.m</file>
+      <file>${PROJECT_ROOT}\src\IAST_func_mix_pred_app_NR.m</file>
+      <file>${PROJECT_ROOT}\src\IAST_func_NR.m</file>
       <file>${PROJECT_ROOT}\src\Input_Params.mlapp</file>
       <file>${PROJECT_ROOT}\src\iso_fit_settings.mlapp</file>
       <file>${PROJECT_ROOT}\src\iso_info.mlapp</file>
@@ -100,9 +102,7 @@
       <file>${PROJECT_ROOT}\src\isotherm_fit_opt.m</file>
       <file>${PROJECT_ROOT}\src\Isotherm_fitting.m</file>
       <file>${PROJECT_ROOT}\src\Isotherm_fitting_diffT.m</file>
-      <file>${PROJECT_ROOT}\src\isotherm_fitting_test_diffT.m</file>
       <file>${PROJECT_ROOT}\src\Isotherm_functions.m</file>
-      <file>${PROJECT_ROOT}\src\Isotherm_functions_mix_pred_app.m</file>
       <file>${PROJECT_ROOT}\src\isotherm_plots.m</file>
       <file>${PROJECT_ROOT}\src\Jacobian.m</file>
       <file>${PROJECT_ROOT}\src\launch_button_arrrow.png</file>
