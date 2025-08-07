@@ -47,7 +47,7 @@ AIM Modules
    * Extended Dual-site Langmuir model (EDSL)
    * Ideal Adsorption Solution Theory (IAST)
 
-- **BreakLab**: Non-isothermal/non-isobaric breaktrhough simulation
+- **BreakLab**: Non-isothermal/non-isobaric breakthrough simulation
    * Supports up to 5 component systems
    * Axial dispersion
    * Linear Driving Force (LDF)
