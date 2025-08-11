@@ -1,5 +1,5 @@
 function format_string = get_intro_string(app_name)
-    doc_link = "https://mtap-research.github.io/AIM/";
+    doc_link = "https://chung-research-group.github.io/AIM/";
     repo_link = "https://github.com/Chung-Research-Group/AIM.git";
     format_string = sprintf('%s\n', repmat('*', 1, 74))...
             + sprintf("Welcome to AIM %s. ", app_name)...
