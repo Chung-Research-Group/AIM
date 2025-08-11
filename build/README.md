@@ -18,7 +18,7 @@ Details about installing MATLAB Runtime on different platforms can be found [her
 1. **Clone or Download the Repository**:
    - Clone the repository using Git:
      ```bash
-     git clone https://github.com/mtap-research/AIM.git
+     git clone https://github.com/Chung-Research-Group/AIM.git
      ```
    - Or download the ZIP file and extract it to your desired location.
 
