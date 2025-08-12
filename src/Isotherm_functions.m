@@ -116,7 +116,7 @@ function solution = Isotherm_functions(num_comp, iso_params, P, T, T_flag, calc_
                 theta_1 = temp ./ (1 + temp.^iso_params(4, i)).^(1/iso_params(4, i));
                 theta_pow = theta_1.^iso_params(4, i);
 
-                temp_psi = iso_params(2, i) .* (theta_1-(theta_1./iso_params(4, i))) .* log(1-theta_pow);
+                temp_psi = iso_params(2, i) .* (theta_1-(theta_1./iso_params(4, i)) .* log(1-theta_pow));
 
                 temp1 = iso_params(2, i).*theta_1;
                 temp2 = 0;
