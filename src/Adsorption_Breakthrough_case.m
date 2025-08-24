@@ -90,6 +90,7 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
 
     % Wall Temperature
     x0(11*N+23:12*N+24) = T_amb/T_0;
+    x0(11*N+24:12*N+23) = T_0/T_0;
  %
     %% Function Alias for isothermal/nonisothermal calculations
     switch calc_type
