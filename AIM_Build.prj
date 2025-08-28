@@ -11,12 +11,12 @@
     <param.version>1.0.3</param.version>
     <param.authnamewatermark>Muhammad Hassan</param.authnamewatermark>
     <param.email>hassanaz.14@outlook.com</param.email>
-    <param.company>MTAP Lab Pusan National University</param.company>
+    <param.company>Pusan National University</param.company>
     <param.summary>AIM: GUI tools for adsorption isotherm based fixed bed process modelling</param.summary>
-    <param.description>AIM GUI tools provide an integrated workflow for adsorption isotherm fitting, heat of adsorption prediction, mixture adsorption isotherm, and multicomponent breakhtrough simulation.</param.description>
+    <param.description>AIM GUI tools provide an integrated workflow for adsorption isotherm fitting, heat of adsorption prediction, mixture adsorption isotherm, and multicomponent breakhtrough simulation. AIM has been developed at Chung Researach Group, Pusan National University.</param.description>
     <param.screenshot>${PROJECT_ROOT}\src\AIM_logo.png</param.screenshot>
     <param.guid />
-    <param.installpath.string>\MTAP Lab Pusan National University\AIM\</param.installpath.string>
+    <param.installpath.string>\Pusan National University\AIM\</param.installpath.string>
     <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
     <param.logo />
     <param.install.notes />
@@ -46,7 +46,9 @@
 	 
  Input Arguments 
 	 -?  print help on how to use the application 
-	 input arguments</param.help.text>
+	 input arguments 
+ Description 
+ 	 AIM GUI tools provide an integrated workflow for adsorption isotherm fitting, heat of adsorption prediction, mixture adsorption isotherm, and multicomponent breakhtrough simulation. AIM has been developed at Chung Researach Group, Pusan National University.</param.help.text>
     <unset>
       <param.guid />
       <param.installpath.string />
