@@ -1,0 +1,10 @@
+#units_pressure Pa
+#units_loading mol/kg
+#units_temperature K
+#temperature 338
+12240000	1.52803829
+9940000	1.303915063
+8000000	1.101815703
+5020000	0.752360051
+3510000	0.554404145
+
