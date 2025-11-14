@@ -6,7 +6,8 @@
 BreakLab
 ===============================
 
-**BreakLab** is the module for isothermal/non-isothermal multicomponent fixed bed breakthrough simulation for up to 5 components.
+**BreakLab** is the module for isothermal/non-isothermal multicomponent fixed bed breakthrough simulation for up to 5 components (1 non-adsorbing, 4
+adsorbing components).
 **BreakLab** GUI is shown below:  
  
 .. image:: images/BreakLab.png
@@ -34,14 +35,12 @@ The mathematical model of BreakLab is based on the following assumptions:
 * The adsorbent bed is uniform; the bed density, void fraction, and particle size are constant throughout the bed length.
 * Thermal equilibrium exists between gas and solid phase.
 * The heat transfer coefficient governing the heat transfer between column wall and bed is constant.
-* The wall temperature remains constant.
 * The mass transfer resistance between solid and gas phase is governed by Linear Driving Force (LDF) model.
 * The concentration, pressure, and temperature gradients in the axial directions are negligible.
 
 The material, energy and momentum balances are developed based on conservation of mass, energy, and momentum in the fixed bed, respectively.
 The resulting balance equations are partial differential equations (PDEs) and consist of mole conservation of component :math:`i`, overall mass balance, conservation of total momentum and the total energy
-of the system. The balance equations are summarized in the table below. Please check the journal article for a more detailed discussion on deriving these 
-forms of balance equations.
+of the system. The mathematical model of BreakLab including the balance equations, LDF, and Ergun equation is summarized in the table below. Please check the journal article for a more detailed discussion on BreakLab mathematical model.
 
 .. list-table:: BreakLab Balance Equations
    :header-rows: 1
@@ -53,11 +52,13 @@ forms of balance equations.
      - :math:`\varepsilon_{t}\left(\frac{\partial y_{i}}{\partial t} + \frac{y_{i}}{P}\frac{\partial P}{\partial t} - \frac{y_{i}}{T}\frac{\partial T}{\partial t} \right) = D_{ax} \frac{\varepsilon_{b} T}{P}\frac{\partial}{\partial z} \left(\frac{P}{T} \frac{\partial y_{i}}{\partial z}\right) - \frac{\varepsilon_{b} T}{P}\frac{\partial}{\partial z} \left(\frac{y_{i}vP}{T}\right) - \frac{\rho_{b,ads}RT}{P} \frac{\partial q_{i}}{\partial t}`
    * - Total mole balance
      - :math:`\frac{\partial P}{\partial t} = \frac{P}{T}\frac{\partial T}{\partial t} - \frac{\varepsilon_{b} T}{\varepsilon_{t}}\frac{\partial}{\partial z} \left(\frac{vP}{T}\right) - \frac{\rho_{b,ads}RT}{\varepsilon_{t}} \sum_{i\in I} \frac{\partial q_{i}}{\partial t}`
-   * - Energy Balance
+   * - Energy balance
      - :math:`\left(\rho_{b,ads}C_{p,ads} + \rho_{b,ads}C_{p,a}\sum_{i \in I} q_{i}\right)\frac{\partial T}{\partial t} = K_{z} \frac{\partial^{2}T}{\partial z^2} - \frac{C_{p,gas}\varepsilon_{b}}{R}\frac{\partial}{\partial z}(vP) + \rho_{b,ads} \left( \sum_{i \in I} \left(-\Delta H_{ads,i}\frac{\partial q_{i}}{\partial t}\right) - C_{p, a}T \sum_{i \in I}\frac{\partial q_{i}}{\partial t}\right) - \frac{2 h_{in}}{r_{in}} (T - T_{wall}) - \frac{C_{p,gas}\varepsilon_{t}}{R}\frac{\partial P}{\partial t}`
+   * - Wall energy balance
+     - :math:`\rho_{wall}C_{wall}\frac{\partial T_{wall}}{\partial t} = K_{z,wall} \frac{\partial^{2}T_{wall}}{\partial z^2} - \frac{2 h_{in} r_{in}}{(r_{out}^{2}-r_{in}^{2})}(T_{wall} - T) - \frac{2 h_{out} r_{out}}{(r_{out}^{2}-r_{in}^{2})}(T_{wall} - T_{a})`
    * - Linear Driving Force
      - :math:`\frac{\partial q}{\partial t} = k_{i}(q_{mix, i}^{*} - q_{i})`
-   * - Ergun Equations
+   * - Ergun equation
      - :math:`- \frac{\partial P}{\partial z} = \left(\frac{150 \mu}{4r_{p}^{2}}\right) \left(\frac{1-\varepsilon_{b}}{\varepsilon_{b}}\right)^2v + \left(\frac{1.75 \rho_{gas}}{2r_{p}} \left(\frac{1-\varepsilon_{b}}{\varepsilon_{b}}\right) \right)v^{2}` 
 
 
@@ -95,6 +96,9 @@ BreakLab uses the Danckwerts boundary conditions (BCs) for dispersed plug flow s
    * - Pressure (:math:`P`)
      - :math:`P|_{z=0} = f^*(v|_{z=0})`
      - :math:`P|_{z=L} = P_{0}`
+   * - Wall temperature (:math:`T_{wall}`)
+     - :math:`T_{wall}|_{z=0} = T_{a}`
+     - :math:`T_{wall}|_{z=L} = T_{a}`
 
 \* here :math:`f` represents the Ergun equation. Only the velocity is specified at inlet and pressure is back calculated using Ergun equation.
 
@@ -128,10 +132,10 @@ The table below summarizes all the input properties and parameters required for 
      - Remarks
    * - :math:`T_{0}`
      - Feed gas temperature
-     - :math:`^\circ\mathrm{C}`
+     - :math:`K`
      - :math:`-`
    * - :math:`v_{0}`
-     - Superficial feed gas velocity
+     - Feed flow
      - :math:`m/s\\\mathrm{OR}\\\mathrm{std. }\quad cm^3/min`
      - Standard state refers to :math:`0\,^\circ\mathrm{C}` and :math:`101325\,Pa`
    * - :math:`y_{0, i}`
@@ -140,19 +144,19 @@ The table below summarizes all the input properties and parameters required for 
      - :math:`-`    
    * - :math:`MW_{i}`
      - Molecular weight of component :math:`i`
-     - :math:`kg\,mol^{-1}`
+     - :math:`kg/mol`
      - :math:`-`
    * - :math:`D_{m}`
      - Molecular diffusivity of gas
      - :math:`m^{2}/s`
      - :math:`-`
-   * - :math:`K_{z}`
+   * - :math:`*K_{z}`
      - Thermal conductivity of gas
-     - :math:`W/m/^\circ\mathrm{C}`
+     - :math:`W/m/K`
      - :math:`-`
-   * - :math:`C_{p, gas}`
+   * - :math:`*C_{p, gas}`
      - Specific heat capacity of gas
-     - :math:`J/mol/^\circ\mathrm{C}`
+     - :math:`J/mol/K`
      - :math:`-`
    * - :math:`\mu`
      - Viscosity of gas
@@ -161,23 +165,43 @@ The table below summarizes all the input properties and parameters required for 
    
    * - :math:`P_{0}`
      - Absolute pressure of adsorber column
-     - :math:`kPa`
+     - :math:`Pa`
      - This pressure refers to the pressure at the outlet of column.
    * - :math:`L`
      - Length of adsorber column
      - :math:`m`
      - :math:`-`
-   * - :math:`D_{col}`
-     - Inner diameter adsorber column
+   * - :math:`*D_{col,in}` 
+     - Inner diameter of adsorber column
      - :math:`m`
      - :math:`-`
-   * - :math:`h_{in}`
+   * - :math:`*D_{col,out}`
+     - Outer diameter of adsorber column
+     - :math:`m`
+     - :math:`-`
+   * - :math:`*K_{z,wall}`
+     - Thermal conductivity of column wall
+     - :math:`W/m/K`
+     - :math:`-`
+   * - :math:`*\rho_{z,wall}`
+     - Density of column wall
+     - :math:`kg/m^{3}`
+     - :math:`-` 
+   * - :math:`*C_{p,wall}`
+     - Specific heat capacity of column wall
+     - :math:`J/kg/K`
+     - :math:`-`  
+   * - :math:`*h_{in}`
      - Inside heat transfer coefficient
-     - :math:`W/m^{2}/^\circ\mathrm{C}`
+     - :math:`W/m^{2}/K`
      - For running adiabatic breakthrough simulations specify this equal to :math:`0.0`.
-   * - :math:`T_{wall}`
-     - Temperature of adsorber wall
-     - :math:`^\circ\mathrm{C}`
+   * - :math:`*h_{out}`
+     - Outside heat transfer coefficient
+     - :math:`W/m^{2}/K`
+     - For running adiabatic breakthrough simulations specify this equal to :math:`0.0`.
+   * - :math:`*T_{a}`
+     - Temperature of surrooundings
+     - :math:`K`
      - :math:`-`
 
    * - :math:`\rho_{b,ads}`
@@ -195,13 +219,13 @@ The table below summarizes all the input properties and parameters required for 
    * - :math:`\varepsilon_{p}`
      - Particle porosity of adsorbent particles
      - :math:`-`
-     - In case of not knowing the particle porosity specify this as :math:`0.0`.
-   * - :math:`C_{p,ads}`
+     - In case of not knowing the particle porosity specify this as :math:`0.0`. In such case, BreakLab will assume bulk porosity :math:`\varepsilon_{b}` is equal to total porosity :math:`\varepsilon_{t}`.
+   * - :math:`*C_{p,ads}`
      - Specific heat capacity of adsorbent
-     - :math:`J/kg/^\circ\mathrm{C}`
+     - :math:`J/kg/K`
      - :math:`-`
    
-   * - Isotherm parameters
+   * - **Isotherm model parameters**
      - Isotherm parameters for the chosen isotherm model
      - :math:`-`
      - Need to provide this for each component except for carrier gas. \
@@ -211,33 +235,34 @@ The table below summarizes all the input properties and parameters required for 
        chosen isotherm model. The isotherm model and parameters for the \
        
        given component obtained from IsoFit or HeatFit can be imported as well. 
-   * - :math:`\Delta H_{ads, i}`
+   * - :math:`*\Delta H_{ads, i}`
      - Heat of adsorption of component :math:`i`
      - :math:`kJ/mol`
      - :math:`-`
-   * - :math:`T_{ref}`
-     - Reference temperature used for isotherm fitting
+   * - :math:`*T_{ref}`
+     - Reference temperature at which isotherm parameters are obtained.
      - :math:`K`
      - :math:`-`
    * - :math:`k_{i}`
      - Mass transfer coefficient of component :math:`i`
      - :math:`1/s`
      - :math:`-`
-   
-            
+
+Note that parameters with :math:`*` are only required for non-isothermal breakthrough simulation.
+
 Nomenclature
 -------------
 
 | :math:`P =` Absolute pressure of the gas :math:`(Pa)`
-| :math:`\overline{P} =` Dimensionless pressure of the gas :math:`(-)`
-| :math:`T =` Absolute Temperature of the gas :math:`(K)`
-| :math:`\overline{T} =` Dimensionless temperature of the gas :math:`(-)`
+| :math:`\overline{P} =` Dimensionless pressure of gas :math:`(-)`
+| :math:`T =` Absolute temperature of the gas :math:`(K)`
+| :math:`\overline{T} =` Dimensionless temperature of gas :math:`(-)`
 | :math:`T_{wall} =` Wall temperature :math:`(K)`
 | :math:`\overline{T_{wall}} =` Dimensionless wall temperature :math:`(-)`
-| :math:`y_{i} =` Gas phase mole fraction of component :math:`i` :math:`(Pa)`
+| :math:`y_{i} =` Gas mole fraction of component :math:`i` :math:`(Pa)`
 | :math:`q_{i} =` Adsorption loading of component :math:`i` :math:`(mol/kg)`
 | :math:`\overline{x_{i}} =` Dimensionless adsorption loading of component :math:`i` :math:`(-)`
-| :math:`q_{i}^{*} =` Equilibrium adsorption loading of component :math:`i`  :math:`(mol/kg)`
+| :math:`q_{i}^{*} =` Mixture equilibrium adsorption loading of component :math:`i`  :math:`(mol/kg)`
 | :math:`L =` Adsorber column length :math:`(m)`
 | :math:`\xi =` Dimensionless adsorber column length :math:`(-)`
 | :math:`\overline{t} =` Time :math:`(s)`
@@ -248,19 +273,27 @@ Nomenclature
 | :math:`v =` Interstitial velocity :math:`(m/s)`
 | :math:`v_{0} =` Superficial velocity of feed :math:`(m/s)`
 | :math:`P_{0} =` Adsorption pressure :math:`(Pa)`
-| :math:`T_{0} =` Temperature of feed :math:`(K)`
+| :math:`T_{0} =` Temperature of feed gas :math:`(K)`
 | :math:`y_{0, i} =` Mole fraction of component :math:`i` in feed :math:`(-)`
 | :math:`\rho_{b, ads} =` Bulk density of adsorbent bed :math:`(kg/m^{3})`
-| :math:`\rho_{gas} =` Density of gas phase :math:`(kg/m^{3})`
+| :math:`\rho_{gas} =` Density of gas :math:`(kg/m^{3})`
+| :math:`\rho_{wall} =` Density of wall :math:`(kg/m^{3})`
 | :math:`D_{ax} =` Axial dispersion coefficient :math:`(m^{2}/s)`
 | :math:`D_{m} =` Molecular diffusivity of gas phase :math:`(m^{2}/s)`
 | :math:`r_{p} =` Radius of adsorbent particles :math:`(m)`
 | :math:`r_{in} =` Inside radius of adsorber column :math:`(m)`
+| :math:`D_{col,in} =` Inside diameter of adsorber column :math:`(m)`
+| :math:`D_{col,out} =` Outside diameter of adsorber column :math:`(m)`
 | :math:`\mu =` Viscosity of gas phase :math:`(Pa . s)`
-| :math:`K_{z} =` Thermal conductivity :math:`(W/m/K)`
+| :math:`K_{z} =` Thermal conductivity of gas :math:`(W/m/K)`
+| :math:`K_{z,wall} =` Thermal conductivity of wall :math:`(W/m/K)`
 | :math:`C_{p,ads} =` Heat capacity of adsorbent particles :math:`(J/kg/K)`
 | :math:`C_{p,a} =` Heat capacity of adsorbed phase :math:`(J/mol/K)`
-| :math:`C_{p,gas} =` Heat capacity of gas phase :math:`(J/mol/K)`
+| :math:`C_{p,gas} =` Heat capacity of gas :math:`(J/mol/K)`
+| :math:`C_{p,wall} =` Heat capacity of wall :math:`(J/mol/K)`
 | :math:`\Delta H_{ads, i} =` Heat of adsorption of component :math:`i` :math:`(J/mol)`
+| :math:`T_{ref} =` Reference temperature at which isotherm parameters are obtained :math:`(K)`
+| :math:`T_{a} =` Surroundings or ambient temperature :math:`(K)`
 | :math:`h_{in} =` Inside heat transfer coefficient :math:`(W/m^{2}/K)`
+| :math:`h_{out} =` Outisde heat transfer coefficient :math:`(W/m^{2}/K)`
 | :math:`k_{i} =` Mass transfer coefficient of component :math:`i`  :math:`(1/s)`
