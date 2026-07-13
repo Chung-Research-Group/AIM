@@ -66,6 +66,7 @@ than scientific validation.
   needs separate CI licensing. Packaging belongs in a manually triggered
   release workflow after a licensing token is configured.
 - Third-party GitHub Actions are pinned to the exact commit revisions validated
-  by the initial green run.
+  by the initial green run. Update those pins in a dedicated dependency PR and
+  rerun the full matrix before merging.
 - No workflow uses `pull_request_target`; pull-request code executes only with
   read-only repository permissions and without repository secrets.
