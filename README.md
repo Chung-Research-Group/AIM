@@ -24,6 +24,17 @@ Installation
    <br>Users of Linux and macOS need to compile the app for redistribution.
    <br>Please follow the instruction given in the [README](./build/README.md) file located in the build directory for compilation.
 
+Development and validation
+========
+AIM requires MATLAB R2024a or newer for the supported development workflow. From the repository root, run:
+
+```matlab
+buildtool check
+buildtool test
+```
+
+The pull-request workflow runs repository hygiene checks, MATLAB Code Analyzer on R2024a, and numerical tests on both R2024a/Linux and the latest MATLAB release/Windows. See [the CI policy](./.github/CI.md) for the exact checks, artifacts, and merge-gate policy.
+
 AIM Modules
 ======
 - **IsoFit**: Single temperature isotherm fitting using various isotherm models
@@ -67,4 +78,3 @@ See the [LICENSE](./LICENSE) file for details.
 
 # Maintainers
 * Muhammad Hassan (hassanaz.14@outlook.com)
-
