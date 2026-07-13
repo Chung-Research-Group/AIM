@@ -39,7 +39,7 @@ python ci/check_repository.py
 
 ## Initial CI baseline
 
-The first green workflow run established this baseline:
+The initial validated workflow run established this baseline:
 
 - 15/15 numerical-kernel tests passed on MATLAB R2024a/Linux and the latest
   MATLAB release/Windows.
