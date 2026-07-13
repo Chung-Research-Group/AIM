@@ -46,8 +46,8 @@ The first green workflow run established this baseline:
 - Instrumented line coverage was 197/308 lines (63.96%) across the three
   currently instrumented kernels: `WENO.m`, `Isotherm_functions.m`, and
   `IAST_func_NR.m`.
-- Code Analyzer reported no errors. Its existing backlog was 100 warnings and
-  31 notes; these remain visible in the uploaded SARIF/MAT results.
+- Code Analyzer reported no errors. It also reported 100 warnings and 31 notes
+  in the current tree; these remain visible in the uploaded SARIF/MAT results.
 
 Coverage is reported but is not yet a merge threshold. A threshold should be
 introduced only after end-to-end BreakLab and manuscript golden-case tests are
@@ -56,9 +56,9 @@ than scientific validation.
 
 ## Policy choices
 
-- Code Analyzer errors block immediately; the existing warning count is
-  reported but not used as a fixed baseline. New warning blocking should be
-  introduced after the current warning inventory is triaged.
+- Code Analyzer errors block immediately; warnings and notes are reported but
+  do not yet block. Warning blocking should be introduced after the current
+  inventory is triaged and a baseline policy is agreed.
 - Numerical tests target identities, limiting cases, symmetry, positivity, and
   finite outputs rather than GUI screenshots.
 - Installer compilation is intentionally excluded from required PR checks.
