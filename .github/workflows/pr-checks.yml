@@ -53,7 +53,7 @@ jobs:
 
       - name: Upload repository hygiene report
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.0
         with:
           name: repository-hygiene
           path: artifacts/repository-hygiene.txt
@@ -83,7 +83,7 @@ jobs:
 
       - name: Upload Code Analyzer results
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.0
         with:
           name: code-analyzer-r2024a
           path: |
@@ -128,7 +128,7 @@ jobs:
 
       - name: Upload test and coverage results
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.0
         with:
           name: matlab-test-${{ matrix.artifact }}
           path: |
