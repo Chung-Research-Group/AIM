@@ -1,0 +1,52 @@
+# AIM continuous integration
+
+Pull requests run `.github/workflows/pr-checks.yml`. The workflow is designed to
+catch scientific-regression risks without making the existing warning backlog a
+merge blocker.
+
+## Required checks
+
+| Check | Purpose | Failure condition |
+|---|---|---|
+| Repository hygiene | Portable and reviewable repository state | Whitespace errors in changed lines, unresolved conflict markers, case-insensitive path or MATLAB source-name collisions, tracked temporary/build output, or missing CI-critical files |
+| MATLAB Code Analyzer (R2024a) | Parse and statically inspect the full `src`, `tests`, and build file | Any Code Analyzer **error**. Warnings are retained in SARIF/MAT artifacts but are not yet blocking |
+| MATLAB tests (R2024a / Linux) | Enforce the documented minimum MATLAB release and numerical invariants | Any failed, incomplete, or warning-emitting test |
+| MATLAB tests (latest / Windows) | Detect forward-compatibility and primary desktop-platform regressions | Any failed, incomplete, or warning-emitting test |
+| PR gate | Stable branch-protection target | Any required job is not successful |
+
+Configure branch protection for `main` to require only the stable check name
+**PR gate**. The gate depends on all matrix jobs, so the protected-check list
+does not need to change when the matrix expands.
+
+## Local reproduction
+
+From the repository root in MATLAB R2024a or newer:
+
+```matlab
+buildtool check
+buildtool test
+```
+
+The `check` task writes Code Analyzer results to `artifacts/`. The `test` task
+writes JUnit, MAT, and Cobertura artifacts to the same directory.
+
+For the non-MATLAB repository checks:
+
+```bash
+git diff --check
+python ci/check_repository.py
+```
+
+## Policy choices
+
+- Code Analyzer errors block immediately; the existing warning count is
+  reported but not used as a fixed baseline. New warning blocking should be
+  introduced after the current warning inventory is triaged.
+- Numerical tests target identities, limiting cases, symmetry, positivity, and
+  finite outputs rather than GUI screenshots.
+- Installer compilation is intentionally excluded from required PR checks.
+  `AIM_Build.prj` targets a Windows standalone application and MATLAB Compiler
+  needs separate CI licensing. Packaging belongs in a manually triggered
+  release workflow after a licensing token is configured.
+- No workflow uses `pull_request_target`; pull-request code executes only with
+  read-only repository permissions and without repository secrets.
