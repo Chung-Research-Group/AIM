@@ -65,5 +65,7 @@ than scientific validation.
   `AIM_Build.prj` targets a Windows standalone application and MATLAB Compiler
   needs separate CI licensing. Packaging belongs in a manually triggered
   release workflow after a licensing token is configured.
+- Third-party GitHub Actions are pinned to the exact commit revisions validated
+  by the initial green run.
 - No workflow uses `pull_request_target`; pull-request code executes only with
   read-only repository permissions and without repository secrets.
