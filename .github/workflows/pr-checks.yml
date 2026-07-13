@@ -53,7 +53,7 @@ jobs:
 
       - name: Upload repository hygiene report
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: repository-hygiene
           path: artifacts/repository-hygiene.txt
@@ -71,19 +71,19 @@ jobs:
           persist-credentials: false
 
       - name: Set up MATLAB R2024a
-        uses: matlab-actions/setup-matlab@v3
+        uses: matlab-actions/setup-matlab@a0180c939fb1a28de13f44f7b778b912384ced1f # v3
         with:
           release: R2024a
           cache: true
 
       - name: Run Code Analyzer
-        uses: matlab-actions/run-build@v3
+        uses: matlab-actions/run-build@8a35eec46b4cc438e5e0af3e49f5261cbf34cf43 # v3
         with:
           tasks: check
 
       - name: Upload Code Analyzer results
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: code-analyzer-r2024a
           path: |
@@ -115,20 +115,20 @@ jobs:
           persist-credentials: false
 
       - name: Set up MATLAB and required products
-        uses: matlab-actions/setup-matlab@v3
+        uses: matlab-actions/setup-matlab@a0180c939fb1a28de13f44f7b778b912384ced1f # v3
         with:
           release: ${{ matrix.release }}
           products: MATLAB_Test Optimization_Toolbox
           cache: true
 
       - name: Run unit and numerical-invariant tests
-        uses: matlab-actions/run-build@v3
+        uses: matlab-actions/run-build@8a35eec46b4cc438e5e0af3e49f5261cbf34cf43 # v3
         with:
           tasks: test
 
       - name: Upload test and coverage results
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: matlab-test-${{ matrix.artifact }}
           path: |
