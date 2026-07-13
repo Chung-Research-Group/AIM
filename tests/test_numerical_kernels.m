@@ -10,6 +10,10 @@ function setupOnce(testCase)
     testCase.TestData.src_dir = src_dir;
 end
 
+function teardown(~)
+    clear global cached_p0 Henry_Coeff cached_p0_local;
+end
+
 function teardownOnce(testCase)
     rmpath(testCase.TestData.src_dir);
     clear global cached_p0 Henry_Coeff cached_p0_local;
@@ -23,6 +27,26 @@ function testWenoPreservesConstantField(testCase)
 
     verifyEqual(testCase, upwind, 3.25 .* ones(11, 3), 'AbsTol', 10 * eps);
     verifyEqual(testCase, downwind, 3.25 .* ones(11, 3), 'AbsTol', 10 * eps);
+end
+
+function testWenoReconstructsLinearInteriorExactly(testCase)
+    flux = (0:11)';
+
+    upwind = WENO(flux, 'upwind');
+    downwind = WENO(flux, 'downwind');
+
+    verifyEqual(testCase, upwind(3:10), (2.5:9.5)', 'AbsTol', 100 * eps);
+    verifyEqual(testCase, downwind(2:9), (1.5:8.5)', 'AbsTol', 100 * eps);
+end
+
+function testWenoIsMirrorSymmetric(testCase)
+    flux = [0.0; 0.2; 0.9; 0.1; -0.4; 0.7; 1.3; 0.4];
+
+    downwind = WENO(flux, 'downwind');
+    mirrored_upwind = flipud(WENO(flipud(flux), 'upwind'));
+
+    verifyEqual(testCase, downwind, mirrored_upwind, ...
+                'RelTol', 1e-13, 'AbsTol', 1e-13);
 end
 
 function testWenoAvoidsSignedEpsilonSingularity(testCase)
@@ -40,12 +64,14 @@ function testWenoRejectsInvalidDirection(testCase)
                 'AIM:WENO:InvalidFlowDirection');
 end
 
+function testWenoRejectsNonfiniteFlux(testCase)
+    verifyError(testCase, @() WENO([0; 1; NaN; 2], 'upwind'), ...
+                'AIM:WENO:NonFiniteFlux');
+end
+
 function testLangmuirGrandPotentialDerivative(testCase)
     % q(P) = d psi / d ln(P) = P * d psi / dP.
-    iso = zeros(7, 1);
-    iso(1) = 1;
-    iso(2) = 2.4;
-    iso(3) = 0.8;
+    iso = singleSiteLangmuir(2.4, 0.8);
     pressure = logspace(-5, 2, 30)';
 
     loading = Isotherm_functions(1, iso, pressure, 298.15, 0, 1);
@@ -59,6 +85,33 @@ function testLangmuirGrandPotentialDerivative(testCase)
                 'RelTol', 2e-7, 'AbsTol', 1e-10);
 end
 
+function testLangmuirLowAndHighPressureLimits(testCase)
+    capacity = 2.4;
+    affinity = 0.8;
+    iso = singleSiteLangmuir(capacity, affinity);
+    pressure = [0; 1e-12; 1e12];
+
+    loading = Isotherm_functions(1, iso, pressure, 298.15, 0, 1);
+
+    verifyEqual(testCase, loading(1), 0, 'AbsTol', eps);
+    verifyEqual(testCase, loading(2) ./ pressure(2), ...
+                capacity .* affinity, 'RelTol', 1e-10);
+    verifyEqual(testCase, loading(3), capacity, 'RelTol', 1e-10);
+end
+
+function testExothermicTemperatureScaling(testCase)
+    iso = singleSiteLangmuir(2.4, 0.8);
+    iso(end-1) = -20000;  % J/mol
+    iso(end) = 298.15;    % K
+
+    pressure = ones(3, 1);
+    temperature = [250; 298.15; 350];
+    loading = Isotherm_functions(1, iso, pressure, temperature, 1, 1);
+
+    verifyGreaterThan(testCase, loading(1), loading(2));
+    verifyGreaterThan(testCase, loading(2), loading(3));
+end
+
 function testUnsupportedIsothermFailsExplicitly(testCase)
     iso = zeros(7, 1);
     iso(1) = 10;
@@ -66,6 +119,14 @@ function testUnsupportedIsothermFailsExplicitly(testCase)
     verifyError(testCase, ...
         @() Isotherm_functions(1, iso, 1.0, 298.15, 0, 1), ...
         'AIM:Isotherm:UnsupportedModel');
+end
+
+function testNegativeIsothermParameterIsRejected(testCase)
+    iso = singleSiteLangmuir(2.4, -0.8);
+
+    verifyError(testCase, ...
+        @() Isotherm_functions(1, iso, 1.0, 298.15, 0, 1), ...
+        'AIM:Isotherm:InvalidParameters');
 end
 
 function testBetDomainIsChecked(testCase)
@@ -84,10 +145,7 @@ function testSingleComponentIastMatchesPureLoading(testCase)
     cached_p0_local = [];
     Henry_Coeff = 2.4 * 0.8;
 
-    iso = zeros(7, 1);
-    iso(1) = 1;
-    iso(2) = 2.4;
-    iso(3) = 0.8;
+    iso = singleSiteLangmuir(2.4, 0.8);
     pressure = logspace(-5, 1, 20)';
     composition = ones(size(pressure));
     temperature = 298.15 .* ones(size(pressure));
@@ -96,4 +154,56 @@ function testSingleComponentIastMatchesPureLoading(testCase)
     actual = IAST_func_NR(1, iso, pressure, composition, temperature, 0, []);
 
     verifyEqual(testCase, actual, expected, 'RelTol', 1e-12, 'AbsTol', 1e-12);
+end
+
+function testIdenticalBinaryIastPreservesComposition(testCase)
+    global cached_p0 Henry_Coeff cached_p0_local;
+    cached_p0 = [];
+    cached_p0_local = [];
+
+    capacity = 2.4;
+    affinity = 0.8;
+    Henry_Coeff = [capacity * affinity, capacity * affinity];
+
+    pure_iso = singleSiteLangmuir(capacity, affinity);
+    mixture_iso = repmat(pure_iso, 1, 2);
+    pressure = logspace(-5, 2, 20)';
+    composition = repmat([0.25, 0.75], numel(pressure), 1);
+    temperature = 298.15 .* ones(size(pressure));
+
+    pure_loading = Isotherm_functions( ...
+        1, pure_iso, pressure, temperature, 0, 1);
+    actual = IAST_func_NR( ...
+        2, mixture_iso, pressure, composition, temperature, 0, []);
+    expected = pure_loading .* composition;
+
+    verifyEqual(testCase, actual, expected, ...
+                'RelTol', 1e-10, 'AbsTol', 1e-12);
+    verifyEqual(testCase, sum(actual, 2), pure_loading, ...
+                'RelTol', 1e-10, 'AbsTol', 1e-12);
+end
+
+function testZeroPressureIastReturnsZero(testCase)
+    global cached_p0 Henry_Coeff cached_p0_local;
+    cached_p0 = [];
+    cached_p0_local = [];
+    Henry_Coeff = [2.4 * 0.8, 1.5 * 0.3];
+
+    iso = [singleSiteLangmuir(2.4, 0.8), ...
+           singleSiteLangmuir(1.5, 0.3)];
+    pressure = zeros(4, 1);
+    composition = repmat([0.4, 0.6], 4, 1);
+    temperature = 298.15 .* ones(size(pressure));
+
+    actual = IAST_func_NR( ...
+        2, iso, pressure, composition, temperature, 0, []);
+
+    verifyEqual(testCase, actual, zeros(4, 2), 'AbsTol', eps);
+end
+
+function iso = singleSiteLangmuir(capacity, affinity)
+    iso = zeros(7, 1);
+    iso(1) = 1;
+    iso(2) = capacity;
+    iso(3) = affinity;
 end
