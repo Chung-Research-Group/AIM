@@ -26,7 +26,7 @@ Installation
 
 Development and validation
 ========
-AIM requires MATLAB R2024a or newer for the supported development workflow. From the repository root, run:
+The supported source-development and CI workflow uses MATLAB R2024a or newer. From the repository root, run:
 
 ```matlab
 buildtool check
