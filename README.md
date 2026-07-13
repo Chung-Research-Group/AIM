@@ -33,7 +33,7 @@ buildtool check
 buildtool test
 ```
 
-The pull-request workflow runs repository hygiene checks, MATLAB Code Analyzer on R2024a, and numerical tests on both R2024a/Linux and the latest MATLAB release/Windows. See [the CI policy](./.github/CI.md) for the exact checks, artifacts, and merge-gate policy.
+The pull-request workflow runs repository hygiene checks, MATLAB Code Analyzer on R2024a, and numerical tests on both R2024a/Linux and the latest MATLAB release/Windows. It publishes static-analysis, JUnit, and code-coverage artifacts for review. See [the CI policy](./.github/CI.md) for the exact checks and merge-gate policy.
 
 AIM Modules
 ======
