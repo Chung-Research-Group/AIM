@@ -56,7 +56,10 @@ TEMPORARY_FILE_SUFFIXES = (
     ".swp",
 )
 
-CONFLICT_MARKER = re.compile(r"^(<<<<<<< |=======\s*$|>>>>>>> )")
+# A standalone line of '=' characters is valid Markdown/RST. The outer
+# markers are sufficient to identify an unresolved Git conflict without
+# misclassifying document headings.
+CONFLICT_MARKER = re.compile(r"^(<<<<<<< |>>>>>>> )")
 
 
 def tracked_files() -> list[str]:
