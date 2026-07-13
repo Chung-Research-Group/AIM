@@ -45,7 +45,20 @@ jobs:
           fi
 
       - name: Check repository invariants
-        run: python ci/check_repository.py
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          set -o pipefail
+          python ci/check_repository.py 2>&1 | tee artifacts/repository-hygiene.txt
+
+      - name: Upload repository hygiene report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: repository-hygiene
+          path: artifacts/repository-hygiene.txt
+          if-no-files-found: warn
+          retention-days: 14
 
   code-analyzer:
     name: MATLAB Code Analyzer (R2024a)
