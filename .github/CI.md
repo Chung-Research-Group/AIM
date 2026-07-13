@@ -43,8 +43,9 @@ The first green workflow run established this baseline:
 
 - 15/15 numerical-kernel tests passed on MATLAB R2024a/Linux and the latest
   MATLAB release/Windows.
-- Instrumented line coverage was 197/308 lines (63.96%) across
-  `WENO.m`, `Isotherm_functions.m`, and `IAST_func_NR.m`.
+- Instrumented line coverage was 197/308 lines (63.96%) across the three
+  currently instrumented kernels: `WENO.m`, `Isotherm_functions.m`, and
+  `IAST_func_NR.m`.
 - Code Analyzer reported no errors. Its existing backlog was 100 warnings and
   31 notes; these remain visible in the uploaded SARIF/MAT results.
 
