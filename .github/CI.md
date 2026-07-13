@@ -37,6 +37,22 @@ git diff --check
 python ci/check_repository.py
 ```
 
+## Initial CI baseline
+
+The first green workflow run established this baseline:
+
+- 15/15 numerical-kernel tests passed on MATLAB R2024a/Linux and the latest
+  MATLAB release/Windows.
+- Instrumented line coverage was 197/308 lines (63.96%) across
+  `WENO.m`, `Isotherm_functions.m`, and `IAST_func_NR.m`.
+- Code Analyzer reported no errors. Its existing backlog was 100 warnings and
+  31 notes; these remain visible in the uploaded SARIF/MAT results.
+
+Coverage is reported but is not yet a merge threshold. A threshold should be
+introduced only after end-to-end BreakLab and manuscript golden-case tests are
+added, otherwise a percentage target can reward low-value line execution rather
+than scientific validation.
+
 ## Policy choices
 
 - Code Analyzer errors block immediately; the existing warning count is
