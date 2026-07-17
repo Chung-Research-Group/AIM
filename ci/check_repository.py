@@ -21,6 +21,7 @@ REQUIRED_PATHS = {
     "ci/check_repository.py",
     "src/IAST_func_NR.m",
     "src/IAST_func_mix_pred_app_NR.m",
+    "src/couple_pressure_temperature_rates.m",
     "src/Isotherm_functions.m",
     "src/Main_app.mlapp",
     "src/WENO.m",

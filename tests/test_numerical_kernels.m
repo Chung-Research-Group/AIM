@@ -334,6 +334,50 @@ function testNonisothermalJacobianHasCompleteStateSize(testCase)
     verifyEqual(testCase, jacobian_pattern(component_one_outlet, :), expected_row);
 end
 
+function testPressureTemperatureCouplingSatisfiesBothBalances(testCase)
+    base_pressure_rate = [-0.3; 0.1; 0.7];
+    base_temperature_rate = [0.2; -0.4; 0.05];
+    pressure = [0.8; 1.0; 1.4];
+    temperature = [0.9; 1.0; 1.2];
+    coefficient = [0.1; 0.3; 0.7];
+
+    [pressure_rate, temperature_rate] = ...
+        couple_pressure_temperature_rates( ...
+        base_pressure_rate, base_temperature_rate, ...
+        pressure, temperature, coefficient);
+
+    verifyEqual(testCase, temperature_rate, ...
+        base_temperature_rate - coefficient .* pressure_rate, ...
+        'RelTol', 1e-13, 'AbsTol', 1e-14);
+    verifyEqual(testCase, pressure_rate, ...
+        base_pressure_rate + pressure ./ temperature .* temperature_rate, ...
+        'RelTol', 1e-13, 'AbsTol', 1e-14);
+end
+
+function testPressureTemperatureCouplingReducesToUncoupledLimit(testCase)
+    base_pressure_rate = [-0.3; 0.7];
+    base_temperature_rate = [0.2; -0.4];
+    pressure = [0.8; 1.4];
+    temperature = [0.9; 1.2];
+    coefficient = zeros(2, 1);
+
+    [pressure_rate, temperature_rate] = ...
+        couple_pressure_temperature_rates( ...
+        base_pressure_rate, base_temperature_rate, ...
+        pressure, temperature, coefficient);
+
+    verifyEqual(testCase, temperature_rate, base_temperature_rate);
+    verifyEqual(testCase, pressure_rate, ...
+        base_pressure_rate + pressure ./ temperature .* base_temperature_rate);
+end
+
+function testPressureTemperatureCouplingRejectsInvalidShape(testCase)
+    verifyError(testCase, ...
+        @() couple_pressure_temperature_rates( ...
+        zeros(2, 1), zeros(3, 1), ones(2, 1), ones(2, 1), zeros(2, 1)), ...
+        'AIM:BreakLab:CouplingShape');
+end
+
 function iso = singleSiteLangmuir(capacity, affinity)
     iso = zeros(7, 1);
     iso(1) = 1;
