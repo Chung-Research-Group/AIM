@@ -72,7 +72,8 @@ sphinx-build -W --keep-going -b html docs/source docs/_build/html
 
 ## Documentation and support
 
-- [User documentation](https://chung-research-group.github.io/AIM/)
+- [User documentation on Read the Docs](https://aim-adsorption.readthedocs.io/en/latest/)
+- [GitHub Pages mirror](https://chung-research-group.github.io/AIM/)
 - [Video tutorials for all four modules](docs/source/tutorials.rst)
 - [Input/output formats and metadata tags](docs/source/input-output.rst)
 - Technical references: [IsoFit](docs/source/isofit.rst), [HeatFit](docs/source/heatfit.rst), [MixPred](docs/source/mixpred.rst), and [BreakLab](docs/source/breaklab.rst)

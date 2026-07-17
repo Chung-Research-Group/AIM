@@ -1,0 +1,809 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>HeatFit &#8212; AIM documentation</title>
+
+
+
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/aim.css?v=d2d31c14" />
+
+  <!-- So that users can add custom icons -->
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=8a448e45"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'heatfit';</script>
+    <link rel="icon" href="_static/AIM_logo.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MixPred" href="mixpred.html" />
+    <link rel="prev" title="IsoFit" href="isofit.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+
+
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+
+
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  <div id="pst-scroll-pixel-helper"></div>
+
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+
+  <dialog id="pst-search-dialog">
+
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+
+
+  <div class=" navbar-header-items__start">
+
+      <div class="navbar-item">
+
+
+
+
+
+<a class="navbar-brand logo" href="index.html">
+
+
+
+
+
+
+
+
+
+
+    <img src="_static/AIM_logo.png" class="logo__image only-light" alt="AIM documentation - Home"/>
+    <img src="_static/AIM_logo.png" class="logo__image only-dark pst-js-only" alt="AIM documentation - Home"/>
+
+
+</a></div>
+
+  </div>
+
+  <div class=" navbar-header-items">
+
+    <div class="me-auto navbar-header-items__center">
+
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Video tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="input-output.html">
+    Input and output data files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="modules.html">
+    Module workflow
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="isofit.html">
+    IsoFit
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    HeatFit
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="mixpred.html">
+    MixPred
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="breaklab.html">
+    BreakLab
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="examples.html">
+    Example and publication data
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="development.html">
+    Development and validation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="citation.html">
+    Citation and license
+  </a>
+</li>
+
+                </ul>
+            </li>
+
+  </ul>
+</nav></div>
+
+    </div>
+
+
+    <div class="navbar-header-items__end">
+
+        <div class="navbar-item navbar-persistent--container">
+
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+
+
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+
+
+
+
+
+
+
+
+          <a href="https://github.com/Chung-Research-Group/AIM" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+
+    </div>
+
+  </div>
+
+
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+
+
+
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+
+</div>
+
+    </header>
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+
+
+
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+
+
+
+  <div class="sidebar-header-items sidebar-primary__section">
+
+
+      <div class="sidebar-header-items__center">
+
+
+
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Video tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="input-output.html">
+    Input and output data files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="modules.html">
+    Module workflow
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="isofit.html">
+    IsoFit
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    HeatFit
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="mixpred.html">
+    MixPred
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="breaklab.html">
+    BreakLab
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples.html">
+    Example and publication data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="development.html">
+    Development and validation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="citation.html">
+    Citation and license
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+
+
+      </div>
+
+
+
+      <div class="sidebar-header-items__end">
+
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+
+
+
+
+
+
+
+
+          <a href="https://github.com/Chung-Research-Group/AIM" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+
+      </div>
+
+  </div>
+
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+
+
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+
+      <main id="main-content" class="bd-main" role="main">
+
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+
+    <div class="header-article-items__start">
+
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">HeatFit</span></li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+
+
+</div>
+</div>
+
+
+
+
+<div id="searchbox"></div>
+                <article class="bd-article">
+
+  <section id="heatfit">
+<h1>HeatFit<a class="headerlink" href="#heatfit" title="Link to this heading">#</a></h1>
+<p><strong>HeatFit</strong> is the module for isotherm model fitting to multi-temperature isotherm data and
+isosteric heat of adsorption <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> prediction using Clausius-Clapeyron or Virial equations. <strong>HeatFit</strong> GUI is shown below:</p>
+<a class="reference internal image-reference" href="_images/HeatFit.png"><img alt="HeatFit" class="align-center" src="_images/HeatFit.png" style="width: 1000px;" />
+</a>
+<hr class="docutils" />
+<p>Watch how to use <strong>HeatFit</strong> <a class="reference internal" href="tutorials.html#heatfit-label"><span class="std std-ref">here</span></a></p>
+<p>In <strong>HeatFit</strong>, isotherm fitting and prediction of the isosteric heat of adsorption can be carried out using either the Clausius-Clapeyron or Virial equations.
+Fitting method varies based on the chosen model.</p>
+<section id="clausius-clapeyron-equation">
+<h2>Clausius-Clapeyron Equation<a class="headerlink" href="#clausius-clapeyron-equation" title="Link to this heading">#</a></h2>
+<p>The Clausius-Clapeyron is a thermodynamic relationship which expresses the relationship between pressure and temperature for phase change processes.
+For adsorption processes, the Clausius-Clapeyron equation is given as,</p>
+<div class="math notranslate nohighlight">
+\[\left. \frac{\partial(\ln P)}{\partial T} \right|_q = \frac{-\Delta H_{ads}}{RT^{2}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(R\)</span> is the general gas constant. For Clausius-Clapeyron implementation in <strong>HeatFit</strong> we assume that the <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> is independent of temperature and
+pressure. The assumption yields the following form:</p>
+<div class="math notranslate nohighlight">
+\[\ln\left(\frac{P_{ref}}{P}\right) = \frac{-\Delta H_{ads}}{R}\left(\frac{1}{T}-\frac{1}{T_{ref}}\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(P_{ref}\)</span>, <span class="math notranslate nohighlight">\(T_{ref}\)</span>, <span class="math notranslate nohighlight">\(P\)</span>, and <span class="math notranslate nohighlight">\(T\)</span> are the adsorption pressure and temperatures for the reference and given states, respectively.
+Note that both reference and given state correspond to the same adsorption loading <span class="math notranslate nohighlight">\(q\)</span>. Let <span class="math notranslate nohighlight">\(f\)</span> be the function representing isotherm model then,</p>
+<div class="math notranslate nohighlight">
+\[q = f(T, P)=f(T_{ref}, P_{ref})\]</div>
+<p>Assuming <span class="math notranslate nohighlight">\(f_{ref}\)</span> be the isotherm model fitted at reference temperature, we have</p>
+<div class="math notranslate nohighlight">
+\[q = f(T, P)=f_{ref}(P_{ref})\]</div>
+<p>The value of <span class="math notranslate nohighlight">\(P_{ref}\)</span> can be substituted using the Clausius-Clapeyron equation shown above such that,</p>
+<div class="math notranslate nohighlight">
+\[q = f(T, P)=f_{ref}\left(P\times\exp{\left(\frac{-\Delta H_{ads}}{R}\left(\frac{1}{T}-\frac{1}{T_{ref}}\right)\right)}\right)\]</div>
+<p>The utility of the above equation is that it allows us to predict the loading at different temperatures and pressures using the isotherm model fitted at reference condition.
+Additionally, if we have pressure-loading data at different temperatures and an isotherm model fitted at the reference conditions we can also fit for <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span>.</p>
+<p><strong>HeatFit</strong> uses the methodology outlined by Ga <em>et al.</em> <a class="footnote-reference brackets" href="#ga" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> for isotherm fitting at reference condition and <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> prediction. The method involves the following steps:</p>
+<ul class="simple">
+<li><p><strong>Step 1</strong>: Isotherm fitting at reference temperature</p></li>
+<li><p><strong>Step 2</strong>: Fitting for <span class="math notranslate nohighlight">\(\Theta\)</span> parameter</p></li>
+<li><p><strong>Step 3</strong>: Fitting for isosteric heat of adsorption <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span></p></li>
+</ul>
+<p>In all three steps, regression is performed using MATLAB’s built-in lsqnonlin solver.
+The user can control the regression process using different sets of values for initial guesses, lower and upper bounds.</p>
+<section id="step-1-isotherm-fitting-at-reference-temperature">
+<h3>Step 1: Isotherm Fitting at Reference Temperature<a class="headerlink" href="#step-1-isotherm-fitting-at-reference-temperature" title="Link to this heading">#</a></h3>
+<p>Like <strong>IsoFit</strong>, the isotherm fitting at reference temperature is performed for the chosen isotherm model using non-linear regression.
+Currently, <strong>HeatFit</strong> supports the following isotherm models:</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id2">
+<caption><span class="caption-text">HeatFit Isotherm Models</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Isotherm Models</p></th>
+<th class="head"><p>Isotherm Expression</p></th>
+<th class="head"><p>Parameters</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Langmuir</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} b P}{1 + b P}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Dual-site Langmuir</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat,1} b_{1} P}{1 + b_{1} P} + \frac{q_{sat,2} b_{2} P}{1 + b_{2} P}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat,1},\ b_{1},\ q_{sat,2},\ b_{2}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Langmuir-Freundlich</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} b P^{n}}{1 + b P^{n}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ n\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Dual-site Langmuir-Freundlich</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat, 1} b P^{n_{1}}}{1 + b_{1} P^{n_{1}}} + \frac{q_{sat,2} b_{2} P^{n_{2}}}{1 + b_{2} P^{n_{2}}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat,1},\ b_{1},\ n_{1},\ q_{sat,2},\ b_{2},\ n_{2}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Quadratic</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = q_{sat}\left(\frac{b P + c P^{2}}{1 + b P + c P^{2}}\right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ c\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Temkin</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = q_{sat}\left(\frac{b P}{1 + b P}\right) + q_{sat}\theta\left(\frac{b P}{1 + b P}\right)\left(\frac{b P}{1 + b P}-1\right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ \theta\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>BET</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} b P}{(1 - c P)(1 - c P + b P)}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ c\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Sips</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} (b P)^{1/n}}{1 + (b P)^{1/n}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ n\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Toth</p></td>
+<td><p><span class="math notranslate nohighlight">\(q = \frac{q_{sat} b P}{\left(1 + (b P)^n\right)^{1/n}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{sat},\ b,\ n\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The objective of the non-linear regression is to minimize the <span class="math notranslate nohighlight">\(SSE\)</span> function given as,</p>
+<div class="math notranslate nohighlight">
+\[SSE = \min_{a_{k}} \sum_{i}^N \left(q_{i, exp}^{*} - f_{ref}(P_{i}; \{a_{k}\}_{1}^{M})\right)^{2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(q_{i,exp}^{*}\)</span> represents the total number of data points and the experimental gas uptake for the given data point <span class="math notranslate nohighlight">\(i\)</span>, respectively.
+<span class="math notranslate nohighlight">\(f_{ref}(P_{i}; \{a_{k}\}_{1}^{M})\)</span> is the isotherm model corresponding to reference conditions.
+where, <span class="math notranslate nohighlight">\(P_{i}\)</span> is the pressure value for the given data point <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(a_{k}\)</span> is the set of parameters
+and <span class="math notranslate nohighlight">\(M\)</span> is the total number of parameters for the given isotherm model.</p>
+<p>In <strong>HeatFit</strong> the user can control the regression process by specifying custom initial guesses, as well as lower and upper bounds.
+Additionally, <strong>HeatFit</strong> offers a multistart option, which generates 1000 random initial guess within the specified bounds.
+The fitting process is then performed sequentially for each initial guess and the best fitting result is selected. The multistart approach is useful for fitting problems with multiple parameter solutions.
+In such cases, fitting using multistart option can identify the global minimum corresponding to the best parameter estimates. The multistart option is available for all isotherm models except <strong>Auto</strong> mode.
+In <strong>Auto</strong> mode, <strong>HeatFit</strong> performs isotherm fitting using all the available isotherm models and then selects the best model. Using multistart option for <strong>Auto</strong> mode can be computationally expensive, leading to excessive running times.</p>
+<p>Root mean square error <span class="math notranslate nohighlight">\((RMSE)\)</span> is used in the program to evaluate the goodness of fit.</p>
+<div class="math notranslate nohighlight">
+\[RMSE = \sqrt{\frac{SSE}{N-M}}\]</div>
+<p>If the user chooses the <strong>Auto</strong> mode, <strong>HeatFit</strong> reports the best isotherm model with the lowest RMSE values.
+If two or more models have same value of SSE, then <strong>HeatFit</strong> will choose the model with a smaller number of parameters because of lower value of RMSE for <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> predcition.</p>
+<p><strong>HeatFit</strong> also reports coefficient of determination, <span class="math notranslate nohighlight">\(r^{2}\)</span>, value defined as:</p>
+<div class="math notranslate nohighlight">
+\[r^{2} = 1 - \frac{SSE}{\sum (q_{i,exp} - \overline{q_{i,exp}})}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\overline{q_{i,exp}}\)</span> is the mean value of experimental gas uptakes.</p>
+</section>
+<section id="step-2-fitting-for-theta-parameter">
+<h3>Step 2: Fitting for <span class="math notranslate nohighlight">\(\Theta\)</span> Parameter<a class="headerlink" href="#step-2-fitting-for-theta-parameter" title="Link to this heading">#</a></h3>
+<p>Second step involves using the isotherm model and the parameters obtained from fitting at reference temperature to get a set of parameters <span class="math notranslate nohighlight">\(\Theta\)</span>,
+which is defined as,</p>
+<div class="math notranslate nohighlight">
+\[\Theta = \{\theta_j\}_{j=1}^Z\]</div>
+<p>where <span class="math notranslate nohighlight">\(Z\)</span> is the total number of temperature values used in the fitting process.
+Every <span class="math notranslate nohighlight">\(θ_{j}\)</span> value in the <span class="math notranslate nohighlight">\(\Theta\)</span> vector corresponds to temperature value <span class="math notranslate nohighlight">\(T_{j}\)</span>.
+Then the program uses non-linear regression to fit for each <span class="math notranslate nohighlight">\(θ_{j}\)</span> value with the objective function defined as follows,</p>
+<div class="math notranslate nohighlight">
+\[SSE = \min_{\theta_{j}} \left(q_{j, exp}^{*} - g(P; \theta_{j})\right)^{2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(q_{j, exp}^{*}\)</span> is the experimental gas uptake at temperature <span class="math notranslate nohighlight">\(T_{j}\)</span> while
+<span class="math notranslate nohighlight">\(g(P; \theta_{j})\)</span> can be expressed as,</p>
+<div class="math notranslate nohighlight">
+\[g(P; \theta_{j}) = f_{ref} \left(P\times\theta_{j};\ \{a_{k,ref}\}_{k=1}^{M}\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{ref}\)</span> and <span class="math notranslate nohighlight">\(a_{k,ref}\)</span> represent the isotherm function and isotherm function
+parameters obtained in step 1 at reference conditions, respectively.</p>
+</section>
+<section id="step-3-fitting-for-delta-h-ads">
+<h3>Step 3: Fitting for <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span><a class="headerlink" href="#step-3-fitting-for-delta-h-ads" title="Link to this heading">#</a></h3>
+<p>Next, the correlation between <span class="math notranslate nohighlight">\(θ_{j}\)</span> and <span class="math notranslate nohighlight">\(T_{j}\)</span> is used to fit for <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span>.
+The correlation is given by the Clausius-Clapeyron equation as:</p>
+<div class="math notranslate nohighlight">
+\[\theta_{j, pred} = \exp\left(\frac{-\Delta H_{ads}}{R}\left(\frac{1}{T_{j}}-\frac{1}{T_{ref}}\right)\right)\]</div>
+<p>The program uses non-linear regression to fit for <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> value
+while minimizing the objective function defined as:</p>
+<div class="math notranslate nohighlight">
+\[SSE = \min_{\Delta H_{ads}} \sum_{j=1}^{Z}\left(\theta_{j} - \theta_{j, pred}\right)^{2}\]</div>
+<p><strong>HeatFit</strong> also reports RMSE value for <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> fitting, which is given as,</p>
+<div class="math notranslate nohighlight">
+\[RMSE = \sqrt{\frac{SSE}{Z}}\]</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="virial-equation">
+<h2>Virial Equation<a class="headerlink" href="#virial-equation" title="Link to this heading">#</a></h2>
+<p>The Virial equation is given as,</p>
+<div class="math notranslate nohighlight">
+\[\ln P = \ln q^{*} + \frac{1}{T}\sum_{i=0}^{m-1}a_{i} (q^{*})^{i} + \sum_{j=0}^{n-1}b_{j} (q^{*})^{j}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_{i}\)</span> and <span class="math notranslate nohighlight">\(b_{j}\)</span> are the Virial fitting parameters also known as Virial coefficients. <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span> refers to the number of Virial parameters
+<span class="math notranslate nohighlight">\(a_{i}\)</span> and <span class="math notranslate nohighlight">\(b_{j}\)</span>, respectively. In contrast with the isotherm models discussed earlier, Virial equation expresses the pressure
+as a function of adsorption loading <span class="math notranslate nohighlight">\(q^{*}\)</span> and temperature <span class="math notranslate nohighlight">\(T\)</span>. Moreover, the same set of Virial parameters <span class="math notranslate nohighlight">\(a_{i}\)</span> and <span class="math notranslate nohighlight">\(b_{j}\)</span> are simultaneously
+used to describe the isotherm data at different temperatures. The isosteric heat of adsorption <span class="math notranslate nohighlight">\(Q_{st}(q^{*})\)</span> is a function of adsorption loading given as,</p>
+<div class="math notranslate nohighlight">
+\[Q_{st}(q^{*}) = -R\sum_{i=0}^{m-1}a_{i}(q)^{i}\]</div>
+<p>The isosteric heat of adsorption for the infinite dilution <span class="math notranslate nohighlight">\(Q_{st}^{0}\)</span> (i.e. for very low adsorption loading) is expressed as,</p>
+<div class="math notranslate nohighlight">
+\[Q_{st}^{0} = -R\ a_{0}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_{0}\)</span> is the first Virial coefficient. Note the relationship between <span class="math notranslate nohighlight">\(Q_{st}\)</span> and <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> is,</p>
+<div class="math notranslate nohighlight">
+\[Q_{st} = -\Delta H_{ads}\]</div>
+<p>Hence, unlike Clausius-Clapeyron approach, the <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span> can be directly obtained after fitting the Virial equation to
+the isotherm data.</p>
+<section id="virial-equation-fitting">
+<h3>Virial Equation Fitting<a class="headerlink" href="#virial-equation-fitting" title="Link to this heading">#</a></h3>
+<p>In the case of Virial equation, <strong>HeatFit</strong> uses non-linear regression by minimizing the <span class="math notranslate nohighlight">\((SSE)\)</span> function:</p>
+<div class="math notranslate nohighlight">
+\[SSE = \min_{a_{k}, b_{k}} \sum_{i}^N \left(\ln (P_{i, exp}) - f(q_{i, exp}^{*}, T_{i}; \{a_{k}\}_{0}^{m-1} \{b_{k}\}_{0}^{n-1})\right)^{2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the total number of data points, <span class="math notranslate nohighlight">\(P_{i,exp}\)</span>, <span class="math notranslate nohighlight">\(q_{i,exp}^{*}\)</span>, and <span class="math notranslate nohighlight">\(T_{i}\)</span> are the experimental
+pressure, experimental adsorption loading, and temperature values for the given data point <span class="math notranslate nohighlight">\(i\)</span>, respectively. <span class="math notranslate nohighlight">\(f\)</span> is the Virial equation; <span class="math notranslate nohighlight">\(a_{k}\)</span>, <span class="math notranslate nohighlight">\(b_{k}\)</span>
+refers to the <span class="math notranslate nohighlight">\(k^{th}\)</span> Virial coefficient, <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span> are the total number of Virial coefficient <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, respectively.</p>
+<p>This form of <span class="math notranslate nohighlight">\(SSE\)</span> is used because the Virial equation expresses the natural logarithm of adsorption pressure as a function of adsorption uptake and temperature.</p>
+<p><strong>HeatFit</strong> also reports the <span class="math notranslate nohighlight">\((RMSE)\)</span> and <span class="math notranslate nohighlight">\(r^{2}\)</span> values as a measure of the goodness of fit.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}RMSE = \sqrt{\frac{SSE}{N-M}},\\
+r^{2} = 1 - \frac{SSE}{\sum (P_{i,exp} - \overline{P_{i,exp}})}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(M\)</span> is the combined total number of Virial coefficients <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> and
+<span class="math notranslate nohighlight">\(\overline{P_{i,exp}}\)</span> is the mean value of experimental pressure.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Fitting multi-temperature isotherm data using Virial equation can be challenging as the same set
+of Virial parameters <span class="math notranslate nohighlight">\(a_{i}\)</span> and <span class="math notranslate nohighlight">\(b_{j}\)</span> are simultaneously used to describe the isotherm data. Hence, it is important to use as few parameters as possible.
+The GUI features of <strong>HeatFit</strong> enable users to quickly try different numbers and combinations of Virial parameters. We advise the user to start with a few parameters,
+gradually increasing the number of parameters while also keeping the check on standard errors and RMSE values, until no significant
+improvement in RMSE is observed and the standard errors are also reasonable. Please note that parameter values with high standard error indicate overfitting and
+are unreliable.</p>
+</div>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="ga" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Dr. Ga Paper.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+
+                </article>
+
+
+
+
+
+                <footer class="prev-next-footer d-print-none">
+
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="isofit.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">IsoFit</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="mixpred.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">MixPred</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+
+            </div>
+
+
+
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clausius-clapeyron-equation">Clausius-Clapeyron Equation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-isotherm-fitting-at-reference-temperature">Step 1: Isotherm Fitting at Reference Temperature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-fitting-for-theta-parameter">Step 2: Fitting for <span class="math notranslate nohighlight">\(\Theta\)</span> Parameter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-fitting-for-delta-h-ads">Step 3: Fitting for <span class="math notranslate nohighlight">\(\Delta H_{ads}\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virial-equation">Virial Equation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virial-equation-fitting">Virial Equation Fitting</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/heatfit.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+
+
+          </div>
+          <footer class="bd-footer-content">
+
+          </footer>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+
+    <div class="footer-items__start">
+
+        <div class="footer-item">
+
+  <p class="copyright">
+
+      © Copyright 2025–2026, Muhammad Hassan and Chung Research Group.
+      <br/>
+
+  </p>
+</div>
+
+    </div>
+
+
+
+    <div class="footer-items__end">
+
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+
+    </div>
+
+</div>
+
+  </footer>
+  </body>
+</html>

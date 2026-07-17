@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>AIM — Adsorption Integrated Modules &#8212; AIM documentation</title>
+    <title>Module workflow &#8212; AIM documentation</title>
 
 
 
@@ -43,11 +43,12 @@
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modules';</script>
     <link rel="icon" href="_static/AIM_logo.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="next" title="IsoFit" href="isofit.html" />
+    <link rel="prev" title="Input and output data files" href="input-output.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -105,7 +106,7 @@
 
 
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="index.html">
 
 
 
@@ -153,8 +154,8 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="modules.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
     Module workflow
   </a>
 </li>
@@ -291,10 +292,8 @@
 
 
 
-
-
       <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
 
 
 
@@ -330,8 +329,8 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="modules.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
     Module workflow
   </a>
 </li>
@@ -423,6 +422,15 @@
 
   </div>
 
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+
 
   <div class="sidebar-primary-items__end sidebar-primary__section">
       <div class="sidebar-primary-item">
@@ -443,7 +451,31 @@
           <div class="bd-content">
             <div class="bd-article-container">
 
-              <div class="bd-header-article d-print-none"></div>
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+
+    <div class="header-article-items__start">
+
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Module workflow</span></li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+
+
+</div>
+</div>
 
 
 
@@ -451,21 +483,20 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
 
-  <section id="aim-adsorption-integrated-modules">
-<h1>AIM — Adsorption Integrated Modules<a class="headerlink" href="#aim-adsorption-integrated-modules" title="Link to this heading">#</a></h1>
-<p class="lead"><strong>AIM</strong> is an open-source MATLAB application suite that connects pure-component
-isotherm fitting, isosteric heat estimation, mixture prediction, and fixed-bed
-breakthrough simulation in one reproducible workflow.</p>
-<div class="sd-container-fluid sd-sphinx-override sd-mb-4 aim-module-grid docutils">
-<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-4 sd-row-cols-lg-4 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+  <section id="module-workflow">
+<h1>Module workflow<a class="headerlink" href="#module-workflow" title="Link to this heading">#</a></h1>
+<p>AIM’s four modules exchange human-readable data files so a fitted equilibrium
+model can move directly into mixture prediction and process simulation.</p>
+<a class="reference internal image-reference" href="_images/AIM_modules.png"><img alt="AIM module workflow" class="align-center" src="_images/AIM_modules.png" style="width: 760px;" />
+</a>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
 <div class="sd-col sd-d-flex-row docutils">
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
-IsoFit</div>
-<p class="sd-card-text">Fit single-temperature adsorption isotherms with 13 model families,
-bounded nonlinear regression, multistart search, and automatic model
-selection.</p>
+1. Fit equilibrium data</div>
+<p class="sd-card-text"><strong>IsoFit</strong> estimates parameters from a single-temperature isotherm.</p>
 </div>
 <a class="sd-stretched-link sd-hide-link-text reference internal" href="isofit.html"><span class="doc">IsoFit</span></a></div>
 </div>
@@ -473,9 +504,8 @@ selection.</p>
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
-HeatFit</div>
-<p class="sd-card-text">Fit multi-temperature data and estimate isosteric heat using the
-Clausius–Clapeyron or virial formulation.</p>
+2. Add temperature dependence</div>
+<p class="sd-card-text"><strong>HeatFit</strong> fits multi-temperature data and isosteric heat.</p>
 </div>
 <a class="sd-stretched-link sd-hide-link-text reference internal" href="heatfit.html"><span class="doc">HeatFit</span></a></div>
 </div>
@@ -483,9 +513,8 @@ Clausius–Clapeyron or virial formulation.</p>
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
-MixPred</div>
-<p class="sd-card-text">Predict multicomponent equilibrium with extended dual-site Langmuir
-(EDSL) or ideal adsorbed solution theory (IAST).</p>
+3. Predict mixtures</div>
+<p class="sd-card-text"><strong>MixPred</strong> applies EDSL or IAST to pure-component models.</p>
 </div>
 <a class="sd-stretched-link sd-hide-link-text reference internal" href="mixpred.html"><span class="doc">MixPred</span></a></div>
 </div>
@@ -493,78 +522,16 @@ MixPred</div>
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
-BreakLab</div>
-<p class="sd-card-text">Simulate nonisothermal, non-isobaric fixed-bed breakthrough for as many
-as five components.</p>
+4. Simulate the bed</div>
+<p class="sd-card-text"><strong>BreakLab</strong> couples equilibrium, kinetics, transport, pressure drop, and
+energy balances.</p>
 </div>
 <a class="sd-stretched-link sd-hide-link-text reference internal" href="breaklab.html"><span class="doc">BreakLab</span></a></div>
 </div>
 </div>
 </div>
-<section id="start-here">
-<h2>Start here<a class="headerlink" href="#start-here" title="Link to this heading">#</a></h2>
-<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
-<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-Install AIM</div>
-<p class="sd-card-text">Use the Windows standalone installer or run the application from MATLAB
-R2024a or newer.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="installation.html"><span class="doc">Installation</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-Watch the tutorials</div>
-<p class="sd-card-text">Follow complete video walkthroughs for IsoFit, HeatFit, MixPred, and
-BreakLab.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="tutorials.html"><span class="doc">Video tutorials</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-Prepare input files</div>
-<p class="sd-card-text">Review supported formats, metadata tags, units, and the human-readable
-<code class="docutils literal notranslate"><span class="pre">.bliso</span></code> output contract.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="input-output.html"><span class="doc">Input and output data files</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-Reproduce published cases</div>
-<p class="sd-card-text">Use the datasets, parameter files, and BreakLab configurations under
-<code class="docutils literal notranslate"><span class="pre">manuscript_data</span></code>.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="examples.html"><span class="doc">Example and publication data</span></a></div>
-</div>
-</div>
-</div>
-</section>
-<section id="scientific-scope">
-<h2>Scientific scope<a class="headerlink" href="#scientific-scope" title="Link to this heading">#</a></h2>
-<p>AIM retains the model definitions, governing equations, boundary conditions,
-parameter units, fitting objectives, and numerical-method descriptions needed
-to understand and reproduce its calculations. The module guides are technical
-references, not only interface tours.</p>
-<div class="toctree-wrapper compound">
-</div>
-</section>
-<section id="project-links">
-<h2>Project links<a class="headerlink" href="#project-links" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/Chung-Research-Group/AIM">Source repository</a></p></li>
-<li><p><a class="reference external" href="https://github.com/Chung-Research-Group/AIM/issues">Issue tracker</a></p></li>
-<li><p><a class="reference external" href="https://doi.org/10.1016/j.cpc.2025.109944">Associated article</a></p></li>
-</ul>
-</section>
+<p>The <a class="reference internal" href="input-output.html"><span class="doc">Input and output data files</span></a> guide defines the shared file formats and metadata. The
+<a class="reference internal" href="tutorials.html"><span class="doc">Video tutorials</span></a> page provides a complete video for each module.</p>
 </section>
 
 
@@ -577,12 +544,21 @@ references, not only interface tours.</p>
                 <footer class="prev-next-footer d-print-none">
 
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="input-output.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Input and output data files</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="installation.html"
+       href="isofit.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Installation</p>
+        <p class="prev-next-title">IsoFit</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -598,24 +574,10 @@ references, not only interface tours.</p>
 
 
   <div class="sidebar-secondary-item">
-<div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-here">Start here</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scientific-scope">Scientific scope</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-links">Project links</a></li>
-</ul>
-  </nav></div>
-
-  <div class="sidebar-secondary-item">
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
+      <li><a href="_sources/modules.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>
