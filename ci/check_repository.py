@@ -12,6 +12,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 
 REQUIRED_PATHS = {
+    ".readthedocs.yaml",
     ".github/workflows/pr-checks.yml",
     "AIM_Build.prj",
     "CITATION.cff",
@@ -19,6 +20,9 @@ REQUIRED_PATHS = {
     "README.md",
     "buildfile.m",
     "ci/check_repository.py",
+    "docs/requirements.txt",
+    "docs/source/conf.py",
+    "docs/source/index.rst",
     "src/IAST_func_NR.m",
     "src/IAST_func_mix_pred_app_NR.m",
     "src/Isotherm_functions.m",
