@@ -334,9 +334,138 @@ function testNonisothermalJacobianHasCompleteStateSize(testCase)
     verifyEqual(testCase, jacobian_pattern(component_one_outlet, :), expected_row);
 end
 
+function testNonisothermalJacobianOutletRowIsNotAScalarBroadcast(testCase)
+    % Regression for a bug where `Jac_S(2*N+4,:) = Jac_S(2*N+3);` used
+    % linear indexing (a single scalar element) instead of a full-row copy.
+    % A scalar broadcast would make every entry of the outlet row identical,
+    % which is inconsistent with the corresponding interior row unless that
+    % row happened to be constant.
+    n_cells = 6;
+    jacobian_pattern = Jacobian(n_cells, 1);
+
+    component_one_outlet = 2 * n_cells + 4;
+    outlet_row = jacobian_pattern(component_one_outlet, :);
+
+    verifyGreaterThan(testCase, numel(unique(outlet_row)), 1);
+end
+
+function testIsothermalJacobianHasCompleteStateSize(testCase)
+    n_cells = 5;
+    jacobian_pattern = Jacobian(n_cells, 0);
+    state_size = 10 * (n_cells + 2);
+
+    verifySize(testCase, jacobian_pattern, [state_size, state_size]);
+end
+
+function testIsothermalJacobianOutletRowIsNotAScalarBroadcast(testCase)
+    % Same regression as testNonisothermalJacobianOutletRowIsNotAScalarBroadcast,
+    % but for the isothermal (CalcType = 0) branch. The bug-fix line
+    % `Jac_S(2*N+4,:) = Jac_S(2*N+3,:);` sits in the boundary-condition block
+    % that runs unconditionally regardless of CalcType, so the isothermal
+    % path is equally susceptible to the scalar-broadcast regression.
+    n_cells = 6;
+    jacobian_pattern = Jacobian(n_cells, 0);
+
+    component_one_outlet = 2 * n_cells + 4;
+    outlet_row = jacobian_pattern(component_one_outlet, :);
+
+    verifyGreaterThan(testCase, numel(unique(outlet_row)), 1);
+end
+
+function testAdsorptionStepEdslNonIsoPreallocatesFullStateVector(testCase)
+    N = 3;
+    [Params, isotherm_params_array, comp_num] = nonIsothermalTestFixture(N);
+    state_vars = neutralNonIsothermalStateVector(N);
+
+    derivatives = Adsorption_step_EDSL_Non_Iso( ...
+        0, state_vars, Params, isotherm_params_array, comp_num);
+
+    verifySize(testCase, derivatives, [12 * N + 24, 1]);
+    verifyTrue(testCase, all(isfinite(derivatives)));
+    verifyNonIsothermalBoundaryDerivativesAreClamped(testCase, derivatives, N);
+end
+
+function testAdsorptionStepIastNonIsoPreallocatesFullStateVector(testCase)
+    global cached_p0 Henry_Coeff cached_p0_local;
+    N = 3;
+    [Params, isotherm_params_array, comp_num] = nonIsothermalTestFixture(N);
+    state_vars = neutralNonIsothermalStateVector(N);
+
+    cached_p0 = [];
+    cached_p0_local = [];
+    Henry_Coeff = isotherm_params_array(2, 1) * isotherm_params_array(3, 1);
+
+    derivatives = Adsorption_step_IAST_Non_Iso( ...
+        0, state_vars, Params, isotherm_params_array, comp_num);
+
+    verifySize(testCase, derivatives, [12 * N + 24, 1]);
+    verifyTrue(testCase, all(isfinite(derivatives)));
+    verifyNonIsothermalBoundaryDerivativesAreClamped(testCase, derivatives, N);
+end
+
 function iso = singleSiteLangmuir(capacity, affinity)
     iso = zeros(7, 1);
     iso(1) = 1;
     iso(2) = capacity;
     iso(3) = affinity;
+end
+
+function [Params, isotherm_params_array, comp_num] = nonIsothermalTestFixture(N)
+%NONISOTHERMALTESTFIXTURE Build minimal valid inputs for the non-isothermal
+%   Adsorption_step_* kernels: a single-adsorbing-component (plus carrier
+%   gas), N-node column using the same default/production parameter
+%   assembly (Default_Input_Parameters + ProcessInputParameters) that the
+%   application itself uses, so the fixture stays consistent with the real
+%   input contract instead of a hand-rolled Params vector.
+    parameter_set = Default_Input_Parameters();
+    parameter_set.NumPar(1) = N;
+
+    isotherm_params_array = zeros(9, 6);
+    isotherm_params_array(1, 1) = 1;       % SS-Langmuir flag
+    isotherm_params_array(2, 1) = 2.4;     % Saturation loading [mol/kg]
+    isotherm_params_array(3, 1) = 1e-5;    % Affinity [1/Pa]
+    isotherm_params_array(8, 1) = -20000;  % Heat of adsorption [J/mol]
+    isotherm_params_array(9, 1) = 298.15;  % Reference temperature [K]
+    parameter_set.IsothermParams = isotherm_params_array;
+
+    Params = ProcessInputParameters(parameter_set);
+    comp_num = parameter_set.CompNum;
+end
+
+function state_vars = neutralNonIsothermalStateVector(N)
+%NEUTRALNONISOTHERMALSTATEVECTOR Build a physically bland state vector
+%   (dimensionless P=T=Tw=1, feed-matching mole fraction, zero loading)
+%   sized for the 12*N+24 non-isothermal state convention.
+    ones_col = ones(N + 2, 1);
+    half_col = 0.5 .* ones_col;
+    zero_col = zeros(N + 2, 1);
+
+    state_vars = [ ...
+        ones_col;   % P
+        half_col;   % y_1
+        zero_col;   % y_2
+        zero_col;   % y_3
+        zero_col;   % y_4
+        zero_col;   % x1
+        zero_col;   % x2
+        zero_col;   % x3
+        zero_col;   % x4
+        zero_col;   % x5
+        ones_col;   % T
+        ones_col];  % Tw
+end
+
+function verifyNonIsothermalBoundaryDerivativesAreClamped(testCase, derivatives, N)
+%VERIFYNONISOTHERMALBOUNDARYDERIVATIVESARECLAMPED Assert the boundary-node
+%   derivative entries that Adsorption_step_*_Non_Iso unconditionally zero
+%   or copy from the adjacent interior node, independent of the physics
+%   evaluated in the interior of the domain.
+    verifyEqual(testCase, derivatives(1), 0);          % dPdt inlet
+    verifyEqual(testCase, derivatives(N + 2), 0);      % dPdt outlet
+    verifyEqual(testCase, derivatives(N + 3), 0);      % dy_1dt inlet
+    verifyEqual(testCase, derivatives(5 * N + 11), 0); % dx1dt inlet
+    verifyEqual(testCase, derivatives(6 * N + 12), 0); % dx1dt outlet
+    verifyEqual(testCase, derivatives(10 * N + 21), 0);% dTdt inlet
+    verifyEqual(testCase, derivatives(11 * N + 23), 0);% dTwdt inlet
+    verifyEqual(testCase, derivatives(12 * N + 24), 0);% dTwdt outlet
 end
