@@ -320,6 +320,20 @@ function testMixPredUsesSharedIastKernelAndRestoresGlobalState(testCase)
     verifyEqual(testCase, cached_p0_local, 33);
 end
 
+function testNonisothermalJacobianHasCompleteStateSize(testCase)
+    n_cells = 5;
+    jacobian_pattern = Jacobian(n_cells, 1);
+    state_size = 12 .* n_cells + 24;
+
+    verifySize(testCase, jacobian_pattern, [state_size, state_size]);
+
+    component_one_outlet = 2 .* n_cells + 4;
+    component_one_interior = component_one_outlet - 1;
+    expected_row = jacobian_pattern(component_one_interior, :);
+    expected_row(component_one_outlet) = 0;
+    verifyEqual(testCase, jacobian_pattern(component_one_outlet, :), expected_row);
+end
+
 function iso = singleSiteLangmuir(capacity, affinity)
     iso = zeros(7, 1);
     iso(1) = 1;

@@ -21,6 +21,7 @@ function plan = buildfile
         "src/Isotherm_functions.m"
         "src/IAST_func_NR.m"
         "src/IAST_func_mix_pred_app_NR.m"
+        "src/Jacobian.m"
     ];
 
     plan("test") = TestTask("tests", ...
