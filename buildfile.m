@@ -20,6 +20,7 @@ function plan = buildfile
         "src/WENO.m"
         "src/Isotherm_functions.m"
         "src/IAST_func_NR.m"
+        "src/IAST_func_mix_pred_app_NR.m"
     ];
 
     plan("test") = TestTask("tests", ...

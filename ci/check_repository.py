@@ -20,6 +20,7 @@ REQUIRED_PATHS = {
     "buildfile.m",
     "ci/check_repository.py",
     "src/IAST_func_NR.m",
+    "src/IAST_func_mix_pred_app_NR.m",
     "src/Isotherm_functions.m",
     "src/Main_app.mlapp",
     "src/WENO.m",

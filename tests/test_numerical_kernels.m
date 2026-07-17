@@ -284,6 +284,42 @@ function testIastRejectsInvalidComposition(testCase)
         'AIM:IAST:InvalidComposition');
 end
 
+function testMixPredUsesSharedIastKernelAndRestoresGlobalState(testCase)
+    global cached_p0 Henry_Coeff cached_p0_local;
+    cached_p0 = 11;
+    Henry_Coeff = 22;
+    cached_p0_local = 33;
+
+    iso = [singleSiteLangmuir(2.4, 0.8), ...
+           singleSiteLangmuir(1.5, 0.3)];
+    pressure = logspace(-4, 1, 8)';
+    composition = repmat([0.4, 0.6], numel(pressure), 1);
+
+    actual = IAST_func_mix_pred_app_NR( ...
+        2, iso, pressure, composition, 298.15, []);
+
+    local_henry = [2.4 * 0.8, 1.5 * 0.3];
+    cached_p0 = [];
+    cached_p0_local = [];
+    Henry_Coeff = local_henry;
+    expected = IAST_func_NR( ...
+        2, iso, pressure, composition, 298.15, 0, []);
+
+    verifyEqual(testCase, actual, expected, ...
+        'RelTol', 1e-8, 'AbsTol', 1e-11);
+
+    % Re-establish sentinels and verify that the adapter's cleanup path is
+    % independent of the comparison call above.
+    cached_p0 = 11;
+    Henry_Coeff = 22;
+    cached_p0_local = 33;
+    IAST_func_mix_pred_app_NR( ...
+        2, iso, pressure, composition, 298.15, []);
+    verifyEqual(testCase, cached_p0, 11);
+    verifyEqual(testCase, Henry_Coeff, 22);
+    verifyEqual(testCase, cached_p0_local, 33);
+end
+
 function iso = singleSiteLangmuir(capacity, affinity)
     iso = zeros(7, 1);
     iso(1) = 1;
