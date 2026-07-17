@@ -60,6 +60,31 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
+  documentation:
+    name: Documentation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+
+      - name: Install documentation dependencies
+        run: python -m pip install --disable-pip-version-check -r docs/requirements.txt
+
+      - name: Build documentation with warnings as errors
+        run: python -m sphinx -W --keep-going -b html docs/source artifacts/docs
+
+      - name: Upload rendered documentation
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.0
+        with:
+          name: documentation-html
+          path: artifacts/docs
+          if-no-files-found: warn
+          retention-days: 14
+
   code-analyzer:
     name: MATLAB Code Analyzer (R2024a)
     runs-on: ubuntu-latest
@@ -144,6 +169,7 @@ jobs:
     if: always()
     needs:
       - repository-hygiene
+      - documentation
       - code-analyzer
       - matlab-tests
     runs-on: ubuntu-latest
@@ -153,14 +179,17 @@ jobs:
         shell: bash
         env:
           HYGIENE_RESULT: ${{ needs.repository-hygiene.result }}
+          DOCUMENTATION_RESULT: ${{ needs.documentation.result }}
           ANALYZER_RESULT: ${{ needs.code-analyzer.result }}
           TEST_RESULT: ${{ needs.matlab-tests.result }}
         run: |
           printf 'Repository hygiene: %s\n' "${HYGIENE_RESULT}"
+          printf 'Documentation: %s\n' "${DOCUMENTATION_RESULT}"
           printf 'MATLAB Code Analyzer: %s\n' "${ANALYZER_RESULT}"
           printf 'MATLAB test matrix: %s\n' "${TEST_RESULT}"
 
           if [[ "${HYGIENE_RESULT}" != "success" ||
+                "${DOCUMENTATION_RESULT}" != "success" ||
                 "${ANALYZER_RESULT}" != "success" ||
                 "${TEST_RESULT}" != "success" ]]; then
             exit 1

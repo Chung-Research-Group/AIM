@@ -1,80 +1,91 @@
 <p align="center">
-  <img src="src/AIM_logo.png" alt="Logo" width="300"/>
+  <img src="src/AIM_logo.png" alt="AIM — Adsorption Integrated Modules" width="280">
 </p>
 
-AIM
-========
+<h1 align="center">AIM</h1>
 
-AIM (Adsorption Integrated Modules) is a collection of MATLAB based Graphical User Interface (GUI) tools for adsorption isotherm based fixed bed modelling. AIM modules provide an integrated workflow for adsorption isotherm fitting, isosteric heat of adsorption estimation, mixture isotherm prediction, and multicomponent adsorption breakthrough simulation. AIM has been developed at [Chung Research Group](https://sites.google.com/view/mtap-lab), Pusan National University.
+<p align="center">
+  MATLAB applications for adsorption isotherm analysis and fixed-bed breakthrough simulation.
+</p>
 
-Primary features of AIM include
-- Integrated workflow within modules
-- GUI environment to facilitate data input/output, model selection, and simulation type selection
-- Dynamic plots for pressure, loading, temperature, and composition
-- Data and graphics export in different formats
+<p align="center">
+  <a href="https://github.com/Chung-Research-Group/AIM/actions/workflows/pr-checks.yml"><img alt="PR checks" src="https://github.com/Chung-Research-Group/AIM/actions/workflows/pr-checks.yml/badge.svg"></a>
+  <a href="https://doi.org/10.1016/j.cpc.2025.109944"><img alt="DOI" src="https://img.shields.io/badge/DOI-10.1016%2Fj.cpc.2025.109944-blue"></a>
+  <a href="LICENSE"><img alt="License: GPL-2.0" src="https://img.shields.io/badge/license-GPL--2.0-blue"></a>
+</p>
 
-**Developed by:** [Muhammad Hassan](https://github.com/hassan-azizi)
+AIM (Adsorption Integrated Modules) is an open-source suite of MATLAB graphical applications developed by the [Chung Research Group](https://sites.google.com/view/mtap-lab) at Pusan National University. It connects the main stages of an adsorption workflow: fitting pure-component isotherms, estimating isosteric heat, predicting mixture adsorption, and simulating multicomponent fixed-bed breakthrough.
 
-Installation
-========
-- **Windows users**:
-   <br>Please use the 'AIM_Installer_v_1.0.exe' file located in the [bin](./bin/) directory.
+## Modules
 
-- **Linux and macOS users**:
-   <br>Users of Linux and macOS need to compile the app for redistribution.
-   <br>Please follow the instruction given in the [README](./build/README.md) file located in the build directory for compilation.
+| Module | Purpose | Selected capabilities |
+| --- | --- | --- |
+| **IsoFit** | Fit pure-component adsorption isotherms | Langmuir-family, BET, Sips, Toth, Temkin, Dubinin–Astakhov, Klotz, Do–Do, and related models |
+| **HeatFit** | Estimate isosteric heat from multi-temperature data | Clausius–Clapeyron and virial methods |
+| **MixPred** | Predict mixture adsorption equilibria | Extended dual-site Langmuir (EDSL) and ideal adsorbed solution theory (IAST) |
+| **BreakLab** | Simulate fixed-bed breakthrough | Up to five components, axial dispersion, linear driving force kinetics, pressure drop, and nonisothermal operation |
 
-Development and validation
-========
-The supported source-development and CI workflow uses MATLAB R2024a or newer. From the repository root, run:
+All modules provide graphical data import, model or simulation selection, interactive plots, and export of results and figures.
+
+## Get started
+
+### Windows standalone application
+
+1. Download [`bin/AIM_Installer_v_1.0.exe`](bin/AIM_Installer_v_1.0.exe).
+2. Run the installer and follow its prompts.
+3. Install the matching MATLAB Runtime when prompted. A MATLAB license is not required to run the compiled application.
+
+The bundled installer is Windows-only. Treat executables downloaded from GitHub with the same care as any third-party binary and verify that this repository is the source.
+
+### Run from source
+
+Running the application from source requires MATLAB R2024a or newer.
+
+```bash
+git clone https://github.com/Chung-Research-Group/AIM.git
+cd AIM
+```
+
+Open `AIM_Build.prj` in MATLAB, then run `Main_app.mlapp` from the `src` directory. Building a redistributable standalone application additionally requires MATLAB Compiler; see [the build guide](build/README.md).
+
+## Example data
+
+Reproducibility inputs used in the associated publication are in [`manuscript_data`](manuscript_data/README.md). They include IsoFit and HeatFit datasets, saved isotherm parameters, mixture-prediction inputs, and BreakLab case configurations.
+
+## Development and validation
+
+The supported development baseline is MATLAB R2024a or newer. From the repository root, run:
 
 ```matlab
 buildtool check
 buildtool test
 ```
 
-The pull-request workflow runs repository hygiene checks, MATLAB Code Analyzer on R2024a, and numerical tests on both R2024a/Linux and the latest MATLAB release/Windows. It publishes static-analysis, JUnit, and code-coverage artifacts for review. See [the CI policy](./.github/CI.md) for the exact checks and merge-gate policy.
+Pull requests run repository hygiene checks, MATLAB Code Analyzer on R2024a/Linux, and numerical tests on both R2024a/Linux and the latest MATLAB release/Windows. Reports include static-analysis, JUnit, and coverage artifacts. See the [CI policy](.github/CI.md) for the merge gate and exact checks.
 
-AIM Modules
-======
-- **IsoFit**: Single temperature isotherm fitting using various isotherm models
-   * Single and dual-site Langmuir
-   * Single and dual-site Langmuir-Freundlich
-   * Quadratic
-   * Temkin's approximation
-   * BET
-   * Sips
-   * Toth
-   * Structural Transition Adsorption
-   * Dubinin-Astakhov
-   * Klotz
-   * Do-Do
+Documentation is built with Sphinx and Read the Docs:
 
-- **HeatFit**: Multiple temperature isotherm fitting and isosteric heat of adsorption prediction using
-   * Clausius-Clapeyron
-   * Virial equation
+```bash
+python -m pip install -r docs/requirements.txt
+sphinx-build -W --keep-going -b html docs/source docs/_build/html
+```
 
-- **MixPred**: Mixture adsorption isotherm using
-   * Extended Dual-site Langmuir model (EDSL)
-   * Ideal Adsorption Solution Theory (IAST)
+## Documentation and support
 
-- **BreakLab**: Non-isothermal/non-isobaric breakthrough simulation
-   * Supports up to 5 component systems
-   * Axial dispersion
-   * Linear Driving Force (LDF)
-   * Ergun equation for pressure drop
+- [User documentation](https://chung-research-group.github.io/AIM/)
+- [Report a bug or request a feature](https://github.com/Chung-Research-Group/AIM/issues)
+- Maintainer: [Muhammad Hassan](https://github.com/hassan-azizi)
 
-Cite Us
-============
-If you use AIM software for your scientific publications, please cite:<br>
-**"AIM: A User-friendly GUI Workflow program for Isotherm Fitting, Mixture Prediction, Isosteric Heat of Adsorption Estimation, and Breakthrough Simulation"**<br>
-Muhammad Hassan, Sunghyun Yoon, Yu Chen, Pilseok Kim, Hongryeol Yun, Hyuk Taek Kwon, Youn-Sang Bae, Chung-Yul Yoo, Dong-Yeun Koh, Chang Seop Hong, Ki Bong Lee, Yongchul G. Chung<br>
-Computer Physics Communications **319** (2026), 109944<br>
-URL: https://doi.org/10.1016/j.cpc.2025.109944
+When reporting a numerical issue, include the AIM module, MATLAB or Runtime version, operating system, input files, and the smallest reproducible case that demonstrates the problem.
 
-# License
-This project is licensed under the GNU General Public License v2 (GPLv2).  
-See the [LICENSE](./LICENSE) file for details.
+## Citation
 
-# Maintainers
-* Muhammad Hassan (hassanaz.14@outlook.com)
+If AIM contributes to published work, cite:
+
+> M. Hassan et al., “AIM: A user-friendly GUI workflow program for isotherm fitting, mixture prediction, isosteric heat of adsorption estimation, and breakthrough simulation,” *Computer Physics Communications* **319** (2026), 109944. https://doi.org/10.1016/j.cpc.2025.109944
+
+Machine-readable citation metadata is available in [`CITATION.cff`](CITATION.cff).
+
+## License
+
+AIM is distributed under the [GNU General Public License v2.0](LICENSE).
