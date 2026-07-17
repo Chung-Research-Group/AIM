@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_PATHS = {
     ".github/workflows/pr-checks.yml",
     "AIM_Build.prj",
+    "CITATION.cff",
     "LICENSE",
     "README.md",
     "buildfile.m",

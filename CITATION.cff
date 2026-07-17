@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+message: "If you use AIM in your research, please cite the associated article."
+title: "AIM: Adsorption Integrated Modules"
+type: software
+authors:
+  - family-names: Hassan
+    given-names: Muhammad
+  - family-names: Chung
+    given-names: Yongchul G.
+repository-code: "https://github.com/Chung-Research-Group/AIM"
+license: GPL-2.0-only
+preferred-citation:
+  type: article
+  title: "AIM: A user-friendly GUI workflow program for isotherm fitting, mixture prediction, isosteric heat of adsorption estimation, and breakthrough simulation"
+  authors:
+    - family-names: Hassan
+      given-names: Muhammad
+    - family-names: Yoon
+      given-names: Sunghyun
+    - family-names: Chen
+      given-names: Yu
+    - family-names: Kim
+      given-names: Pilseok
+    - family-names: Yun
+      given-names: Hongryeol
+    - family-names: Kwon
+      given-names: Hyuk Taek
+    - family-names: Bae
+      given-names: Youn-Sang
+    - family-names: Yoo
+      given-names: Chung-Yul
+    - family-names: Koh
+      given-names: Dong-Yeun
+    - family-names: Hong
+      given-names: Chang Seop
+    - family-names: Lee
+      given-names: Ki Bong
+    - family-names: Chung
+      given-names: Yongchul G.
+  journal: Computer Physics Communications
+  volume: 319
+  year: 2026
+  start: 109944
+  doi: 10.1016/j.cpc.2025.109944

@@ -85,6 +85,55 @@ function testLangmuirGrandPotentialDerivative(testCase)
                 'RelTol', 2e-7, 'AbsTol', 1e-10);
 end
 
+function testAllSupportedGrandPotentialsAreThermodynamicallyConsistent(testCase)
+    % For every supported model, q(P) = d(psi)/d(log(P)).  This catches a
+    % scientifically invalid IAST input even when the Newton solver itself
+    % converges cleanly.
+    models = {
+        [1; 2.4; 0.8; 0; 0; 0; 0], ...
+        [2; 1.2; 0.8; 0.9; 0.05; 0; 0], ...
+        [3; 2.4; 0.8; 0.7; 0; 0; 0], ...
+        [4; 1.2; 0.8; 0.7; 0.9; 0.05; 1.3], ...
+        [5; 2.4; 0.8; 0.1; 0; 0; 0], ...
+        [6; 2.4; 0.8; 0.4; 0; 0; 0], ...
+        [7; 2.4; 0.8; 0.02; 0; 0; 0], ...
+        [8; 2.4; 0.8; 1.4; 0; 0; 0], ...
+        [9; 2.4; 0.8; 0.55; 0; 0; 0] ...
+    };
+    pressure = logspace(-6, 1, 35)';
+    h = 1e-5;
+
+    for model_idx = 1:numel(models)
+        iso = models{model_idx};
+        loading = Isotherm_functions(1, iso, pressure, 298.15, 0, 1);
+        psi_plus = Isotherm_functions( ...
+            1, iso, pressure .* exp(h), 298.15, 0, 0);
+        psi_minus = Isotherm_functions( ...
+            1, iso, pressure .* exp(-h), 298.15, 0, 0);
+        numerical_derivative = (psi_plus - psi_minus) ./ (2 .* h);
+
+        verifyEqual(testCase, numerical_derivative, loading, ...
+            'RelTol', 2e-6, 'AbsTol', 2e-9, ...
+            sprintf('Model flag %d violates q=dpsi/dlnP.', model_idx));
+    end
+end
+
+function testTothGrandPotentialAtHighReducedPressure(testCase)
+    iso = zeros(7, 1);
+    iso(1:4) = [9; 2.4; 0.8; 0.5];
+    pressure = logspace(2, 10, 25)';
+    h = 1e-4;
+
+    loading = Isotherm_functions(1, iso, pressure, 298.15, 0, 1);
+    psi_plus = Isotherm_functions( ...
+        1, iso, pressure .* exp(h), 298.15, 0, 0);
+    psi_minus = Isotherm_functions( ...
+        1, iso, pressure .* exp(-h), 298.15, 0, 0);
+
+    verifyEqual(testCase, (psi_plus - psi_minus) ./ (2 .* h), loading, ...
+        'RelTol', 2e-6, 'AbsTol', 2e-8);
+end
+
 function testLangmuirLowAndHighPressureLimits(testCase)
     capacity = 2.4;
     affinity = 0.8;
@@ -199,6 +248,40 @@ function testZeroPressureIastReturnsZero(testCase)
         2, iso, pressure, composition, temperature, 0, []);
 
     verifyEqual(testCase, actual, zeros(4, 2), 'AbsTol', eps);
+end
+
+function testIastAcceptsScalarTemperature(testCase)
+    global cached_p0 Henry_Coeff cached_p0_local;
+    cached_p0 = [];
+    cached_p0_local = [];
+    Henry_Coeff = [2.4 * 0.8, 1.5 * 0.3];
+
+    iso = [singleSiteLangmuir(2.4, 0.8), ...
+           singleSiteLangmuir(1.5, 0.3)];
+    pressure = logspace(-4, 1, 8)';
+    composition = repmat([0.4, 0.6], numel(pressure), 1);
+
+    scalar_temperature = IAST_func_NR( ...
+        2, iso, pressure, composition, 298.15, 0, []);
+    vector_temperature = IAST_func_NR( ...
+        2, iso, pressure, composition, ...
+        298.15 .* ones(size(pressure)), 0, []);
+
+    verifyEqual(testCase, scalar_temperature, vector_temperature, ...
+        'RelTol', 1e-12, 'AbsTol', 1e-12);
+end
+
+function testIastRejectsInvalidComposition(testCase)
+    global cached_p0 Henry_Coeff cached_p0_local;
+    cached_p0 = [];
+    cached_p0_local = [];
+    Henry_Coeff = [2.4 * 0.8, 1.5 * 0.3];
+    iso = [singleSiteLangmuir(2.4, 0.8), ...
+           singleSiteLangmuir(1.5, 0.3)];
+
+    verifyError(testCase, ...
+        @() IAST_func_NR(2, iso, 1.0, [0.7, 0.6], 298.15, 0, []), ...
+        'AIM:IAST:InvalidComposition');
 end
 
 function iso = singleSiteLangmuir(capacity, affinity)

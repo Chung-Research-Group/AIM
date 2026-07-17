@@ -156,17 +156,7 @@ function solution = Isotherm_functions(num_comp, iso_params, P, T, T_flag, calc_
                 if calc_mode == 1
                     solution(:, i) = m .* theta1;
                 else
-                    theta_pow = min(theta1.^n, 1 - eps(class(theta1)));
-                    temp_psi = m .* (theta1 - theta1 ./ n .* log1p(-theta_pow));
-                    series_term = m .* theta1;
-                    denominator_base = 0;
-                    for k = 1:100
-                        series_term = series_term .* theta_pow;
-                        denominator_base = denominator_base + n;
-                        temp_psi = temp_psi - series_term ./ ...
-                            (denominator_base .* (denominator_base + 1));
-                    end
-                    solution(:, i) = temp_psi;
+                    solution(:, i) = toth_grand_potential(temp, m, n);
                 end
         end
     end
@@ -190,5 +180,60 @@ function solution = Isotherm_functions(num_comp, iso_params, P, T, T_flag, calc_
                   'Model flag %d requires finite nonnegative capacity/affinity parameters.', ...
                   model_flag);
         end
+    end
+
+    function grand_potential = toth_grand_potential(reduced_pressure, capacity, exponent)
+        % q = d(psi)/d(log(P)).  With
+        % theta=t/(1+t^n)^(1/n), direct integration gives
+        % psi/m = sum_{k=0}^inf theta^(n*k+1)/(n*k+1).
+        % The former fixed 100-term rearrangement lost accuracy as theta
+        % approached one.  Sum the well-conditioned leading terms and use
+        % an Euler-Maclaurin tail only where it is needed.
+        grand_potential = zeros(size(reduced_pressure), 'like', reduced_pressure);
+        positive = reduced_pressure > 0;
+        if ~any(positive)
+            return;
+        end
+
+        t = reduced_pressure(positive);
+        if exponent == 1
+            grand_potential(positive) = capacity .* log1p(t);
+            return;
+        end
+
+        log_z = zeros(size(t), 'like', t);
+        small_t = t <= 1;
+        log_z(small_t) = exponent .* log(t(small_t)) - ...
+            log1p(t(small_t).^exponent);
+        log_z(~small_t) = -log1p(t(~small_t).^(-exponent));
+        theta = exp(log_z ./ exponent);
+
+        n_terms = 160;
+        series_sum = zeros(size(t), 'like', t);
+        for k = 0:n_terms-1
+            series_sum = series_sum + ...
+                theta .* exp(k .* log_z) ./ (exponent .* k + 1);
+        end
+
+        % For z <= 0.8, the omitted tail is below double-precision scale
+        % after 160 terms for practical Toth exponents.  Near z=1, use the
+        % first Euler-Maclaurin corrections to retain high-pressure accuracy
+        % without an unbounded iteration count.
+        tail_rows = log_z > log(0.8);
+        if any(tail_rows)
+            local_log_z = log_z(tail_rows);
+            lambda = -local_log_z;
+            a = 1 ./ exponent;
+            f_k = theta(tail_rows) .* exp(n_terms .* local_log_z) ./ ...
+                (exponent .* n_terms + 1);
+            integral_tail = theta(tail_rows) .* exp(lambda .* a) ./ exponent .* ...
+                expint(lambda .* (n_terms + a));
+            derivative_f = f_k .* ...
+                (local_log_z - exponent ./ (exponent .* n_terms + 1));
+            series_sum(tail_rows) = series_sum(tail_rows) + ...
+                integral_tail + 0.5 .* f_k - derivative_f ./ 12;
+        end
+
+        grand_potential(positive) = capacity .* series_sum;
     end
 end

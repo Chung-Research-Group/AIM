@@ -3,7 +3,30 @@ function partial_loadings = IAST_func_NR(num_components, isotherm_params_array, 
     global Henry_Coeff;
     global cached_p0_local;
 
-    size_of_pressure_vector = length(Pressure);
+    validateattributes(num_components, {'numeric'}, ...
+        {'scalar', 'integer', 'positive'});
+    validateattributes(Pressure, {'numeric'}, ...
+        {'column', 'real', 'finite', 'nonnegative'});
+    validateattributes(gas_phase_mol_fraction, {'numeric'}, ...
+        {'2d', 'real', 'finite', 'nonnegative'});
+    if size(gas_phase_mol_fraction, 1) ~= size(Pressure, 1) || ...
+            size(gas_phase_mol_fraction, 2) ~= num_components
+        error('AIM:IAST:CompositionShape', ...
+              'gas_phase_mol_fraction must be nPressure-by-num_components.');
+    end
+    if any(sum(gas_phase_mol_fraction, 2) > 1 + 1e-10)
+        error('AIM:IAST:InvalidComposition', ...
+              'Adsorbing-component mole fractions cannot sum to more than one.');
+    end
+    validateattributes(T_array, {'numeric'}, {'real', 'finite', 'positive'});
+    if isscalar(T_array)
+        T_array = repmat(T_array, size(Pressure));
+    elseif ~isequal(size(T_array), size(Pressure))
+        error('AIM:IAST:TemperatureShape', ...
+              'T_array must be scalar or have the same size as Pressure.');
+    end
+
+    size_of_pressure_vector = size(Pressure, 1);
     partial_pressures = Pressure .* gas_phase_mol_fraction;
     fictitious_pressure = zeros(size_of_pressure_vector, num_components);
 
