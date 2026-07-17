@@ -71,7 +71,7 @@ function derivatives = Adsorption_step_IAST_Non_Iso(~, state_vars, Params, isoth
 %   
 %% Initialize all variables used in the function
     % Temporal derivatives
-    derivatives = zeros(11*N+22, 1) ;
+    derivatives = zeros(12*N+24, 1) ;
     dPdt        = zeros(N+2, 1)    ;
     dPdt1       = zeros(N+2, 1)    ;
     dPdt2       = zeros(N+2, 1)    ;
@@ -469,4 +469,4 @@ dTwdt(2:N+1) = dTwdt1(2:N+1) + dTwdt2(2:N+1) + dTwdt3(2:N+1);
        
         der_out = {yh, dydz, d2ydz2};                                               
     end
-end 
+end

@@ -79,7 +79,7 @@ function Jac_S = Jacobian(N, CalcType)
     Jac_S(:, N+3) = 0;
 
 %   Comp 1 Oulet
-    Jac_S(2*N+4,:) = Jac_S(2*N+3);
+    Jac_S(2*N+4,:) = Jac_S(2*N+3,:);
     Jac_S(:, 2*N+4) = 0;
 
 %   Comp 2 Inlet

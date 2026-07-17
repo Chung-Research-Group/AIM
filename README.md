@@ -24,6 +24,17 @@ Installation
    <br>Users of Linux and macOS need to compile the app for redistribution.
    <br>Please follow the instruction given in the [README](./build/README.md) file located in the build directory for compilation.
 
+Development and validation
+========
+The supported source-development and CI workflow uses MATLAB R2024a or newer. From the repository root, run:
+
+```matlab
+buildtool check
+buildtool test
+```
+
+The pull-request workflow runs repository hygiene checks, MATLAB Code Analyzer on R2024a, and numerical tests on both R2024a/Linux and the latest MATLAB release/Windows. It publishes static-analysis, JUnit, and code-coverage artifacts for review. See [the CI policy](./.github/CI.md) for the exact checks and merge-gate policy.
+
 AIM Modules
 ======
 - **IsoFit**: Single temperature isotherm fitting using various isotherm models
@@ -57,8 +68,8 @@ Cite Us
 ============
 If you use AIM software for your scientific publications, please cite:<br>
 **"AIM: A User-friendly GUI Workflow program for Isotherm Fitting, Mixture Prediction, Isosteric Heat of Adsorption Estimation, and Breakthrough Simulation"**<br>
-Muhammad Hassan, Sunghyun Yoon, Yu Chen, Pilseok Kim, Hongryeol Yun, Youn-Sang Bae, Chung-Yul Yoo, Dong-Yeun Koh, Chang Seop Hong, Ki Bong Lee, Yongchul G. Chung<br>
-Journal: Computer Physics Communications (2025)<br>
+Muhammad Hassan, Sunghyun Yoon, Yu Chen, Pilseok Kim, Hongryeol Yun, Hyuk Taek Kwon, Youn-Sang Bae, Chung-Yul Yoo, Dong-Yeun Koh, Chang Seop Hong, Ki Bong Lee, Yongchul G. Chung<br>
+Computer Physics Communications **319** (2026), 109944<br>
 URL: https://doi.org/10.1016/j.cpc.2025.109944
 
 # License
@@ -67,4 +78,3 @@ See the [LICENSE](./LICENSE) file for details.
 
 # Maintainers
 * Muhammad Hassan (hassanaz.14@outlook.com)
-
