@@ -1,39 +1,41 @@
-AIM modules
-===========
+Module workflow
+===============
 
-IsoFit
-------
+AIM's four modules exchange human-readable data files so a fitted equilibrium
+model can move directly into mixture prediction and process simulation.
 
-Fits pure-component adsorption data using models including single- and
-dual-site Langmuir, Langmuir–Freundlich, quadratic, Temkin, BET, Sips, Toth,
-structural-transition, Dubinin–Astakhov, Klotz, and Do–Do formulations.
+.. image:: _static/AIM_modules.png
+   :alt: AIM module workflow
+   :align: center
+   :width: 760px
 
-HeatFit
--------
+.. grid:: 1 2 2 2
+   :gutter: 3
 
-Uses isotherms measured at multiple temperatures to estimate isosteric heat of
-adsorption with Clausius–Clapeyron or virial methods.
+   .. grid-item-card:: 1. Fit equilibrium data
+      :link: isofit
+      :link-type: doc
 
-MixPred
--------
+      **IsoFit** estimates parameters from a single-temperature isotherm.
 
-Predicts multicomponent equilibrium adsorption with the extended dual-site
-Langmuir model or ideal adsorbed solution theory (IAST).
+   .. grid-item-card:: 2. Add temperature dependence
+      :link: heatfit
+      :link-type: doc
 
-BreakLab
---------
+      **HeatFit** fits multi-temperature data and isosteric heat.
 
-Simulates nonisothermal, non-isobaric fixed-bed breakthrough for as many as
-five components. The model supports axial dispersion, linear-driving-force
-mass transfer, and Ergun pressure drop.
+   .. grid-item-card:: 3. Predict mixtures
+      :link: mixpred
+      :link-type: doc
 
-Recommended workflow
---------------------
+      **MixPred** applies EDSL or IAST to pure-component models.
 
-1. Fit pure-component data in **IsoFit**.
-2. Estimate temperature dependence in **HeatFit**, when multi-temperature data
-   are available.
-3. Check mixture equilibrium predictions in **MixPred**.
-4. Supply equilibrium and process parameters to **BreakLab**.
-5. Export inputs and results with the case so the calculation can be
-   reproduced.
+   .. grid-item-card:: 4. Simulate the bed
+      :link: breaklab
+      :link-type: doc
+
+      **BreakLab** couples equilibrium, kinetics, transport, pressure drop, and
+      energy balances.
+
+The :doc:`input-output` guide defines the shared file formats and metadata. The
+:doc:`tutorials` page provides a complete video for each module.

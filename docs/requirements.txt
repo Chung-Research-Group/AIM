@@ -1,2 +1,3 @@
 Sphinx==8.2.3
-sphinx-rtd-theme==3.0.2
+pydata-sphinx-theme==0.16.1
+sphinx-design==0.6.1
