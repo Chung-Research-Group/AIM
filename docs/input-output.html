@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>AIM — Adsorption Integrated Modules &#8212; AIM documentation</title>
+    <title>Input and output data files &#8212; AIM documentation</title>
 
 
 
@@ -43,11 +43,13 @@
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'input-output';</script>
     <link rel="icon" href="_static/AIM_logo.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="next" title="Module workflow" href="modules.html" />
+    <link rel="prev" title="Video tutorials" href="tutorials.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -105,7 +107,7 @@
 
 
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="index.html">
 
 
 
@@ -146,8 +148,8 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="input-output.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
     Input and output data files
   </a>
 </li>
@@ -291,10 +293,8 @@
 
 
 
-
-
       <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
 
 
 
@@ -323,8 +323,8 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="input-output.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
     Input and output data files
   </a>
 </li>
@@ -423,6 +423,15 @@
 
   </div>
 
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+
 
   <div class="sidebar-primary-items__end sidebar-primary__section">
       <div class="sidebar-primary-item">
@@ -443,7 +452,31 @@
           <div class="bd-content">
             <div class="bd-article-container">
 
-              <div class="bd-header-article d-print-none"></div>
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+
+    <div class="header-article-items__start">
+
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Input and output data files</span></li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+
+
+</div>
+</div>
 
 
 
@@ -451,119 +484,133 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
 
-  <section id="aim-adsorption-integrated-modules">
-<h1>AIM — Adsorption Integrated Modules<a class="headerlink" href="#aim-adsorption-integrated-modules" title="Link to this heading">#</a></h1>
-<p class="lead"><strong>AIM</strong> is an open-source MATLAB application suite that connects pure-component
-isotherm fitting, isosteric heat estimation, mixture prediction, and fixed-bed
-breakthrough simulation in one reproducible workflow.</p>
-<div class="sd-container-fluid sd-sphinx-override sd-mb-4 aim-module-grid docutils">
-<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-4 sd-row-cols-lg-4 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-IsoFit</div>
-<p class="sd-card-text">Fit single-temperature adsorption isotherms with 13 model families,
-bounded nonlinear regression, multistart search, and automatic model
-selection.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="isofit.html"><span class="doc">IsoFit</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-HeatFit</div>
-<p class="sd-card-text">Fit multi-temperature data and estimate isosteric heat using the
-Clausius–Clapeyron or virial formulation.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="heatfit.html"><span class="doc">HeatFit</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-MixPred</div>
-<p class="sd-card-text">Predict multicomponent equilibrium with extended dual-site Langmuir
-(EDSL) or ideal adsorbed solution theory (IAST).</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="mixpred.html"><span class="doc">MixPred</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-BreakLab</div>
-<p class="sd-card-text">Simulate nonisothermal, non-isobaric fixed-bed breakthrough for as many
-as five components.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="breaklab.html"><span class="doc">BreakLab</span></a></div>
-</div>
-</div>
-</div>
-<section id="start-here">
-<h2>Start here<a class="headerlink" href="#start-here" title="Link to this heading">#</a></h2>
-<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
-<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-Install AIM</div>
-<p class="sd-card-text">Use the Windows standalone installer or run the application from MATLAB
-R2024a or newer.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="installation.html"><span class="doc">Installation</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-Watch the tutorials</div>
-<p class="sd-card-text">Follow complete video walkthroughs for IsoFit, HeatFit, MixPred, and
-BreakLab.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="tutorials.html"><span class="doc">Video tutorials</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-Prepare input files</div>
-<p class="sd-card-text">Review supported formats, metadata tags, units, and the human-readable
-<code class="docutils literal notranslate"><span class="pre">.bliso</span></code> output contract.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="input-output.html"><span class="doc">Input and output data files</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-Reproduce published cases</div>
-<p class="sd-card-text">Use the datasets, parameter files, and BreakLab configurations under
-<code class="docutils literal notranslate"><span class="pre">manuscript_data</span></code>.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="examples.html"><span class="doc">Example and publication data</span></a></div>
-</div>
-</div>
-</div>
-</section>
-<section id="scientific-scope">
-<h2>Scientific scope<a class="headerlink" href="#scientific-scope" title="Link to this heading">#</a></h2>
-<p>AIM retains the model definitions, governing equations, boundary conditions,
-parameter units, fitting objectives, and numerical-method descriptions needed
-to understand and reproduce its calculations. The module guides are technical
-references, not only interface tours.</p>
-<div class="toctree-wrapper compound">
-</div>
-</section>
-<section id="project-links">
-<h2>Project links<a class="headerlink" href="#project-links" title="Link to this heading">#</a></h2>
+  <section id="input-and-output-data-files">
+<h1>Input and output data files<a class="headerlink" href="#input-and-output-data-files" title="Link to this heading">#</a></h1>
+<p>AIM modules <strong>IsoFit</strong> and <strong>HeatFit</strong> read isotherm data from input files and generate output files containing
+isotherm fitting results. The AIM integrated workflow allows the user to directly load output files from <strong>IsoFit</strong> and <strong>HeatFit</strong> into
+<strong>MixPred</strong> and <strong>BreakLab</strong> modules. The schematic below highlights the input/output files and workflow within AIM modules. Both input and output files have a well-defined, human-readable format to ensure accessibility
+to users with diverse backgrounds. In this section, we outline the supported input file formats and guidelines to facilitate isotherm data files preparation.</p>
+<a class="reference internal image-reference" href="_images/scheme.png"><img alt="AIM_Scheme" class="align-center" src="_images/scheme.png" style="width: 700px; height: 700px;" />
+</a>
+<hr class="docutils" />
+<section id="input-file">
+<h2>Input File<a class="headerlink" href="#input-file" title="Link to this heading">#</a></h2>
+<p><strong>IsoFit</strong> and <strong>HeatFit</strong> can import isotherm data from</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/Chung-Research-Group/AIM">Source repository</a></p></li>
-<li><p><a class="reference external" href="https://github.com/Chung-Research-Group/AIM/issues">Issue tracker</a></p></li>
-<li><p><a class="reference external" href="https://doi.org/10.1016/j.cpc.2025.109944">Associated article</a></p></li>
+<li><p>General input data files in the following formats: *.csv, *.txt, *.xlsx, *.dat.</p></li>
+<li><p>Adsorption Information Format (AIF).</p></li>
 </ul>
+<p>The general input data file contains tabular data with columns corresponding to pressure and adsorption uptake values.
+Additionally, the user can specify the meta information in the input file such as temperature value and units of pressure, adsorption uptake, and temperature.
+A typical input file for <strong>IsoFit</strong> and <strong>HeatFit</strong> modules is shown below.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#units_pressure Pa
+#units_loading mol/kg
+#units_temperature K
+#temperature 298
+1.0     0.0017917972
+2.0     0.0035043503
+3.0     0.005368788
+4.0     0.0074401408
+5.0     0.008703644
+6.0     0.0103347517
+</pre></div>
+</div>
+<p>The meta information tags are specified at the beginning of the input file followed by the isotherm data. The first column
+specifies the pressure values, while the second column specifies the gas uptake values.</p>
+<p>We recommend the following guidelines for preparing the generic input data file</p>
+<ul>
+<li><p>The first column of the isotherm data should contain pressure values, and the second column should contain gas adsorption uptake (adsorption loading) values.</p></li>
+<li><p>The columns should be separated either by a single tab, whitespace, or comma.</p></li>
+<li><p>The meta information should be specified at the beginning of the file followed by isotherm data.</p></li>
+<li><p>The meta information requires specific tags which are listed in Table 1. The module will only search for and parse the tags listed in Table 1. Any additional tags will be ignored.</p></li>
+<li><p>The tag names and values should be specified in the following manner:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Tag_1_Name <span class="math notranslate nohighlight">\(\qquad\)</span> Tag_1_Value</div>
+<div class="line">Tag_2_Name <span class="math notranslate nohighlight">\(\qquad\)</span> Tag_2_Value</div>
+<div class="line">…</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>In the case of importing data from a spreadsheet (*.xlsx), please specify the data in the first sheet.</p></li>
+<li><p>If the AIF file contains both adsorption and desorption data, only the adsorption data will be read. In case isotherm fitting using desorption data is required, please use a separate input file.</p></li>
+<li><p>The temperature value is read only in <strong>HeatFit</strong> module. <strong>IsoFit</strong> ignores the temperature value.</p></li>
+</ul>
+<p>In addition to isotherm data, IsoFit also requires saturation/total pressure (<span class="math notranslate nohighlight">\(P_{0}\)</span>) to calculate the relative pressure in the case when user choose either <strong>Auto</strong> or <strong>Dubinin-Astakhov</strong>, <strong>Klotz</strong>, and <strong>Do-Do</strong> models.
+The <span class="math notranslate nohighlight">\(P_{0}\)</span> can be specified via one of the following methods:</p>
+<ul class="simple">
+<li><p>In the meta information of the isotherm data file using the tag listed in the Table below.</p></li>
+<li><p>In the app itself using the <span class="math notranslate nohighlight">\(P_{0}\)</span> entry field.</p></li>
+<li><p>By directly specifying the relative pressure values instead of pressure values in the isotherm data file.
+In this case, specify <span class="math notranslate nohighlight">\(P_{0}=1\)</span> in the <span class="math notranslate nohighlight">\(P_{0}\)</span> entry field.</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table" id="id1">
+<caption><span class="caption-text">Tags for meta information in input files</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Description</p></th>
+<th class="head"><p>General Input Data File</p></th>
+<th class="head"><p>AIF</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Pressure unit</p></td>
+<td><p>#units_pressure</p></td>
+<td><p>_units_pressure</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gas adsorption uptake unit</p></td>
+<td><p>#units_loading</p></td>
+<td><p>_units_loading</p></td>
+</tr>
+<tr class="row-even"><td><p>Saturation/total pressure</p></td>
+<td><p>#sat_pressure</p></td>
+<td><p>_adsorp_p0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Temperature value</p></td>
+<td><p>#temperature</p></td>
+<td><p>_expltl_temperature</p></td>
+</tr>
+<tr class="row-even"><td><p>Temperature unit</p></td>
+<td><p>#units_temperature</p></td>
+<td><p>_units_temperature</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Sample files are available in the repository’s
+<a class="reference external" href="https://github.com/Chung-Research-Group/AIM/tree/main/input-files">input-files directory</a>.
+Copy a representative file and replace its data while preserving the metadata
+tags for a quick start with <strong>IsoFit</strong> or <strong>HeatFit</strong>.</p>
+</section>
+<section id="output-files">
+<h2>Output files<a class="headerlink" href="#output-files" title="Link to this heading">#</a></h2>
+<p><strong>IsoFit</strong> and <strong>HeatFit</strong> generate an output containing the isotherm model name, fitted parameters, and fitting statistics.
+A typical output file from <strong>HeatFit</strong> is shown below.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>*************************************************************************
+********************HeatFit ISOTHERM FITTING RESULTS********************
+*************************************************************************
+
+Isotherm Model: DS-Langmuir
+
+Reference Temperature: 273.00
+
+Isotherm fit RMSE:        0.007864
+Isotherm fit r^2: 1.000000
+dH fit RMSE:      0.000908
+
+Parameters
+q_b_sat           2.251065
+b         4.755850e-05
+q_d_sat           1.981077
+d         1.284321e-06
+dH                2.571959e+01
+*************************************************************************
+</pre></div>
+</div>
+<p>Fitting statistics include Root Mean Square Error (RMSE) and <span class="math notranslate nohighlight">\(r^2\)</span> value.
+The output file from HeatFit also contains reference temperature used for fitting and fitted isosteric heat of adsorption values.
+The output file uses custom extension <strong>*.bliso</strong> to facilitate integrated workflow within AIM modules. However, the file itself is human-readable and can be opened with any text editor such as Notepad, WordPad etc.
+The fitted isotherm parameters in the output file can be directly loaded in <strong>MixPred</strong> and <strong>BreakLab</strong> modules for mixture adsorption prediction and breakthrough simulation, respectively.
+The user is advised not to modify the extension and keywords in the output file, as this can cause issues in isotherm parameter loading.</p>
 </section>
 </section>
 
@@ -577,12 +624,21 @@ references, not only interface tours.</p>
                 <footer class="prev-next-footer d-print-none">
 
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="tutorials.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Video tutorials</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="installation.html"
+       href="modules.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Installation</p>
+        <p class="prev-next-title">Module workflow</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -605,9 +661,8 @@ references, not only interface tours.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-here">Start here</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scientific-scope">Scientific scope</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-links">Project links</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-file">Input File</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-files">Output files</a></li>
 </ul>
   </nav></div>
 
@@ -615,7 +670,7 @@ references, not only interface tours.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
+      <li><a href="_sources/input-output.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>

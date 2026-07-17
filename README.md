@@ -14,7 +14,7 @@
   <a href="LICENSE"><img alt="License: GPL-2.0" src="https://img.shields.io/badge/license-GPL--2.0-blue"></a>
 </p>
 
-AIM (Adsorption Integrated Modules) is an open-source suite of MATLAB graphical applications developed by the [Chung Research Group](https://sites.google.com/view/mtap-lab) at Pusan National University. It connects the main stages of an adsorption workflow: fitting pure-component isotherms, estimating isosteric heat, predicting mixture adsorption, and simulating multicomponent fixed-bed breakthrough.
+AIM (Adsorption Integrated Modules) is an open-source suite of MATLAB graphical applications developed by the [Chung Research Group](https://chung-research-group.github.io/) at Pusan National University. It connects the main stages of an adsorption workflow: fitting pure-component isotherms, estimating isosteric heat, predicting mixture adsorption, and simulating multicomponent fixed-bed breakthrough.
 
 ## Modules
 
@@ -72,7 +72,8 @@ sphinx-build -W --keep-going -b html docs/source docs/_build/html
 
 ## Documentation and support
 
-- [User documentation](https://chung-research-group.github.io/AIM/)
+- [User documentation on Read the Docs](https://aim-adsorption.readthedocs.io/en/latest/)
+- [GitHub Pages mirror](https://chung-research-group.github.io/AIM/)
 - [Video tutorials for all four modules](docs/source/tutorials.rst)
 - [Input/output formats and metadata tags](docs/source/input-output.rst)
 - Technical references: [IsoFit](docs/source/isofit.rst), [HeatFit](docs/source/heatfit.rst), [MixPred](docs/source/mixpred.rst), and [BreakLab](docs/source/breaklab.rst)

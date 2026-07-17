@@ -1,0 +1,75 @@
+:root {
+  --aim-navy: #102a43;
+  --aim-blue: #0b72b9;
+  --aim-cyan: #27a8c7;
+  --pst-color-primary: var(--aim-blue);
+  --pst-color-link: #0869a8;
+}
+
+html[data-theme="dark"] {
+  --pst-color-primary: #65c5e3;
+  --pst-color-link: #73c9e4;
+}
+
+.bd-header {
+  border-top: 4px solid var(--aim-cyan);
+  box-shadow: 0 1px 0 rgba(16, 42, 67, 0.12);
+}
+
+.navbar-brand img {
+  max-height: 44px;
+}
+
+.bd-main .bd-content .bd-article-container {
+  max-width: 58rem;
+}
+
+h1 {
+  color: var(--aim-navy);
+  font-weight: 760;
+  letter-spacing: -0.025em;
+}
+
+html[data-theme="dark"] h1 {
+  color: #e6f4f8;
+}
+
+.lead {
+  max-width: 52rem;
+  font-size: 1.2rem;
+  line-height: 1.7;
+}
+
+.sd-card {
+  border: 1px solid rgba(16, 42, 67, 0.12);
+  border-radius: 0.8rem;
+  box-shadow: 0 8px 24px rgba(16, 42, 67, 0.06);
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+.sd-card:hover {
+  box-shadow: 0 12px 30px rgba(16, 42, 67, 0.12);
+  transform: translateY(-2px);
+}
+
+.sd-card-title {
+  color: var(--aim-blue);
+  font-weight: 720;
+}
+
+.responsive-video {
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  background: #071520;
+  box-shadow: 0 10px 30px rgba(16, 42, 67, 0.18);
+}
+
+table.docutils {
+  font-size: 0.92rem;
+}
+
+.math-wrapper {
+  overflow-x: auto;
+  padding-block: 0.4rem;
+}

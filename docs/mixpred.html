@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>AIM — Adsorption Integrated Modules &#8212; AIM documentation</title>
+    <title>MixPred &#8212; AIM documentation</title>
 
 
 
@@ -43,11 +43,13 @@
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'mixpred';</script>
     <link rel="icon" href="_static/AIM_logo.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="next" title="BreakLab" href="breaklab.html" />
+    <link rel="prev" title="HeatFit" href="heatfit.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -105,7 +107,7 @@
 
 
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="index.html">
 
 
 
@@ -181,8 +183,8 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
 
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="mixpred.html">
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
     MixPred
   </a>
 </li>
@@ -291,10 +293,8 @@
 
 
 
-
-
       <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
 
 
 
@@ -351,8 +351,8 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="mixpred.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
     MixPred
   </a>
 </li>
@@ -423,6 +423,15 @@
 
   </div>
 
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+
 
   <div class="sidebar-primary-items__end sidebar-primary__section">
       <div class="sidebar-primary-item">
@@ -443,7 +452,31 @@
           <div class="bd-content">
             <div class="bd-article-container">
 
-              <div class="bd-header-article d-print-none"></div>
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+
+    <div class="header-article-items__start">
+
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">MixPred</span></li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+
+
+</div>
+</div>
 
 
 
@@ -451,119 +484,69 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
 
-  <section id="aim-adsorption-integrated-modules">
-<h1>AIM — Adsorption Integrated Modules<a class="headerlink" href="#aim-adsorption-integrated-modules" title="Link to this heading">#</a></h1>
-<p class="lead"><strong>AIM</strong> is an open-source MATLAB application suite that connects pure-component
-isotherm fitting, isosteric heat estimation, mixture prediction, and fixed-bed
-breakthrough simulation in one reproducible workflow.</p>
-<div class="sd-container-fluid sd-sphinx-override sd-mb-4 aim-module-grid docutils">
-<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-4 sd-row-cols-lg-4 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-IsoFit</div>
-<p class="sd-card-text">Fit single-temperature adsorption isotherms with 13 model families,
-bounded nonlinear regression, multistart search, and automatic model
-selection.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="isofit.html"><span class="doc">IsoFit</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-HeatFit</div>
-<p class="sd-card-text">Fit multi-temperature data and estimate isosteric heat using the
-Clausius–Clapeyron or virial formulation.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="heatfit.html"><span class="doc">HeatFit</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-MixPred</div>
-<p class="sd-card-text">Predict multicomponent equilibrium with extended dual-site Langmuir
-(EDSL) or ideal adsorbed solution theory (IAST).</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="mixpred.html"><span class="doc">MixPred</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-BreakLab</div>
-<p class="sd-card-text">Simulate nonisothermal, non-isobaric fixed-bed breakthrough for as many
-as five components.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="breaklab.html"><span class="doc">BreakLab</span></a></div>
-</div>
-</div>
-</div>
-<section id="start-here">
-<h2>Start here<a class="headerlink" href="#start-here" title="Link to this heading">#</a></h2>
-<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
-<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-Install AIM</div>
-<p class="sd-card-text">Use the Windows standalone installer or run the application from MATLAB
-R2024a or newer.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="installation.html"><span class="doc">Installation</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-Watch the tutorials</div>
-<p class="sd-card-text">Follow complete video walkthroughs for IsoFit, HeatFit, MixPred, and
-BreakLab.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="tutorials.html"><span class="doc">Video tutorials</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-Prepare input files</div>
-<p class="sd-card-text">Review supported formats, metadata tags, units, and the human-readable
-<code class="docutils literal notranslate"><span class="pre">.bliso</span></code> output contract.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="input-output.html"><span class="doc">Input and output data files</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-Reproduce published cases</div>
-<p class="sd-card-text">Use the datasets, parameter files, and BreakLab configurations under
-<code class="docutils literal notranslate"><span class="pre">manuscript_data</span></code>.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference internal" href="examples.html"><span class="doc">Example and publication data</span></a></div>
-</div>
-</div>
-</div>
-</section>
-<section id="scientific-scope">
-<h2>Scientific scope<a class="headerlink" href="#scientific-scope" title="Link to this heading">#</a></h2>
-<p>AIM retains the model definitions, governing equations, boundary conditions,
-parameter units, fitting objectives, and numerical-method descriptions needed
-to understand and reproduce its calculations. The module guides are technical
-references, not only interface tours.</p>
-<div class="toctree-wrapper compound">
-</div>
-</section>
-<section id="project-links">
-<h2>Project links<a class="headerlink" href="#project-links" title="Link to this heading">#</a></h2>
+  <section id="mixpred">
+<h1>MixPred<a class="headerlink" href="#mixpred" title="Link to this heading">#</a></h1>
+<p><strong>MixPred</strong> is the module for mixture isotherm prediction for the given pressure and composition.
+<strong>MixPred</strong> GUI is shown below:</p>
+<a class="reference internal image-reference" href="_images/MixPred.png"><img alt="MixPred" class="align-center" src="_images/MixPred.png" style="width: 1000px;" />
+</a>
+<hr class="docutils" />
+<p>The isotherm fitting results from <strong>IsoFit</strong> and <strong>HeatFit</strong> can be directly loaded into <strong>MixPred</strong> module,
+and the user can specify the desired pressure range and mixture composition to calculate the mixture loadings.</p>
+<p>Watch how to use <strong>MixPred</strong> <a class="reference internal" href="tutorials.html#mixpred-label"><span class="std std-ref">here</span></a></p>
+<p><strong>MixPred</strong> has two models for
+mixture adsorption loading prediction which are as follows:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/Chung-Research-Group/AIM">Source repository</a></p></li>
-<li><p><a class="reference external" href="https://github.com/Chung-Research-Group/AIM/issues">Issue tracker</a></p></li>
-<li><p><a class="reference external" href="https://doi.org/10.1016/j.cpc.2025.109944">Associated article</a></p></li>
+<li><p>Extended Dual-site Langmuir Model (EDSL)</p></li>
+<li><p>Ideal Adsorbed Solution Theory (IAST)</p></li>
 </ul>
+<section id="extended-dual-site-langmuir-model-edsl">
+<h2>Extended Dual-site Langmuir Model (EDSL)<a class="headerlink" href="#extended-dual-site-langmuir-model-edsl" title="Link to this heading">#</a></h2>
+<p>The extended dual-site Langmuir (EDSL) model is a generalization of the Langmuir model for multi-component mixture adsorption. The model is expressed as,</p>
+<div class="math notranslate nohighlight">
+\[q_{mix,i}^{*} = \frac{q_{sat,1,i}b_{1,i}P_{i}}{1+\sum_{1}^{N}b_{1,j}P_{j}}
+          + \frac{q_{sat,2,i}b_{2,i}P_{i}}{1+\sum_{1}^{N}b_{2,j}P_{j}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of components involved; <span class="math notranslate nohighlight">\(q_{sat,1,i}\)</span>, <span class="math notranslate nohighlight">\(q_{sat,2,i}\)</span>, <span class="math notranslate nohighlight">\(b_{1,i}\)</span>, <span class="math notranslate nohighlight">\(b_{2,i}\)</span>, and <span class="math notranslate nohighlight">\(P_{i}\)</span> are
+the single or pure component Langmuir isotherm parameters and partial pressure of component <span class="math notranslate nohighlight">\(i\)</span>, respectively. The pure component Langmuir isotherm parameters for
+individual components can be obtained by fitting Langmuir isotherm model to the pure component isotherm data for the given component using either <strong>IsoFit</strong> or <strong>HeatFit</strong>.
+Note that the EDSL model is thermodynamically consistent only when the saturation capacities for each component are equal.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}q_{sat, 1, 1}=q_{sat, 1, 2}=q_{sat, 1, 3}= ... q_{sat, 1, N} \\
+q_{sat, 2, 1}=q_{sat, 2, 2}=q_{sat, 2, 3}= ... q_{sat, 2, N}\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The EDSL model in <strong>MixPred</strong> is applicable only when the isotherm of each individual component is described using the Langmuir isotherm model.</p>
+</div>
+</section>
+<section id="ideal-adsorbed-solution-theory-iast">
+<h2>Ideal Adsorbed Solution Theory (IAST)<a class="headerlink" href="#ideal-adsorbed-solution-theory-iast" title="Link to this heading">#</a></h2>
+<p>IAST is a thermodynamic framework to calculate the mixture isotherms using pure component isotherm. The IAST is based on three fundamental assumptions:</p>
+<ul class="simple">
+<li><p>The surface area of the adsorbent is equally accessible to all adsorbates.</p></li>
+<li><p>The adsorbed phase is an ideal solution.</p></li>
+<li><p>The adsorbent is homogeneous.</p></li>
+</ul>
+<p>The solution of IAST involves nonlinear equations expressed through the reduced grand potential. For component <span class="math notranslate nohighlight">\(i\)</span>, the reduced grand potential <span class="math notranslate nohighlight">\(\psi_{i}^{*}\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\psi_{i}^{*} = \int_{0}^{P_{i}^{*}} \frac{q_{i}^{*}(P)}{P} \,dP\]</div>
+<p>where <span class="math notranslate nohighlight">\(P_{i}^{*}\)</span> is the fictitious pressure and <span class="math notranslate nohighlight">\(q_{i}^{*}\)</span> is the equilibrium loading of component <span class="math notranslate nohighlight">\(i\)</span> as obtained from pure component isotherm model. The fictitious pressure <span class="math notranslate nohighlight">\(P_{i}^{*}\)</span> is the pressure
+for component <span class="math notranslate nohighlight">\(i\)</span> at which it exerts the same reduced grand potential as the other components in the mixture. <span class="math notranslate nohighlight">\(P_{i}^{*}\)</span> is related to partial pressure <span class="math notranslate nohighlight">\(P_{i}\)</span> of component <span class="math notranslate nohighlight">\(i\)</span> given as,</p>
+<div class="math notranslate nohighlight">
+\[P_{i} = x_{i}\,P_{i}^{*} \qquad \mathrm{for}\, i=1,2,3,\ldots, N.\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of adsorbing components in the mixture and <span class="math notranslate nohighlight">\(x_{i}\)</span> is the adsorbed mole fraction of component <span class="math notranslate nohighlight">\(i\)</span>. Note that,</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i}\,x_{i} = 1\]</div>
+<p>IAST states that adsorption equilibrium is achieved when the reduced grand potential of each component is same,</p>
+<div class="math notranslate nohighlight">
+\[\psi_{1}^{*} = \psi_{2}^{*} = \psi_{3}^{*} = ... \psi_{N}^{*}\]</div>
+<p>In <strong>MixPred</strong>, the IAST equations above are solved for <span class="math notranslate nohighlight">\(2N\)</span> unknowns, <span class="math notranslate nohighlight">\(P_{i}^{*}\)</span> and <span class="math notranslate nohighlight">\(x_{i}\)</span>. The mixture adsorption loading for each component is then calculated using</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}q_{tot} = \frac{1}{\sum_{i}^{N}\,\left(\frac{x_{i}}{q_{i}^{*}(P_{i}^{*})}\right)} \\
+q_{mix, i}^{*} = x_{i}\,q_{tot}\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The IAST equations are highly non-linear and often extremely sensitive to the initial guess used. The solution can often be computationally expensive and time-consuming.</p>
+</div>
 </section>
 </section>
 
@@ -577,12 +560,21 @@ references, not only interface tours.</p>
                 <footer class="prev-next-footer d-print-none">
 
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="heatfit.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">HeatFit</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="installation.html"
+       href="breaklab.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Installation</p>
+        <p class="prev-next-title">BreakLab</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -605,9 +597,8 @@ references, not only interface tours.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-here">Start here</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scientific-scope">Scientific scope</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-links">Project links</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extended-dual-site-langmuir-model-edsl">Extended Dual-site Langmuir Model (EDSL)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ideal-adsorbed-solution-theory-iast">Ideal Adsorbed Solution Theory (IAST)</a></li>
 </ul>
   </nav></div>
 
@@ -615,7 +606,7 @@ references, not only interface tours.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
+      <li><a href="_sources/mixpred.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>

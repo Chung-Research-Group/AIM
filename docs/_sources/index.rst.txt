@@ -1,52 +1,106 @@
-.. AIM Documentation documentation master file, created by
-   sphinx-quickstart on Fri May 16 14:38:34 2025.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+AIM — Adsorption Integrated Modules
+====================================
 
-AIM
-===============================
+.. rst-class:: lead
 
-.. image:: images/AIM_logo.png
-   :width: 400
-   :height: 400
-   :alt: AIM_logo
-   :align: center
+**AIM** is an open-source MATLAB application suite that connects pure-component
+isotherm fitting, isosteric heat estimation, mixture prediction, and fixed-bed
+breakthrough simulation in one reproducible workflow.
 
--------
+.. grid:: 2 2 4 4
+   :gutter: 3
+   :class-container: aim-module-grid
 
-**AIM** (Adsorption Integrated Modules) is a collection of MATLAB based GUI modules for adsorption isotherm based fixed bed process modelling. 
-**AIM** modules provide an integrated workflow for adsorption isotherm fitting at single and multiple temperatures, isosteric heat of adsorption estimation, mixture adsorption isotherm
-prediction, and multicomponent fixed bed breakthrough simulation.
+   .. grid-item-card:: IsoFit
+      :link: isofit
+      :link-type: doc
 
-Primary features of AIM include:
+      Fit single-temperature adsorption isotherms with 13 model families,
+      bounded nonlinear regression, multistart search, and automatic model
+      selection.
 
-* Integrated workflow within modules
-* GUI environment to facilitate data input/output, model and simulation type selection
-* Dynamic plots for pressure, loading, temperature, and composition
-* Data and graphics export in different formats
+   .. grid-item-card:: HeatFit
+      :link: heatfit
+      :link-type: doc
 
-AIM software and the associated source code are open-source and freely available at our GitHub repository `AIM repository <https://github.com/Chung-Research-Group/AIM>`_.
+      Fit multi-temperature data and estimate isosteric heat using the
+      Clausius–Clapeyron or virial formulation.
+
+   .. grid-item-card:: MixPred
+      :link: mixpred
+      :link-type: doc
+
+      Predict multicomponent equilibrium with extended dual-site Langmuir
+      (EDSL) or ideal adsorbed solution theory (IAST).
+
+   .. grid-item-card:: BreakLab
+      :link: breaklab
+      :link-type: doc
+
+      Simulate nonisothermal, non-isobaric fixed-bed breakthrough for as many
+      as five components.
+
+Start here
+----------
+
+.. grid:: 1 2 2 2
+   :gutter: 3
+
+   .. grid-item-card:: Install AIM
+      :link: installation
+      :link-type: doc
+
+      Use the Windows standalone installer or run the application from MATLAB
+      R2024a or newer.
+
+   .. grid-item-card:: Watch the tutorials
+      :link: tutorials
+      :link-type: doc
+
+      Follow complete video walkthroughs for IsoFit, HeatFit, MixPred, and
+      BreakLab.
+
+   .. grid-item-card:: Prepare input files
+      :link: input-output
+      :link-type: doc
+
+      Review supported formats, metadata tags, units, and the human-readable
+      ``.bliso`` output contract.
+
+   .. grid-item-card:: Reproduce published cases
+      :link: examples
+      :link-type: doc
+
+      Use the datasets, parameter files, and BreakLab configurations under
+      ``manuscript_data``.
+
+Scientific scope
+----------------
+
+AIM retains the model definitions, governing equations, boundary conditions,
+parameter units, fitting objectives, and numerical-method descriptions needed
+to understand and reproduce its calculations. The module guides are technical
+references, not only interface tours.
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents
+   :hidden:
+   :maxdepth: 3
 
-   AIM Modules
-   Input-Output Data Files
-   Installation
-   Tutorials
-   Citation
-   
-License
-=======
-| Copyright (C) 2025 Muhammad Hassan, Chung Research Group 2025-04-29.
-| This project is licensed under the GNU General Public License v2 (GPLv2).
-| See the `GPLv2 license <https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html>`_
+   installation
+   tutorials
+   input-output
+   modules
+   isofit
+   heatfit
+   mixpred
+   breaklab
+   examples
+   development
+   citation
 
-Maintainers
-===========
+Project links
+-------------
 
-* Muhammad Hassan
-
-For any issues or questions, please reach us at hassanaz.14(at)outlook(dot)com.
-
+* `Source repository <https://github.com/Chung-Research-Group/AIM>`_
+* `Issue tracker <https://github.com/Chung-Research-Group/AIM/issues>`_
+* `Associated article <https://doi.org/10.1016/j.cpc.2025.109944>`_

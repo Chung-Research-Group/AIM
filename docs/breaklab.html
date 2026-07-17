@@ -1,0 +1,924 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>BreakLab &#8212; AIM documentation</title>
+
+
+
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/aim.css?v=d2d31c14" />
+
+  <!-- So that users can add custom icons -->
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=8a448e45"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'breaklab';</script>
+    <link rel="icon" href="_static/AIM_logo.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Example and publication data" href="examples.html" />
+    <link rel="prev" title="MixPred" href="mixpred.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+
+
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+
+
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  <div id="pst-scroll-pixel-helper"></div>
+
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+
+  <dialog id="pst-search-dialog">
+
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+
+
+  <div class=" navbar-header-items__start">
+
+      <div class="navbar-item">
+
+
+
+
+
+<a class="navbar-brand logo" href="index.html">
+
+
+
+
+
+
+
+
+
+
+    <img src="_static/AIM_logo.png" class="logo__image only-light" alt="AIM documentation - Home"/>
+    <img src="_static/AIM_logo.png" class="logo__image only-dark pst-js-only" alt="AIM documentation - Home"/>
+
+
+</a></div>
+
+  </div>
+
+  <div class=" navbar-header-items">
+
+    <div class="me-auto navbar-header-items__center">
+
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Video tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="input-output.html">
+    Input and output data files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="modules.html">
+    Module workflow
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="isofit.html">
+    IsoFit
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="heatfit.html">
+    HeatFit
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="mixpred.html">
+    MixPred
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    BreakLab
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="examples.html">
+    Example and publication data
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="development.html">
+    Development and validation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="citation.html">
+    Citation and license
+  </a>
+</li>
+
+                </ul>
+            </li>
+
+  </ul>
+</nav></div>
+
+    </div>
+
+
+    <div class="navbar-header-items__end">
+
+        <div class="navbar-item navbar-persistent--container">
+
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+
+
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+
+
+
+
+
+
+
+
+          <a href="https://github.com/Chung-Research-Group/AIM" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+
+    </div>
+
+  </div>
+
+
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+
+
+
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+
+</div>
+
+    </header>
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+
+
+
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+
+
+
+  <div class="sidebar-header-items sidebar-primary__section">
+
+
+      <div class="sidebar-header-items__center">
+
+
+
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Video tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="input-output.html">
+    Input and output data files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="modules.html">
+    Module workflow
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="isofit.html">
+    IsoFit
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="heatfit.html">
+    HeatFit
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="mixpred.html">
+    MixPred
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    BreakLab
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples.html">
+    Example and publication data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="development.html">
+    Development and validation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="citation.html">
+    Citation and license
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+
+
+      </div>
+
+
+
+      <div class="sidebar-header-items__end">
+
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+
+
+
+
+
+
+
+
+          <a href="https://github.com/Chung-Research-Group/AIM" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+
+      </div>
+
+  </div>
+
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+
+
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+
+      <main id="main-content" class="bd-main" role="main">
+
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+
+    <div class="header-article-items__start">
+
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">BreakLab</span></li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+
+
+</div>
+</div>
+
+
+
+
+<div id="searchbox"></div>
+                <article class="bd-article">
+
+  <section id="breaklab">
+<h1>BreakLab<a class="headerlink" href="#breaklab" title="Link to this heading">#</a></h1>
+<p><strong>BreakLab</strong> is the module for isothermal/non-isothermal multicomponent fixed bed breakthrough simulation for up to 5 components (1 non-adsorbing, 4
+adsorbing components).
+<strong>BreakLab</strong> GUI is shown below:</p>
+<a class="reference internal image-reference" href="_images/BreakLab.png"><img alt="BreakLab_logo" class="align-center" src="_images/BreakLab.png" style="width: 1000px;" />
+</a>
+<hr class="docutils" />
+<p>The isotherm fitting results from <strong>IsoFit</strong> and <strong>HeatFit</strong> for different components can be directly loaded into <strong>BreakLab</strong> module.</p>
+<p>Watch how to use <strong>BreakLab</strong> <a class="reference internal" href="tutorials.html#breaklab-label"><span class="std std-ref">here</span></a></p>
+<p>The mathematical model implemented in BreakLab and the required properties and parameters for breakthrough simulation are summarized below.</p>
+<section id="mathematical-model">
+<h2>Mathematical Model<a class="headerlink" href="#mathematical-model" title="Link to this heading">#</a></h2>
+<p>The mathematical model of BreakLab is based on the following assumptions:</p>
+<ul class="simple">
+<li><p>The gas flow is axially dispersed and characterized by an axial dispersion coefficient.</p></li>
+<li><p>The gas phase is ideal.</p></li>
+<li><p>Pressure drop in the column is given by Ergun’s equation.</p></li>
+<li><p>The steady state momentum balance is applicable.</p></li>
+<li><p>The adsorbent bed is uniform; the bed density, void fraction, and particle size are constant throughout the bed length.</p></li>
+<li><p>Thermal equilibrium exists between gas and solid phase.</p></li>
+<li><p>The heat transfer coefficient governing the heat transfer between column wall and bed is constant.</p></li>
+<li><p>The mass transfer resistance between solid and gas phase is governed by Linear Driving Force (LDF) model.</p></li>
+<li><p>The concentration, pressure, and temperature gradients in the axial directions are negligible.</p></li>
+</ul>
+<p>The material, energy and momentum balances are developed based on conservation of mass, energy, and momentum in the fixed bed, respectively.
+The resulting balance equations are partial differential equations (PDEs) and consist of mole conservation of component <span class="math notranslate nohighlight">\(i\)</span>, overall mass balance, conservation of total momentum and the total energy
+of the system. The mathematical model of BreakLab including the balance equations, LDF, and Ergun equation is summarized in the table below. Please check the journal article for a more detailed discussion on BreakLab mathematical model.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id1">
+<caption><span class="caption-text">BreakLab Balance Equations</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>Expression</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Component mole balance</p></td>
+<td><p><span class="math notranslate nohighlight">\(\varepsilon_{t}\left(\frac{\partial y_{i}}{\partial t} + \frac{y_{i}}{P}\frac{\partial P}{\partial t} - \frac{y_{i}}{T}\frac{\partial T}{\partial t} \right) = D_{ax} \frac{\varepsilon_{b} T}{P}\frac{\partial}{\partial z} \left(\frac{P}{T} \frac{\partial y_{i}}{\partial z}\right) - \frac{\varepsilon_{b} T}{P}\frac{\partial}{\partial z} \left(\frac{y_{i}vP}{T}\right) - \frac{\rho_{b,ads}RT}{P} \frac{\partial q_{i}}{\partial t}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Total mole balance</p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{\partial P}{\partial t} = \frac{P}{T}\frac{\partial T}{\partial t} - \frac{\varepsilon_{b} T}{\varepsilon_{t}}\frac{\partial}{\partial z} \left(\frac{vP}{T}\right) - \frac{\rho_{b,ads}RT}{\varepsilon_{t}} \sum_{i\in I} \frac{\partial q_{i}}{\partial t}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Energy balance</p></td>
+<td><p><span class="math notranslate nohighlight">\(\left(\rho_{b,ads}C_{p,ads} + \rho_{b,ads}C_{p,a}\sum_{i \in I} q_{i}\right)\frac{\partial T}{\partial t} = K_{z} \frac{\partial^{2}T}{\partial z^2} - \frac{C_{p,gas}\varepsilon_{b}}{R}\frac{\partial}{\partial z}(vP) + \rho_{b,ads} \left( \sum_{i \in I} \left(-\Delta H_{ads,i}\frac{\partial q_{i}}{\partial t}\right) - C_{p, a}T \sum_{i \in I}\frac{\partial q_{i}}{\partial t}\right) - \frac{2 h_{in}}{r_{in}} (T - T_{wall}) - \frac{C_{p,gas}\varepsilon_{t}}{R}\frac{\partial P}{\partial t}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Wall energy balance</p></td>
+<td><p><span class="math notranslate nohighlight">\(\rho_{wall}C_{wall}\frac{\partial T_{wall}}{\partial t} = K_{z,wall} \frac{\partial^{2}T_{wall}}{\partial z^2} - \frac{2 h_{in} r_{in}}{(r_{out}^{2}-r_{in}^{2})}(T_{wall} - T) - \frac{2 h_{out} r_{out}}{(r_{out}^{2}-r_{in}^{2})}(T_{wall} - T_{a})\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Linear Driving Force</p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{\partial q}{\partial t} = k_{i}(q_{mix, i}^{*} - q_{i})\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Ergun equation</p></td>
+<td><p><span class="math notranslate nohighlight">\(- \frac{\partial P}{\partial z} = \left(\frac{150 \mu}{4r_{p}^{2}}\right) \left(\frac{1-\varepsilon_{b}}{\varepsilon_{b}}\right)^2v + \left(\frac{1.75 \rho_{gas}}{2r_{p}} \left(\frac{1-\varepsilon_{b}}{\varepsilon_{b}}\right) \right)v^{2}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Total porosity <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span> is calculated using the bulk and particle porosities, <span class="math notranslate nohighlight">\(\varepsilon_{b}\)</span>, <span class="math notranslate nohighlight">\(\varepsilon_{p}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\varepsilon_{t} =  \varepsilon_{b} + (1-\varepsilon_{b})\varepsilon_{p}\]</div>
+<p>Axial dispersion coefficient <span class="math notranslate nohighlight">\(D_{ax}\)</span> is calculated using,</p>
+<div class="math notranslate nohighlight">
+\[D_{ax} = 0.7D_{m} + v_{0}r_{p}\]</div>
+<section id="boundary-conditions">
+<h3>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading">#</a></h3>
+<p>BreakLab uses the Danckwerts boundary conditions (BCs) for dispersed plug flow system. The BCs are summarized in the table below.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id2">
+<caption><span class="caption-text">BreakLab Boundary Conditions</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>Inlet (<span class="math notranslate nohighlight">\(z = 0\)</span>)</p></th>
+<th class="head"><p>Outlet (<span class="math notranslate nohighlight">\(z = L\)</span>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mole fraction (<span class="math notranslate nohighlight">\(y_{i}\)</span>)</p></td>
+<td><p><span class="math notranslate nohighlight">\(D_{ax} \frac{\partial y_{i}}{\partial z}|_{z=0} = -v|_{z=0}(y_{0, i} - y_{i}|_{z=0})\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{\partial y_{i}}{\partial z}|_{z=L} = 0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Temperature (<span class="math notranslate nohighlight">\(T\)</span>)</p></td>
+<td><p><span class="math notranslate nohighlight">\(K_{z} \frac{\partial T}{\partial z}|_{z=0} = -\varepsilon_{b}\rho_{gas}C_{p, gas}v|_{z=0}(T_{0} - T|_{z=0})\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{\partial T}{\partial z}|_{z=L} = 0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Velocity (<span class="math notranslate nohighlight">\(v\)</span>)</p></td>
+<td><p><span class="math notranslate nohighlight">\(v|_{z=0} = v_{0}/\varepsilon_{b}\)</span></p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pressure (<span class="math notranslate nohighlight">\(P\)</span>)</p></td>
+<td><p><span class="math notranslate nohighlight">\(P|_{z=0} = f^*(v|_{z=0})\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(P|_{z=L} = P_{0}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Wall temperature (<span class="math notranslate nohighlight">\(T_{wall}\)</span>)</p></td>
+<td><p><span class="math notranslate nohighlight">\(T_{wall}|_{z=0} = T_{a}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(T_{wall}|_{z=L} = T_{a}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>* here <span class="math notranslate nohighlight">\(f\)</span> represents the Ergun equation. Only the velocity is specified at inlet and pressure is back calculated using Ergun equation.</p>
+<p>Together the balance equations and BCs constitute the mathematical model of BreakLab.</p>
+</section>
+</section>
+<section id="numerical-simulation">
+<h2>Numerical Simulation<a class="headerlink" href="#numerical-simulation" title="Link to this heading">#</a></h2>
+<p>The model equations are nondimensionalized to resolve the steep gradients in the adsorption processes and faster convergence. The scaling variables
+used for nondimensionalization are as follows:</p>
+<div class="math notranslate nohighlight">
+\[\overline{P} = \frac{P}{P_{0}},\quad \overline{T} =\frac{T}{T_{0}},\quad \overline{v} = \frac{v}{v_{0}}, \quad \overline{x_{i}} = \frac{q_{i}}{q_{i0}},
+\quad {\xi} = \frac{z}{L},\quad \tau = \frac{tv_{0}}{L}, \quad \overline{T_{wall}} = \frac{T_{wall}}{T_{0}}\]</div>
+<p>The dimensionless equations are derived using the scaled variables above. BreakLab employs finite volume method (FVM) along with weighted essentially non-oscillatory (WENO) scheme
+for spatial discretization of the above PDEs. Spatial discretization yields ordinary differential equations (ODEs). BreakLab uses MATLAB’s built in stiff ODE solver <em>ode15s</em> for solving the systems of ODEs.</p>
+</section>
+<section id="breakthrough-simulation-input">
+<h2>Breakthrough Simulation Input<a class="headerlink" href="#breakthrough-simulation-input" title="Link to this heading">#</a></h2>
+<p>The table below summarizes all the input properties and parameters required for running a breakthrough simulation in BreakLab.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id3">
+<caption><span class="caption-text">BreakLab Inputs</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameters</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Remarks</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(T_{0}\)</span></p></td>
+<td><p>Feed gas temperature</p></td>
+<td><p><span class="math notranslate nohighlight">\(K\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(v_{0}\)</span></p></td>
+<td><p>Feed flow</p></td>
+<td><p><span class="math notranslate nohighlight">\(m/s\\\mathrm{OR}\\\mathrm{std. }\quad cm^3/min\)</span></p></td>
+<td><p>Standard state refers to <span class="math notranslate nohighlight">\(0\,^\circ\mathrm{C}\)</span> and <span class="math notranslate nohighlight">\(101325\,Pa\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(y_{0, i}\)</span></p></td>
+<td><p>Feed gas mole fraction of component <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(MW_{i}\)</span></p></td>
+<td><p>Molecular weight of component <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(kg/mol\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(D_{m}\)</span></p></td>
+<td><p>Molecular diffusivity of gas</p></td>
+<td><p><span class="math notranslate nohighlight">\(m^{2}/s\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(*K_{z}\)</span></p></td>
+<td><p>Thermal conductivity of gas</p></td>
+<td><p><span class="math notranslate nohighlight">\(W/m/K\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(*C_{p, gas}\)</span></p></td>
+<td><p>Specific heat capacity of gas</p></td>
+<td><p><span class="math notranslate nohighlight">\(J/mol/K\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mu\)</span></p></td>
+<td><p>Viscosity of gas</p></td>
+<td><p><span class="math notranslate nohighlight">\(Pa\,s\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(P_{0}\)</span></p></td>
+<td><p>Absolute pressure of adsorber column</p></td>
+<td><p><span class="math notranslate nohighlight">\(Pa\)</span></p></td>
+<td><p>This pressure refers to the pressure at the outlet of column.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(L\)</span></p></td>
+<td><p>Length of adsorber column</p></td>
+<td><p><span class="math notranslate nohighlight">\(m\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(*D_{col,in}\)</span></p></td>
+<td><p>Inner diameter of adsorber column</p></td>
+<td><p><span class="math notranslate nohighlight">\(m\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(*D_{col,out}\)</span></p></td>
+<td><p>Outer diameter of adsorber column</p></td>
+<td><p><span class="math notranslate nohighlight">\(m\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(*K_{z,wall}\)</span></p></td>
+<td><p>Thermal conductivity of column wall</p></td>
+<td><p><span class="math notranslate nohighlight">\(W/m/K\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(*\rho_{z,wall}\)</span></p></td>
+<td><p>Density of column wall</p></td>
+<td><p><span class="math notranslate nohighlight">\(kg/m^{3}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(*C_{p,wall}\)</span></p></td>
+<td><p>Specific heat capacity of column wall</p></td>
+<td><p><span class="math notranslate nohighlight">\(J/kg/K\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(*h_{in}\)</span></p></td>
+<td><p>Inside heat transfer coefficient</p></td>
+<td><p><span class="math notranslate nohighlight">\(W/m^{2}/K\)</span></p></td>
+<td><p>For running adiabatic breakthrough simulations specify this equal to <span class="math notranslate nohighlight">\(0.0\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(*h_{out}\)</span></p></td>
+<td><p>Outside heat transfer coefficient</p></td>
+<td><p><span class="math notranslate nohighlight">\(W/m^{2}/K\)</span></p></td>
+<td><p>For running adiabatic breakthrough simulations specify this equal to <span class="math notranslate nohighlight">\(0.0\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(*T_{a}\)</span></p></td>
+<td><p>Temperature of surrooundings</p></td>
+<td><p><span class="math notranslate nohighlight">\(K\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\rho_{b,ads}\)</span></p></td>
+<td><p>Bulk density of adsobent</p></td>
+<td><p><span class="math notranslate nohighlight">\(kg/m^3\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(D_{p}\)</span></p></td>
+<td><p>Diameter of adsorbent particles</p></td>
+<td><p><span class="math notranslate nohighlight">\(m\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\varepsilon_{b}\)</span></p></td>
+<td><p>Bulk porosity of adsorbent bed</p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\varepsilon_{p}\)</span></p></td>
+<td><p>Particle porosity of adsorbent particles</p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+<td><p>In case of not knowing the particle porosity specify this as <span class="math notranslate nohighlight">\(0.0\)</span>. In such case, BreakLab will assume bulk porosity <span class="math notranslate nohighlight">\(\varepsilon_{b}\)</span> is equal to total porosity <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(*C_{p,ads}\)</span></p></td>
+<td><p>Specific heat capacity of adsorbent</p></td>
+<td><p><span class="math notranslate nohighlight">\(J/kg/K\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Isotherm model parameters</strong></p></td>
+<td><p>Isotherm parameters for the chosen isotherm model</p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+<td><p>Need to provide this for each component except for carrier gas. </p>
+<p>The number and types of isotherm model parameters depends on the</p>
+<p>chosen isotherm model. The isotherm model and parameters for the </p>
+<p>given component obtained from IsoFit or HeatFit can be imported as well.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(*\Delta H_{ads, i}\)</span></p></td>
+<td><p>Heat of adsorption of component <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(kJ/mol\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(*T_{ref}\)</span></p></td>
+<td><p>Reference temperature at which isotherm parameters are obtained.</p></td>
+<td><p><span class="math notranslate nohighlight">\(K\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(k_{i}\)</span></p></td>
+<td><p>Mass transfer coefficient of component <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/s\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note that parameters with <span class="math notranslate nohighlight">\(*\)</span> are only required for non-isothermal breakthrough simulation.</p>
+</section>
+<section id="nomenclature">
+<h2>Nomenclature<a class="headerlink" href="#nomenclature" title="Link to this heading">#</a></h2>
+<div class="line-block">
+<div class="line"><span class="math notranslate nohighlight">\(P =\)</span> Absolute pressure of the gas <span class="math notranslate nohighlight">\((Pa)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\overline{P} =\)</span> Dimensionless pressure of gas <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(T =\)</span> Absolute temperature of the gas <span class="math notranslate nohighlight">\((K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\overline{T} =\)</span> Dimensionless temperature of gas <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(T_{wall} =\)</span> Wall temperature <span class="math notranslate nohighlight">\((K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\overline{T_{wall}} =\)</span> Dimensionless wall temperature <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(y_{i} =\)</span> Gas mole fraction of component <span class="math notranslate nohighlight">\(i\)</span> <span class="math notranslate nohighlight">\((Pa)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(q_{i} =\)</span> Adsorption loading of component <span class="math notranslate nohighlight">\(i\)</span> <span class="math notranslate nohighlight">\((mol/kg)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\overline{x_{i}} =\)</span> Dimensionless adsorption loading of component <span class="math notranslate nohighlight">\(i\)</span> <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(q_{i}^{*} =\)</span> Mixture equilibrium adsorption loading of component <span class="math notranslate nohighlight">\(i\)</span>  <span class="math notranslate nohighlight">\((mol/kg)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(L =\)</span> Adsorber column length <span class="math notranslate nohighlight">\((m)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\xi =\)</span> Dimensionless adsorber column length <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\overline{t} =\)</span> Time <span class="math notranslate nohighlight">\((s)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\tau =\)</span> Dimensionless time <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\varepsilon_{t} =\)</span> Total porosity of adsorbent particle <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\varepsilon_{b} =\)</span> Bulk porosity of adsorbent particle <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\varepsilon_{p} =\)</span> Particle porosity of adsorbent particle <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(v =\)</span> Interstitial velocity <span class="math notranslate nohighlight">\((m/s)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(v_{0} =\)</span> Superficial velocity of feed <span class="math notranslate nohighlight">\((m/s)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(P_{0} =\)</span> Adsorption pressure <span class="math notranslate nohighlight">\((Pa)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(T_{0} =\)</span> Temperature of feed gas <span class="math notranslate nohighlight">\((K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(y_{0, i} =\)</span> Mole fraction of component <span class="math notranslate nohighlight">\(i\)</span> in feed <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\rho_{b, ads} =\)</span> Bulk density of adsorbent bed <span class="math notranslate nohighlight">\((kg/m^{3})\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\rho_{gas} =\)</span> Density of gas <span class="math notranslate nohighlight">\((kg/m^{3})\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\rho_{wall} =\)</span> Density of wall <span class="math notranslate nohighlight">\((kg/m^{3})\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(D_{ax} =\)</span> Axial dispersion coefficient <span class="math notranslate nohighlight">\((m^{2}/s)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(D_{m} =\)</span> Molecular diffusivity of gas phase <span class="math notranslate nohighlight">\((m^{2}/s)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(r_{p} =\)</span> Radius of adsorbent particles <span class="math notranslate nohighlight">\((m)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(r_{in} =\)</span> Inside radius of adsorber column <span class="math notranslate nohighlight">\((m)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(D_{col,in} =\)</span> Inside diameter of adsorber column <span class="math notranslate nohighlight">\((m)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(D_{col,out} =\)</span> Outside diameter of adsorber column <span class="math notranslate nohighlight">\((m)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\mu =\)</span> Viscosity of gas phase <span class="math notranslate nohighlight">\((Pa . s)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(K_{z} =\)</span> Thermal conductivity of gas <span class="math notranslate nohighlight">\((W/m/K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(K_{z,wall} =\)</span> Thermal conductivity of wall <span class="math notranslate nohighlight">\((W/m/K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(C_{p,ads} =\)</span> Heat capacity of adsorbent particles <span class="math notranslate nohighlight">\((J/kg/K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(C_{p,a} =\)</span> Heat capacity of adsorbed phase <span class="math notranslate nohighlight">\((J/mol/K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(C_{p,gas} =\)</span> Heat capacity of gas <span class="math notranslate nohighlight">\((J/mol/K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(C_{p,wall} =\)</span> Heat capacity of wall <span class="math notranslate nohighlight">\((J/mol/K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\Delta H_{ads, i} =\)</span> Heat of adsorption of component <span class="math notranslate nohighlight">\(i\)</span> <span class="math notranslate nohighlight">\((J/mol)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(T_{ref} =\)</span> Reference temperature at which isotherm parameters are obtained <span class="math notranslate nohighlight">\((K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(T_{a} =\)</span> Surroundings or ambient temperature <span class="math notranslate nohighlight">\((K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(h_{in} =\)</span> Inside heat transfer coefficient <span class="math notranslate nohighlight">\((W/m^{2}/K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(h_{out} =\)</span> Outside heat transfer coefficient <span class="math notranslate nohighlight">\((W/m^{2}/K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(k_{i} =\)</span> Mass transfer coefficient of component <span class="math notranslate nohighlight">\(i\)</span>  <span class="math notranslate nohighlight">\((1/s)\)</span></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+
+
+
+
+
+                <footer class="prev-next-footer d-print-none">
+
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="mixpred.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">MixPred</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="examples.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Example and publication data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+
+            </div>
+
+
+
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-model">Mathematical Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary Conditions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-simulation">Numerical Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breakthrough-simulation-input">Breakthrough Simulation Input</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nomenclature">Nomenclature</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/breaklab.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+
+
+          </div>
+          <footer class="bd-footer-content">
+
+          </footer>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+
+    <div class="footer-items__start">
+
+        <div class="footer-item">
+
+  <p class="copyright">
+
+      © Copyright 2025–2026, Muhammad Hassan and Chung Research Group.
+      <br/>
+
+  </p>
+</div>
+
+    </div>
+
+
+
+    <div class="footer-items__end">
+
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+
+    </div>
+
+</div>
+
+  </footer>
+  </body>
+</html>
