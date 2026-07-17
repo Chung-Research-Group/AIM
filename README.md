@@ -14,7 +14,7 @@
   <a href="LICENSE"><img alt="License: GPL-2.0" src="https://img.shields.io/badge/license-GPL--2.0-blue"></a>
 </p>
 
-AIM (Adsorption Integrated Modules) is an open-source suite of MATLAB graphical applications developed by the [Chung Research Group](https://sites.google.com/view/mtap-lab) at Pusan National University. It connects the main stages of an adsorption workflow: fitting pure-component isotherms, estimating isosteric heat, predicting mixture adsorption, and simulating multicomponent fixed-bed breakthrough.
+AIM (Adsorption Integrated Modules) is an open-source suite of MATLAB graphical applications developed by the [Chung Research Group](https://chung-research-group.github.io/) at Pusan National University. It connects the main stages of an adsorption workflow: fitting pure-component isotherms, estimating isosteric heat, predicting mixture adsorption, and simulating multicomponent fixed-bed breakthrough.
 
 ## Modules
 
