@@ -340,8 +340,8 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
 %    
 %%  2.4) Temperature Change due to mass capacity change of gas
 
-    dTdt5(2:N+1) = -C_pg .* epsilon_3 .* P_0 .* dPdt(2:N+1)...
-                   ./ (R * T_0) ./ sink_term;
+    pressure_energy_coefficient = C_pg .* epsilon_3 .* P_0 ./ ...
+        (R .* T_0 .* sink_term);
 %%  2.5) Temperature change due to heat transfer to wall
     % T_w = (T_wall)/T_0  ;
     dTdt6(2:N+1) = (2 * h_in * L / r_in /v_0) .* (Tw(2:N+1) - T(2:N+1)) ./ sink_term;
@@ -350,8 +350,9 @@ function derivatives = Adsorption_step_EDSL_Non_Iso(~, state_vars, Params, isoth
     dTdt7(2:N+1) = - sigma_ads .* T(2:N+1) .* (dx1dt(2:N+1) + dx2dt(2:N+1) + ...
                            dx3dt(2:N+1) + dx4dt(2:N+1) + dx5dt(2:N+1)) ./ sink_term;
 %%   2.8) Total sum of all temperature derivatives 
-        dTdt(2:N+1) = dTdt1(2:N+1) + dTdt2(2:N+1) + dTdt3(2:N+1) + dTdt4(2:N+1)...
-                       + dTdt5(2:N+1) + dTdt6(2:N+1) + dTdt7(2:N+1);
+    dTdt(2:N+1) = dTdt1(2:N+1) + dTdt2(2:N+1) + ...
+        dTdt3(2:N+1) + dTdt4(2:N+1) + ...
+        dTdt6(2:N+1) + dTdt7(2:N+1);
 %
 %% Wall energy balance
 dTwdt1(2:N+1) = K_w/ro_w/C_pw/v_0/L .* d2Twdz2(2:N+1);
@@ -372,12 +373,13 @@ dTwdt(2:N+1) = dTwdt1(2:N+1) + dTwdt2(2:N+1) + dTwdt3(2:N+1);
                            dx3dt(2:N+1) + dx4dt(2:N+1) + dx5dt(2:N+1)) ;
 %   
 %%  
-%   3.3) Calculate the change in pressure due to temperature changes
-    dPdt3(2:N+1) = P(2:N+1).*dTdt(2:N+1)./T(2:N+1)            ;
-%                       
-%%
-%   3.5) Total sum of all presure changes
-    dPdt(2:N+1) = dPdt1(2:N+1) + dPdt2(2:N+1) + dPdt3(2:N+1) + dPdt4(2:N+1);
+%   3.3) Solve pressure and temperature rates simultaneously
+    base_pressure_rate = dPdt1(2:N+1) + dPdt2(2:N+1) + dPdt4(2:N+1);
+    [dPdt(2:N+1), dTdt(2:N+1)] = couple_pressure_temperature_rates( ...
+        base_pressure_rate, dTdt(2:N+1), P(2:N+1), T(2:N+1), ...
+        pressure_energy_coefficient);
+    dPdt3(2:N+1) = P(2:N+1) .* dTdt(2:N+1) ./ T(2:N+1);
+    dTdt5(2:N+1) = -pressure_energy_coefficient .* dPdt(2:N+1);
 %   
 %%  
  % *4) Component Mass Balance (Based on Mole Fraction)*
