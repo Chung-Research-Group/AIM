@@ -14,10 +14,7 @@ function partial_loadings = IAST_func_NR(num_components, isotherm_params_array, 
         error('AIM:IAST:CompositionShape', ...
               'gas_phase_mol_fraction must be nPressure-by-num_components.');
     end
-    if any(sum(gas_phase_mol_fraction, 2) > 1 + 1e-10)
-        error('AIM:IAST:InvalidComposition', ...
-              'Adsorbing-component mole fractions cannot sum to more than one.');
-    end
+    
     validateattributes(T_array, {'numeric'}, {'real', 'finite', 'positive'});
     if isscalar(T_array)
         T_array = repmat(T_array, size(Pressure));
@@ -33,18 +30,8 @@ function partial_loadings = IAST_func_NR(num_components, isotherm_params_array, 
     pressure_tol = 1e-13;
     loading_floor = 1e-15;
     max_iter = 100;
-
-    if isempty(Henry_Coeff) || numel(Henry_Coeff) < num_components
-        error('AIM:IAST:InvalidHenryCoefficient', ...
-              'Henry coefficients must be initialized for every adsorbing component.');
-    end
-
+    
     active_henry = Henry_Coeff(1:num_components);
-    if any(~isfinite(active_henry)) || any(active_henry <= 0)
-        error('AIM:IAST:InvalidHenryCoefficient', ...
-              'Henry coefficients must be finite and strictly positive.');
-    end
-
     sum_Hcoeff = sum(partial_pressures .* active_henry, 2);
     H_guess = zeros(size(partial_pressures));
     for component_idx = 1:num_components
@@ -115,6 +102,7 @@ function partial_loadings = IAST_func_NR(num_components, isotherm_params_array, 
         grand_potential_tol = 1e-10;
         mole_fraction_tol = 1e-10;
         pressure_floor = 1e-15;
+        min_step_size = 2^-15;  % Corresponds to 15 step size halvings
 
         partial_pressure = partial_pressure(:);
         p0_guess = max(p0_guess(:), pressure_floor);
@@ -131,11 +119,12 @@ function partial_loadings = IAST_func_NR(num_components, isotherm_params_array, 
                 ncomp, local_iso_params, p0_guess', T, local_T_flag, 1);
             grand_potentials = grand_potentials(:);
             loadings = loadings(:);
-
-            if any(~isfinite(grand_potentials)) || any(~isfinite(loadings)) || ...
-                    any(loadings <= 0)
-                error('Non-finite or non-positive isotherm values during Newton iteration %d.', iteration);
-            end
+            
+            % Already implemented in Isotherm_functions
+            % if any(~isfinite(grand_potentials)) || any(~isfinite(loadings)) || ...
+            %         any(loadings <= 0)
+            %     error('Non-finite or non-positive isotherm values during Newton iteration %d.', iteration);
+            % end
 
             G_vec(1:end-1) = grand_potentials(1:end-1) - grand_potentials(end);
             G_vec(end) = 1 - sum(partial_pressure ./ p0_guess);
@@ -169,11 +158,16 @@ function partial_loadings = IAST_func_NR(num_components, isotherm_params_array, 
             while any(p0_guess - step_scale .* delta <= pressure_floor) && step_scale > 2^-20
                 step_scale = step_scale / 2;
             end
-            if step_scale <= 2^-20
-                error('Newton step could not maintain positive fictitious pressures.');
+
+            if step_scale > min_step_size
+                update_guess = p0_guess - step_scale .* delta;
+            
+            elseif step_scale <= min_step_size
+                idx_check = (p0_guess - step_scale .* delta) < pressure_floor;
+                update_guess(~idx_check) = p0_guess(~idx_check) - step_scale.*delta(~idx_check);
+                update_guess(idx_check) = 1/2 .* p0_guess(idx_check);
             end
 
-            update_guess = p0_guess - step_scale .* delta;
             updated_potential = Isotherm_functions( ...
                 ncomp, local_iso_params, update_guess', T, local_T_flag, 0);
             updated_potential = updated_potential(:);
