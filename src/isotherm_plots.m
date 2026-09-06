@@ -1,168 +1,233 @@
-function [] = isotherm_plots(ax, pressure_data, loading_data, T_flag, T_array, isotherm_struc,...
-                             xlogscale_flag, ylogscale_flag, unit_pressure, unit_loading, unit_temperature, P_saturation, vir_flag, vir_num_a)    
-    % P_saturation is required for Klotz, Dubinin-Astakhov, and Do-Do model
-    if nargin<11
+function [] = isotherm_plots(ax, pressure_data, loading_data, T_flag, T_array, isotherm_struc, ...
+                             xlogscale_flag, ylogscale_flag, unit_pressure, unit_loading, unit_temperature, ...
+                             P_saturation, vir_flag, vir_num_a)
+%ISOTHERM_PLOTS Plot adsorption data, fitted curves, and 95% confidence bands.
+
+    if nargin < 12 || isempty(P_saturation)
         P_saturation = 1.0;
     end
-    %% Function variables    
+    if nargin < 13 || isempty(vir_flag)
+        vir_flag = false;
+    end
+    if nargin < 14
+        vir_num_a = [];
+    end
+
     line_width = 2.5;
     scatter_marker_size = 90;
     fontsize = 18;
     fontweight = 'bold';
-    % fontname = 'AvantGrande';
     fontname = 'Calibri';
-    
-    legend_array = {};      % Array to hold legend entries
-    % color_array = ["blue", "green", "red"];       % Array to hold colors
-    %% Plotting isotherm data
-    cla (ax, "reset");
-    colororder(ax, "gem12");
+    alpha = 0.05;
+    legend_array = {};
 
-    hold(ax, 'on');        % For multiple plots
+    cla(ax, 'reset');
+    colororder(ax, 'gem12');
+    colors = ax.ColorOrder;
+    hold(ax, 'on');
+
     if ~T_flag
-        % Plot isotherm for single temperature
-        s_plots = scatter(ax, pressure_data, loading_data, scatter_marker_size, 'filled', 'o', 'MarkerEdgeColor','k');
-        s_plots.SizeData = scatter_marker_size;
-        legend_array = [legend_array, 'Data'];
-
+        data_color = colors(1, :);
+        scatter(ax, pressure_data, loading_data, scatter_marker_size, data_color, ...
+            'filled', 'o', 'MarkerEdgeColor', 'k');
+        legend_array{end+1} = 'Data';
     else
-        % Check the dimensions of pressure data, loading data are consistent with temperature
-        if ~((size(pressure_data, 2) == length(T_array)) ...
-             && (size(loading_data, 2) == length(T_array)))
-            error("The of pressure/loading data must be specified for every temperature value");
+        if ~((size(pressure_data, 2) == length(T_array)) && ...
+             (size(loading_data, 2) == length(T_array)))
+            error('The pressure/loading data must be specified for every temperature value.');
         end
-        
-        % Plotting isotherms for different temperatures
-        for i=1:length(T_array)
-            s_plots = scatter(ax, pressure_data(:, i), loading_data(:, i), 'filled', 'o', 'MarkerEdgeColor','k');
-            s_plots.SizeData = scatter_marker_size;
-            if ~isempty(unit_temperature)
-                legend_entry = {sprintf('Data %.1f(%s)', T_array(i), unit_temperature)};
-            else
-                legend_entry = {sprintf('Data %.1f', T_array(i))};
-            end
-            legend_array = [legend_array, legend_entry];
+
+        for temperature_idx = 1:length(T_array)
+            current_color = colors(mod(temperature_idx - 1, size(colors, 1)) + 1, :);
+            scatter(ax, pressure_data(:, temperature_idx), loading_data(:, temperature_idx), ...
+                scatter_marker_size, current_color, 'filled', 'o', 'MarkerEdgeColor', 'k');
+            legend_array{end+1} = temperature_label( ...
+                'Data', T_array(temperature_idx), unit_temperature);
         end
     end
-    
-    %% Plotting isotherm curve using fitted isotherm function 
-    if ~(isempty(isotherm_struc))               % If isotherm struc is specified with all the parameters
+
+    if ~isempty(isotherm_struc)
         isotherm_fun = isotherm_struc.fun;
         isotherm_params = isotherm_struc.fitted_params;
         p_sat_flag = isotherm_struc.p_sat;
 
         if ~T_flag
+            valid = isfinite(pressure_data) & isfinite(loading_data);
+            pressure_fit = pressure_data(valid);
+            loading_fit = loading_data(valid);
+            [pressure_grid, sort_idx] = sort(pressure_fit(:));
+            loading_fit = loading_fit(sort_idx); %#ok<NASGU>
+
             if p_sat_flag
-                loading_pred = isotherm_fun(isotherm_params, pressure_data./P_saturation);
+                model_fun = @(params, pressure) isotherm_fun(params, pressure ./ P_saturation);
             else
-                loading_pred = isotherm_fun(isotherm_params, pressure_data);
+                model_fun = @(params, pressure) isotherm_fun(params, pressure);
             end
-            q = plot(ax, pressure_data, loading_pred);
-            q.LineWidth = line_width;
-            % q.Color = char(color_array);
-            legend_array = [legend_array, 'Isotherm Fit'];
-        else
-            if ~vir_flag
-                dH = isotherm_struc.dH;
-                T_ref = isotherm_struc.T_ref;
-                norm_pressure_data = pressure_data .* exp(-1.0 * dH/8.3144 .* (1./T_array - 1/T_ref));
-                predicted_loadings = zeros(size(pressure_data, 1), size(T_array, 2));
- 
-                for j=1:length(T_array)      
-                    predicted_loadings(:, j) = isotherm_fun(isotherm_params, norm_pressure_data(:, j)); 
-                    q = plot(ax, pressure_data(:, j), predicted_loadings(:, j));
-                    q.LineWidth = line_width;  
-                end
-            else
-                pressure_pred = exp(isotherm_fun(isotherm_params, loading_data, T_array, vir_num_a));
-                for k=1:length(T_array)
-                    q = plot(ax, pressure_pred(:, k), loading_data(:, k));
-                    q.LineWidth = line_width;           
-                end
+
+            uncertainty = reconstruct_isotherm_covariance( ...
+                isotherm_struc, pressure_fit, loading_data(valid), P_saturation);
+            ci = delta_method_ci(model_fun, isotherm_params, ...
+                uncertainty.covariance, pressure_grid, alpha);
+
+            current_color = colors(1, :);
+            add_vertical_band(ax, pressure_grid, ci.lower, ci.upper, current_color);
+            q = plot(ax, pressure_grid, ci.estimate, 'Color', current_color, ...
+                'LineWidth', line_width);
+            q.DisplayName = 'Isotherm Fit';
+            legend_array{end+1} = 'Isotherm Fit';
+            if all(isfinite(ci.lower), 'all')
+                legend_array{end+1} = '95% pointwise CI';
+                add_ci_legend_proxy(ax, current_color);
             end
-            
-            for m=1:length(T_array)  
-                if ~isempty(unit_temperature)
-                    legend_entry = {sprintf('Isotherm Fit %.1f(%s)', T_array(m), unit_temperature)};
+
+        elseif ~vir_flag
+            dH = isotherm_struc.dH;
+            T_ref = isotherm_struc.T_ref;
+            gas_constant = 8.3144;
+            norm_pressure_data = pressure_data .* ...
+                exp(-dH ./ gas_constant .* (1 ./ T_array - 1 ./ T_ref));
+
+            covariance_fit = reconstruct_isotherm_covariance( ...
+                isotherm_struc, norm_pressure_data, loading_data, 1.0);
+            parameter_covariance = covariance_fit.covariance;
+            dH_standard_error = NaN;
+            if isfield(isotherm_struc, 'dH_std_error')
+                dH_standard_error = isotherm_struc.dH_std_error;
+            end
+
+            for temperature_idx = 1:length(T_array)
+                valid = isfinite(pressure_data(:, temperature_idx)) & ...
+                        isfinite(loading_data(:, temperature_idx));
+                pressure_grid = sort(pressure_data(valid, temperature_idx));
+                current_temperature = T_array(temperature_idx);
+                current_color = colors(mod(temperature_idx - 1, size(colors, 1)) + 1, :);
+
+                if isfinite(dH_standard_error)
+                    combined_params = [isotherm_params(:).', dH];
+                    combined_covariance = blkdiag(parameter_covariance, dH_standard_error.^2);
+                    model_fun = @(params, pressure) isotherm_fun( ...
+                        params(1:end-1), pressure .* exp(-params(end) ./ gas_constant .* ...
+                        (1 ./ current_temperature - 1 ./ T_ref)));
                 else
-                    legend_entry = {sprintf('Isotherm Fit %.1f', T_array(m))};
+                    combined_params = isotherm_params(:).';
+                    combined_covariance = parameter_covariance;
+                    model_fun = @(params, pressure) isotherm_fun( ...
+                        params, pressure .* exp(-dH ./ gas_constant .* ...
+                        (1 ./ current_temperature - 1 ./ T_ref)));
                 end
-                legend_array = [legend_array, legend_entry];
+
+                ci = delta_method_ci(model_fun, combined_params, ...
+                    combined_covariance, pressure_grid, alpha);
+                add_vertical_band(ax, pressure_grid, ci.lower, ci.upper, current_color);
+                plot(ax, pressure_grid, ci.estimate, 'Color', current_color, ...
+                    'LineWidth', line_width);
+                legend_array{end+1} = temperature_label( ...
+                    'Isotherm Fit', current_temperature, unit_temperature);
+            end
+
+            if any(isfinite(parameter_covariance), 'all')
+                add_ci_legend_proxy(ax, colors(1, :));
+                legend_array{end+1} = '95% pointwise CI';
+            end
+
+        else
+            virial_uncertainty = reconstruct_virial_covariance( ...
+                isotherm_struc, pressure_data, loading_data, T_array, vir_num_a);
+
+            for temperature_idx = 1:length(T_array)
+                valid = isfinite(loading_data(:, temperature_idx)) & ...
+                        isfinite(pressure_data(:, temperature_idx)) & ...
+                        pressure_data(:, temperature_idx) > 0;
+                loading_grid = sort(loading_data(valid, temperature_idx));
+                current_temperature = T_array(temperature_idx);
+                current_color = colors(mod(temperature_idx - 1, size(colors, 1)) + 1, :);
+                model_fun = @(params, loading) isotherm_fun( ...
+                    params, loading, repmat(current_temperature, size(loading)), vir_num_a);
+                log_pressure_ci = delta_method_ci(model_fun, isotherm_params, ...
+                    virial_uncertainty.covariance, loading_grid, alpha);
+
+                pressure_estimate = exp(log_pressure_ci.estimate);
+                pressure_lower = exp(log_pressure_ci.lower);
+                pressure_upper = exp(log_pressure_ci.upper);
+                add_horizontal_band(ax, loading_grid, pressure_lower, pressure_upper, current_color);
+                plot(ax, pressure_estimate, loading_grid, 'Color', current_color, ...
+                    'LineWidth', line_width);
+                legend_array{end+1} = temperature_label( ...
+                    'Isotherm Fit', current_temperature, unit_temperature);
+            end
+
+            if any(isfinite(virial_uncertainty.covariance), 'all')
+                add_ci_legend_proxy(ax, colors(1, :));
+                legend_array{end+1} = '95% pointwise CI';
             end
         end
     end
-    
-    % Checking for log scale requirement
+
     if xlogscale_flag
-        xscale(ax, "log");
+        xscale(ax, 'log');
     end
-
     if ylogscale_flag
-        yscale(ax, "log");
+        yscale(ax, 'log');
     end
 
-    ax.Box = "on";
+    ax.Box = 'on';
     ax.Color = [1 1 1];
-    
-    if ~isempty(unit_pressure)
-        x_label = sprintf("Pressure (%s)", unit_pressure);
-    else
-        x_label = sprintf("Pressure");
-    end
+    xlabel(ax, axis_label('Pressure', unit_pressure), ...
+        FontSize=fontsize, FontName=fontname, FontWeight=fontweight);
+    ylabel(ax, axis_label('Gas Uptake', unit_loading), ...
+        FontSize=fontsize, FontName=fontname, FontWeight=fontweight);
 
-    if ~isempty(unit_loading)
-        y_label = sprintf("Gas Uptake (%s)", unit_loading);
-    else
-        y_label = sprintf("Gas Uptake");
+    if ~isempty(legend_array)
+        legend(ax, legend_array, 'Location', 'best');
     end
-
-    xlabel(ax, x_label, FontSize = fontsize, FontName=fontname, FontWeight=fontweight);
-    ylabel(ax, y_label, FontSize = fontsize, FontName=fontname, FontWeight=fontweight);
-    
-    legend(ax, legend_array, Location="best");
-    
-    grid (ax, "on")
+    grid(ax, 'on');
     ax.GridAlpha = 0.05;
-
     ax.FontName = fontname;
     ax.FontWeight = fontweight;
     ax.FontSize = fontsize;
     hold(ax, 'off');
+end
 
-    % Ensuring consistent color scheme for plots
-    % Grab handles of scatter plots
-    scatter_handles = findobj(ax, 'Type', 'Scatter');
-    % if isempty(scatter_handles)
-    %     scatter_handles = 0;
-    % end
+function add_vertical_band(ax, x, lower, upper, color)
+    valid = isfinite(x) & isfinite(lower) & isfinite(upper);
+    x = x(valid);
+    lower = lower(valid);
+    upper = upper(valid);
+    if numel(x) < 2
+        return;
+    end
+    fill(ax, [x; flipud(x)], [lower; flipud(upper)], color, ...
+        'FaceAlpha', 0.16, 'EdgeColor', 'none', 'HandleVisibility', 'off');
+end
 
-    % Grab handles of line plots
-    line_handles = findobj(ax, 'Type', 'Line');
-    % if isempty(line_handles)
-    %     line_handles = 0;
-    % end
+function add_horizontal_band(ax, y, lower_x, upper_x, color)
+    valid = isfinite(y) & isfinite(lower_x) & isfinite(upper_x) & lower_x > 0;
+    y = y(valid);
+    lower_x = lower_x(valid);
+    upper_x = upper_x(valid);
+    if numel(y) < 2
+        return;
+    end
+    fill(ax, [lower_x; flipud(upper_x)], [y; flipud(y)], color, ...
+        'FaceAlpha', 0.16, 'EdgeColor', 'none', 'HandleVisibility', 'off');
+end
 
-    % Get color order from the axes
-    colors = ax.ColorOrder;
-    color_idx = 1;
+function add_ci_legend_proxy(ax, color)
+    patch(ax, NaN, NaN, color, 'FaceAlpha', 0.16, 'EdgeColor', 'none');
+end
 
-    for i=1:length(scatter_handles)
-        % Setting the corresponding scatter and line pair to have the same
-        % color index        
-        if ~isempty(scatter_handles)
-            set(scatter_handles(i), 'CData', colors(color_idx, :));
-        end
+function label = temperature_label(prefix, temperature, unit_temperature)
+    if ~isempty(unit_temperature)
+        label = sprintf('%s %.1f(%s)', prefix, temperature, unit_temperature);
+    else
+        label = sprintf('%s %.1f', prefix, temperature);
+    end
+end
 
-        if ~isempty(line_handles)
-            set(line_handles(i), 'Color', colors(color_idx, :));
-        end
-
-        % Max colors in the paletter are 12, hence, need to cycle through
-        % them.
-        if rem(i, length(colors)) == 0
-            color_idx = 1;
-        else
-            color_idx = color_idx+1;
-        end
+function label = axis_label(quantity, unit)
+    if ~isempty(unit)
+        label = sprintf('%s (%s)', quantity, unit);
+    else
+        label = quantity;
     end
 end
